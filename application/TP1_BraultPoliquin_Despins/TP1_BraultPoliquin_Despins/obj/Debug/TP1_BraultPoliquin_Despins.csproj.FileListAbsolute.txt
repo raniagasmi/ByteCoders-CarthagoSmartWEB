@@ -1,0 +1,19 @@
+C:\Users\Hmmm\Documents\Visual Studio 2010\Projects\TP1_BraultPoliquin_Despins\TP1_BraultPoliquin_Despins\bin\TP1_BraultPoliquin_Despins.dll
+C:\Users\Hmmm\Documents\Visual Studio 2010\Projects\TP1_BraultPoliquin_Despins\TP1_BraultPoliquin_Despins\bin\TP1_BraultPoliquin_Despins.pdb
+C:\Users\Hmmm\Documents\Visual Studio 2010\Projects\TP1_BraultPoliquin_Despins\TP1_BraultPoliquin_Despins\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Hmmm\Documents\Visual Studio 2010\Projects\TP1_BraultPoliquin_Despins\TP1_BraultPoliquin_Despins\obj\Debug\TP1_BraultPoliquin_Despins.dll
+C:\Users\Hmmm\Documents\Visual Studio 2010\Projects\TP1_BraultPoliquin_Despins\TP1_BraultPoliquin_Despins\obj\Debug\TP1_BraultPoliquin_Despins.pdb
+C:\Users\Hmmm\Desktop\TP1_BraultPoliquin_Despins\TP1_BraultPoliquin_Despins\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Hmmm\Desktop\TP1_BraultPoliquin_Despins\TP1_BraultPoliquin_Despins\obj\Debug\TP1_BraultPoliquin_Despins.pdb
+C:\Users\Hmmm\Desktop\TP1_BraultPoliquin_Despins\TP1_BraultPoliquin_Despins\bin\TP1_BraultPoliquin_Despins.dll
+C:\Users\Hmmm\Desktop\TP1_BraultPoliquin_Despins\TP1_BraultPoliquin_Despins\bin\TP1_BraultPoliquin_Despins.pdb
+C:\Users\Hmmm\Desktop\TP1_BraultPoliquin_Despins\TP1_BraultPoliquin_Despins\obj\Debug\TP1_BraultPoliquin_Despins.dll
+C:\Users\e0960908\Desktop\TP1_BraultPoliquin_Despins\TP1_BraultPoliquin_Despins\bin\TP1_BraultPoliquin_Despins.dll
+C:\Users\e0960908\Desktop\TP1_BraultPoliquin_Despins\TP1_BraultPoliquin_Despins\bin\TP1_BraultPoliquin_Despins.pdb
+C:\Users\e0960908\Desktop\TP1_BraultPoliquin_Despins\TP1_BraultPoliquin_Despins\obj\Debug\TP1_BraultPoliquin_Despins.dll
+C:\Users\e0960908\Desktop\TP1_BraultPoliquin_Despins\TP1_BraultPoliquin_Despins\obj\Debug\TP1_BraultPoliquin_Despins.pdb
+H:\TP1_BraultPoliquin_Despins\TP1_BraultPoliquin_Despins\bin\TP1_BraultPoliquin_Despins.dll
+H:\TP1_BraultPoliquin_Despins\TP1_BraultPoliquin_Despins\bin\TP1_BraultPoliquin_Despins.pdb
+H:\TP1_BraultPoliquin_Despins\TP1_BraultPoliquin_Despins\obj\Debug\ResolveAssemblyReference.cache
+H:\TP1_BraultPoliquin_Despins\TP1_BraultPoliquin_Despins\obj\Debug\TP1_BraultPoliquin_Despins.dll
+H:\TP1_BraultPoliquin_Despins\TP1_BraultPoliquin_Despins\obj\Debug\TP1_BraultPoliquin_Despins.pdb

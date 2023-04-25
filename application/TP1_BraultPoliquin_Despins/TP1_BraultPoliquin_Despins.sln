@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TP1_BraultPoliquin_Despins", "TP1_BraultPoliquin_Despins\TP1_BraultPoliquin_Despins.csproj", "{CD563137-D026-4B1C-B93B-C336E00B9FAC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CD563137-D026-4B1C-B93B-C336E00B9FAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD563137-D026-4B1C-B93B-C336E00B9FAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD563137-D026-4B1C-B93B-C336E00B9FAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD563137-D026-4B1C-B93B-C336E00B9FAC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
