@@ -1,0 +1,15 @@
+<table border="3">
+    <tr>
+        <td>username</td>
+        <td>birthday</td>
+
+    </tr>
+    {% for a in player %}
+    <tr>
+        <td>{{a.username}}</td>
+        <td>{{a.birthday}}</td>
+        <td><a href="{{path('editplayer',{'id':a.id})}}">edit</a></td>
+        <td><a href="{{path('deleteplayer',{'id':a.id})}}">delete</a></td>
+    </tr>
+    {% endfor %}
+</table>
