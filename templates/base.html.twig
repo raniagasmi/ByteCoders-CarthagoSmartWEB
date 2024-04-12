@@ -8,8 +8,8 @@
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
                 <!-- Favicons -->
-            <link href="{{ asset('assets/img/favicon.png')}}" rel="icon">
-            <link href="{{ asset('assets/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
+            <link href="{{ asset('assets/img/logoCarthago.png')}}" rel="icon">
+            <link href="{{ asset('assets/img/logoCarthago.png')}}" rel="apple-touch-icon">
 
                 <!-- Google Fonts -->
             <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -44,14 +44,14 @@
   <script src="{{asset('assets/js/main.js')}}"></script>
         {% endblock %}
     </head>
-    <body>
+    <body class>
     {% block header%}
     <!-- ======= Header ======= -->
     <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
-        <img src="assets/img/logo.png" alt="">
+      <a href="{{  path('app_admin_index') }}" class="logo d-flex align-items-center">
+        <img src="assets/img/logoCarthago.png" alt="">
         <span class="d-none d-lg-block ">Carthago Smart</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -285,36 +285,20 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="index.html">
+        <a class="nav-link " href="{{path('app_admin_index') }}">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
       </li><!-- End Dashboard Nav -->
 
-
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-journal-text"></i><span>Formulaires</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="new.html.twig">
-              <i class="bi bi-circle"></i><span>Ajouter facture</span>
-            </a>
-          </li>
-
-
-        </ul>
-      </li><!-- End Forms Nav -->
-
+<!-- GESTIONS -->
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-layout-text-window-reverse"></i><span>Gestions</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="index.html">
+            <a href="{{ path('app_facture_index') }}">
               <i class="bi bi-circle"></i><span>Facture</span>
             </a>
           </li>
@@ -330,6 +314,24 @@
           </li>
         </ul>
       </li><!-- End Tables Nav -->
+
+<!-- FORMULAIRES -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-journal-text"></i><span>Formulaires</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a class="nav-link " href="{{ path('app_facture_new') }}">
+              <i class="bi bi-circle"></i><span>Ajouter facture</span>
+            </a>
+          </li>
+
+
+        </ul>
+      </li><!-- End Forms Nav -->
+
+
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">

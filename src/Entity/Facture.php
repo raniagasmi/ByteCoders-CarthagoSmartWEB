@@ -5,7 +5,7 @@ namespace App\Entity;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Validator\Constraints\NotBlank;
+
 
 /**
  * Facture
@@ -58,6 +58,7 @@ class Facture
     /**
      * @var float|null
      *@Assert\NotBlank(message="Le montant est obligatoire !")
+     * @Assert\Positive(message="Le montant doit être un nombre positif !")
      * @ORM\Column(name="montant", type="float", precision=10, scale=0, nullable=true, options={"default"="NULL"})
      */
     private $montant;
@@ -74,7 +75,7 @@ class Facture
 
     /**
      * @var bool|null
-     *
+     * @Assert\NotNull(message="Veuillez préciser si la facture rest payée !")
      * @ORM\Column(name="estPayee", type="boolean", nullable=true, options={"default"="NULL"})
      */
     private $estpayee;
