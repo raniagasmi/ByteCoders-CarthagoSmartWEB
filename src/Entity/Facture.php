@@ -34,39 +34,50 @@ class Facture
     private $libelle;
 
     /**
-     * @var \DateTime|null
-     *
+     * @var \DateTimeInterface|null
+     * @Assert\NotBlank(message="La date de création est requise !")
+     * @Assert\LessThanOrEqual(
+     *     value="today",
+     *     message="La date de création ne peut pas être dans le passé."
+     * )
      * @ORM\Column(name="date", type="date", nullable=true, options={"default"="NULL"})
      */
-    private $date = 'NULL';
+    private $date;
 
     /**
-     * @var \DateTime|null
-     *
+     * @var \DateTimeInterface|null
+     * @Assert\NotBlank(message="La date d'échéance est requise!")
+     * @Assert\GreaterThan(
+     *     propertyPath="date",
+     *     message="La date d'échéance doit être supérieure à la date de création."
+     * )
      * @ORM\Column(name="date_ech", type="date", nullable=true, options={"default"="NULL"})
      */
-    private $dateEch = 'NULL';
+    private $dateEch;
 
     /**
      * @var float|null
-     *
+     *@Assert\NotBlank(message="Le montant est obligatoire !")
      * @ORM\Column(name="montant", type="float", precision=10, scale=0, nullable=true, options={"default"="NULL"})
      */
-    private $montant = NULL;
+    private $montant;
 
     /**
      * @var string|null
-     *
+     *@Assert\Choice(
+     *     choices={"EAU", "ENERGIE"},
+     *     message="Veuillez sélectionner un type de facture parmi les options proposées."
+     * )
      * @ORM\Column(name="type", type="string", length=255, nullable=true, options={"default"="NULL"})
      */
-    private $type = 'NULL';
+    private $type;
 
     /**
      * @var bool|null
      *
      * @ORM\Column(name="estPayee", type="boolean", nullable=true, options={"default"="NULL"})
      */
-    private $estpayee = 'NULL';
+    private $estpayee;
 
     /**
      * @var \User

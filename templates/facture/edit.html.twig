@@ -10,7 +10,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Modifier une facture :</h5>
                     <!-- General Form Elements -->
-                    {{ form_start(form) }}
+                    {{ form_start(form, {attr:{'novalidate':'novalidate'}}) }}
                     <!-- num facture-->
                     <div class="mb-3">
                         <label for="idFacture" class="form-label">Num Facture:</label>
@@ -20,32 +20,39 @@
                   <label for="IdUser" class="col-sm-4 col-form-label">User id : </label>
                   <div class="col-sm-10">
                     {{ form_widget (form.idUser,{'attr':{'class':'form-control'}}) }}
+                    {{ form_errors (form.idUser,{'attr':{'class':'text-danger'}}) }}
                   </div>
                 </div>
                     <!--libellé-->
                     <div class="mb-3">
                         <label for="libelle" class="form-label">Libellé facture : </label>
                         {{ form_widget(form.libelle,{'attr':{'class':'form-control'}}) }}
+                        {{ form_errors (form.libelle,{'attr':{'class':'text-danger'}}) }}
                     </div>
                     <!-- Type de Facture -->
                     <div class="mb-3">
                         <label class="form-label">Type de Facture</label>
                         {{ form_widget(form.type, {'attr': {'class': 'form-select'}}) }}
+                        {{ form_errors(form.type, {'attr': {'class': 'text-danger'}}) }}
                     </div>
                     <!--date-->
                     <div class="mb-3">
                         <label for="date" class="form-label">Date de création:</label>
                         {{ form_widget(form.date,{'attr':{'class': 'form-control'}}) }}
+                        {{form_errors (form.date,{'attr':{'class': 'text-danger'}})}}
                     </div>
                     <!--date d'écheance-->
                     <div class="mb-3">
                         <label for="dateEch" class="form-label">Date d'écheance:</label>
                         {{ form_widget(form.dateEch, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.dateEch, {'attr': {'class': 'text-danger'}}) }}
                     </div>
                     <!--Montant-->
                     <div class="mb-3">
                         <label for="montant" class="form-label">Montant :</label>
                         {{ form_widget(form.montant, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.montant, {'attr': {'class': 'text-danger'}}) }}
+                        
                     </div>
                     
                     <!--estPayee-->
@@ -53,6 +60,7 @@
                     <label for="estPayee" class="col-sm-4 col-form-label">Payée ?</label>
                     <div class="col-sm-10">
                         {{ form_widget(form.estPayee) }}
+
                     </div>
                 </div>
                     <!--Update button-->

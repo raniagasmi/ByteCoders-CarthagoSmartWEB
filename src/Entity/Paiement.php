@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 /**
  * Paiement
@@ -23,7 +25,7 @@ class Paiement
 
     /**
      * @var float
-     *
+     * @Assert\NotBlank(message="Vous devez saisir le montant à payer !")
      * @ORM\Column(name="montant", type="float", precision=10, scale=0, nullable=false)
      */
     private $montant;
