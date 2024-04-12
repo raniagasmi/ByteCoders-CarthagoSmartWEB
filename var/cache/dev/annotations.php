@@ -452,6 +452,8 @@ return [[
 '[C]App%5CEntity%5CUser%23isIsVerified' => 1,
 'App%5CEntity%5CUser%23setIsVerified' => 0,
 '[C]App%5CEntity%5CUser%23setIsVerified' => 1,
+'App%5CEntity%5CUser%23__toString' => 0,
+'[C]App%5CEntity%5CUser%23__toString' => 1,
 'App%5CEntity%5CUser%24id' => 5,
 '[C]App%5CEntity%5CUser%24id' => 1,
 'App%5CEntity%5CUser%24cin' => 60,
@@ -1042,7 +1044,7 @@ return [[
 ], [
 
 0 => [],
-1 => 1712882289,
+1 => 1712892693,
 2 => static function () {
     return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
         $o = [
@@ -1956,38 +1958,37 @@ return [[
 30 => static function () {
     return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
         $o = [
-            clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['Doctrine\\ORM\\Mapping\\Column'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Column')),
+            clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Symfony\\Component\\Validator\\Constraints\\NotBlank'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Component\\Validator\\Constraints\\NotBlank')),
+            clone ($p['Doctrine\\ORM\\Mapping\\Column'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Column')),
         ],
         null,
         [
             'stdClass' => [
-                'name' => [
-                    'libelle',
+                'groups' => [
+                    [
+                        'Default',
+                    ],
+                ],
+                'message' => [
+                    'Le libelle est requis!',
                 ],
                 'type' => [
-                    'string',
+                    1 => 'string',
                 ],
                 'length' => [
-                    255,
+                    1 => 255,
                 ],
                 'precision' => [
-                    null,
+                    1 => null,
                 ],
                 'scale' => [
-                    null,
-                ],
-                'nullable' => [
-                    true,
-                ],
-                'options' => [
-                    [
-                        'default' => 'NULL',
-                    ],
+                    1 => null,
                 ],
             ],
         ],
         [
             $o[0],
+            $o[1],
         ],
         []
     );
@@ -2596,6 +2597,9 @@ return [[
                         'typeid',
                     ],
                 ],
+                'repositoryClass' => [
+                    2 => 'App\\Repository\\RecyclagedechetsRepository',
+                ],
             ],
         ],
         [
@@ -2836,6 +2840,9 @@ return [[
                     1 => [
                         'id',
                     ],
+                ],
+                'repositoryClass' => [
+                    2 => 'App\\Repository\\TypedechetsRepository',
                 ],
             ],
         ],
