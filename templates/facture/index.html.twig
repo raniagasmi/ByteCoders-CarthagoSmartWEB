@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Facture{% endblock %}
+
+{% block body %}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+<section class="section" style="display: flex;align-item:center;justify-content: center;margin-right: -200px">
+<div class="row" style="display: flex;align-item:center;justify-content: center; margin-top: 150px">
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Liste des factures: ({{ factures.getTotalItemCount }})</h5>
+
+              <!-- Table with stripped rows -->
+              <table class="table table-sm table-striped" >
+                <thead>
+                  <tr>
+                <th>IdFacture</th>
+                <th>Libelle</th>
+                <th>Date</th>
+                <th>DateEch</th>
+                <th>Montant</th>
+                <th>Type</th>
+                <th>EstPayee</th>
+                <th>IdUser</th>
+                <th>actions</th>
+            </tr>
+                </thead>
+                <tbody>
+                  {% for facture in factures %}
+            <tr>
+                <td>{{ facture.idFacture }}</td>
+                <td>{{ facture.libelle }}</td>
+                <td>{{ facture.date ? facture.date|date('Y-m-d') : '' }}</td>
+                <td>{{ facture.dateEch ? facture.dateEch|date('Y-m-d') : '' }}</td>
+                <td>{{ facture.montant }}</td>
+                <td>{{ facture.type }}</td>
+                <td>
+                    {% if facture.estPayee %}
+                    Oui
+                    {% else %}
+                    Non
+                    {% endif %}
+                </td>
+
+                <td>{{ facture.idUser }}</td>
+                <td>
+                    <a href="{{ path('app_facture_show', {'idFacture': facture.idFacture}) }}"><i class="fas fa-eye"></i></a>
+                    <a href="{{ path('app_facture_edit', {'idFacture': facture.idFacture}) }}"><i class="fas fa-edit"></i> </a>
+                    <a href="{{ path('app_facture_delete', {'idFacture': facture.idFacture}) }}"><i class="fas fa-trash-alt"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+                  
+                </tbody>
+              </table>
+
+              <div style="display: flex;align-item:center;justify-content: center;">
+              {{ knp_pagination_render(factures) }}
+              </div>
+
+              <a href="{{ path('app_facture_new') }}"><i class="fas fa-plus"></i>Créer facture</a>
+              <!-- End small tables -->
+
+            </div>
+          </div>
+
+        </div>
+
+
+</div>
+</section>
+{% endblock %}

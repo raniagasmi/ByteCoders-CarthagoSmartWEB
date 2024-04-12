@@ -1,0 +1,95 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer Facture{% endblock %}
+
+{% block body %}
+
+   <div style="display: flex; justify-content: center; align-items: center; margin-top: 150px; padding: 10px;">
+          <div class="card">
+            <div class="card-body">
+              <a href="{{ path('app_facture_index') }}"><i class="ri-arrow-left-circle-fill" style="font-size: 50px;"></i></a>
+
+              <h5 class="card-title">Ajouter une facture :</h5>
+              <!-- General Form Elements -->
+              {{ form_start(form, {attr:{'novalidate':'novalidate'}}) }}
+              <!-- num facture-->
+                <div class="row mb-3">
+                  <label for="idFacture" class="col-sm-4 col-form-label">Num Facture:</label>
+                  <!--<div class="col-sm-10">
+                    
+                  </div>-->
+                </div>
+                <!--id user-->
+                <div class="row mb-3">
+                  <label for="IdUser" class="col-sm-4 col-form-label">User id : </label>
+                  <div class="col-sm-10">
+                    {{ form_widget (form.idUser,{'attr':{'class':'form-control'}}) }}
+                    {{ form_errors (form.idUser,{'attr':{'class':'text-danger'}}) }}
+                  </div>
+                </div>
+                <!--libellé-->
+                <div class="row mb-3">
+                  <label for="libelle" class="col-sm-4 col-form-label">Libellé facture : </label>
+                  <div class="col-sm-10">
+                    {{ form_widget (form.libelle,{'attr':{'class':'form-control'}}) }}
+                    {{ form_errors (form.libelle,{'attr':{'class':'text-danger'}}) }}
+                  </div>
+                </div>
+                
+                <!-- type de facture-->
+                <div class="row mb-3">
+                    <label for="type" class="col-sm-4 col-form-label">Type de Facture</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.type, {'attr': {'class': 'form-select'}}) }}
+                        {{ form_errors(form.type, {'attr': {'class': 'text-danger'}}) }}
+                    </div>
+                </div>
+
+
+                <!--date-->
+                <div class="row mb-3">
+                  <label for="date" class="col-sm-4 col-form-label">Date de création:</label>
+                  <div class="col-sm-10">
+                    {{form_widget (form.date,{'attr':{'class': 'form-control'}})}}
+                    {{form_errors (form.date,{'attr':{'class': 'text-danger'}})}}
+                  </div>
+                </div>
+                <!--date d'écheance-->
+                <div class="row mb-3">
+                  <label for="dateEch" class="col-sm-4 col-form-label">Date d'écheance:</label>
+                  <div class="col-sm-10">
+                    {{ form_widget(form.dateEch, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.dateEch, {'attr': {'class': 'text-danger'}}) }}
+                  </div>
+                </div>
+
+                <!--Montant-->
+                <div class="row mb-3">
+                  <label for="montant" class="col-sm-4 col-form-label">Montant :</label>
+                  <div class="col-sm-10">
+                    {{ form_widget(form.montant, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.montant, {'attr': {'class': 'text-danger'}}) }}
+                  </div>
+                </div>
+                <!--estPayee-->
+                <div class="row mb-3">
+                    <label for="estPayee" class="col-sm-4 col-form-label">Payée ?</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.estPayee) }}
+                    </div>
+                </div>
+                
+                        <!--Ajouter button-->
+                <div class="row mb-3" >
+                  <div class="col-sm-10" style="display: flex;align-items: center;justify-content: center">
+                    {{ form_widget(form.Ajouter,{'attr':{'class':'btn btn-primary'}})}}
+                  </div>
+                </div>
+
+              {{ form_end(form)}}
+
+            </div>
+          </div>
+
+        </div>
+{% endblock %}
