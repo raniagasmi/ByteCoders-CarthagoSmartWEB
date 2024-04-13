@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Collectdechets{% endblock %}
+
+{% block body %}
+    <div class="container" style="margin-top: 50px;">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <h1 class="text-center mb-4">Collect dechets </h1>
+                
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">IdCollect</th>
+                                <th scope="col">Dechets</th>
+                                <th scope="col">Pointramassage</th>
+                                <th scope="col">Dateramassage</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for collectdechet in collectdechets %}
+                                <tr>
+                                    <td>{{ collectdechet.idCollect }}</td>
+                                    <td>{{ collectdechet.id.name }}</td>
+                                    <td>{{ collectdechet.pointramassage }}</td>
+                                    <td>{{ collectdechet.dateramassage ? collectdechet.dateramassage|date('Y-m-d') : '' }}</td>
+                                    <td>
+                                        <a href="{{ path('app_collectdechets_show', {'idCollect': collectdechet.idCollect}) }}" class="btn btn-info btn-sm">Show</a>
+                                        <a href="{{ path('app_collectdechets_edit', {'idCollect': collectdechet.idCollect}) }}" class="btn btn-info btn-sm">Edit</a>
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="5" class="text-center">No records found</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Collectdechets{% endblock %}
+
+{% block body %}
+<div style="text-align: center; margin-top: 80px;">
+    <h1>Collectdechets</h1>
+
+        <style>
+        .custom-table {
+            max-width: 50%; /* Définir une largeur maximale pour la table */
+            margin: 0 auto; /* Centrer la table horizontalement */
+        }
+    </style>
+
+    <table class="table custom-table">
+        <tbody>
+            <tr>
+                <th>IdCollect</th>
+                <td>{{ collectdechet.idCollect }}</td>
+            </tr>
+            <tr>
+                <th>Pointramassage</th>
+                <td>{{ collectdechet.pointramassage }}</td>
+            </tr>
+            <tr>
+                <th>Dateramassage</th>
+                <td>{{ collectdechet.dateramassage ? collectdechet.dateramassage|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: right;">
+                    <a href="{{ path('app_collectdechets_index') }}">back to list</a>
+                    <a href="{{ path('app_collectdechets_edit', {'idCollect': collectdechet.idCollect}) }}">edit</a>
+                    {{ include('collectdechets/_delete_form.html.twig') }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

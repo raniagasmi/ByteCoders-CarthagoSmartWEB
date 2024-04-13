@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Typedechets{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                    <div class="row" style="display: flex; align-items: center; justify-content: center; margin-top: 80px;">
+                        <h2 class="text-center mb-4">Edit Typedechets</h2>
+
+                        {{ include('typedechets/_form.html.twig', {'button_label': 'Update'}) }}
+
+                        <a href="{{ path('app_typedechets_index') }}" class="btn btn-secondary mt-3">Back to List</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

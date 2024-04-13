@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter Type{% endblock %}
+
+{% block body %}
+
+   <div style="display: flex; justify-content: center; align-items: center; margin-top: 150px; padding: 10px;">
+          <div class="card">
+            <div class="card-body">
+              <a href="{{ path('app_recyclagedechets_index') }}"><i class="ri-arrow-left-circle-fill" style="font-size: 50px;"></i></a>
+
+              <h5 class="card-title">Organiser un recyclage déchets :</h5>
+              <!-- General Form Elements -->
+              {{ form_start(form, {attr:{'novalidate':'novalidate'}}) }}
+              
+                
+                    <!-- Type de déchets -->
+                    <div class="row mb-3">
+                        <label for="Sélectionner le déchet" class="col-sm-2 col-form-label"></label>
+                        <div class="col-sm-8">
+                            {{ form_row(form.id) }}
+                        </div>
+                    </div>
+
+                    <!-- pointrecyclage -->
+                    <div class="row mb-3">
+                        <label for="Point de recyclage" class="col-sm-2 col-form-label"></label>
+                        <div class="col-sm-8">
+                            {{ form_row(form.pointrecyclage) }}
+                        </div>
+                    </div>
+
+
+                    <!-- Bouton Ajouter -->
+                    <div class="row mb-3">
+                        <div class="col-sm-10 offset-sm-1" style="display: flex; align-items: center; justify-content: center">
+                            {{ form_widget(form.Ajouter, {'attr': {'class': 'btn btn-primary'}}) }}
+                        </div>
+                    </div>
+
+
+
+              {{ form_end(form)}}
+
+            </div>
+          </div>
+
+        </div>
+{% endblock %}

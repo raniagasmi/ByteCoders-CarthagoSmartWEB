@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Typedechets{% endblock %}
+
+{% block body %}
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <section class="section" style="display: flex; align-items: center; justify-content: center;">
+        <div class="row" style="display: flex; align-items: center; justify-content: center; margin-top: 80px;">
+        <h1 class="text-center">Type dechets </h1>
+            <table class="table table-sm" style="max-width: 800px; margin: 0 auto;">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Categorie</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for typedechet in typedechets %}
+                    <tr>
+                        <td>{{ typedechet.id }}</td>
+                        <td>{{ typedechet.name }}</td>
+                        <td>{{ typedechet.categorie }}</td>
+                        <td>
+                            <a href="{{ path('app_typedechets_show', {'id': typedechet.id}) }}" class="btn btn-info btn-sm">Show</a>
+                            <a href="{{ path('app_typedechets_edit', {'id': typedechet.id}) }}" class="btn btn-info btn-sm">Edit</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="4" class="text-center">No records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <div style="display: flex; align-items: center; justify-content: center;">
+        {{ knp_pagination_render(typedechets) }}
+    </div>
+    <a href="{{ path('app_typedechets_new') }}" class="btn btn-primary btn-lg mt-3">Create new</a>
+{% endblock %}

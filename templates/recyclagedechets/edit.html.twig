@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block body %}
+<div style="text-align: center; margin-top: 80px;">
+    <div style="text-align: center;">
+        <h1>Edit Recyclagedechets</h1>
+
+        {{ include('recyclagedechets/_form.html.twig', {'button_label': 'Update'}) }}
+
+        <a href="{{ path('app_recyclagedechets_index') }}">back to list</a>
+
+        {{ include('recyclagedechets/_delete_form.html.twig') }}
+    </div>
+{% endblock %}
