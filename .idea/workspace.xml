@@ -4,136 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e33b97e-fa3a-41dc-b8ab-8621ef636c61" name="Changes" comment="routes.yaml/ quelques retouches sur les interfaces graphiques">
-      <change afterPath="$PROJECT_DIR$/public/front/css/bootstrap.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/css/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/img/about-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/img/blog-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/img/blog-2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/img/blog-3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/img/blog-4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/img/features-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/img/hero-img-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/img/sty-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/img/testimonial-img-1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/img/testimonial-img-2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/img/testimonial-img-3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/js/main.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/lib/animate/animate.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/lib/animate/animate.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/lib/counterup/counterup.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/lib/easing/easing.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/lib/easing/easing.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/lib/lightbox/css/lightbox.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/lib/lightbox/images/close.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/lib/lightbox/images/loading.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/lib/lightbox/images/next.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/lib/lightbox/images/prev.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/lib/lightbox/js/lightbox.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/lib/owlcarousel/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/lib/owlcarousel/assets/ajax-loader.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/lib/owlcarousel/assets/owl.carousel.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/lib/owlcarousel/assets/owl.carousel.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/lib/owlcarousel/assets/owl.theme.default.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/lib/owlcarousel/assets/owl.theme.default.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/lib/owlcarousel/assets/owl.theme.green.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/lib/owlcarousel/assets/owl.theme.green.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/lib/owlcarousel/assets/owl.video.play.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/lib/owlcarousel/owl.carousel.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/lib/owlcarousel/owl.carousel.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/lib/waypoints/links.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/lib/waypoints/waypoints.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/lib/wow/wow.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/lib/wow/wow.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/_accordion.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/_alert.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/_badge.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/_breadcrumb.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/_button-group.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/_buttons.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/_card.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/_carousel.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/_close.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/_containers.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/_dropdown.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/_forms.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/_functions.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/_grid.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/_helpers.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/_images.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/_list-group.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/_mixins.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/_modal.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/_nav.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/_navbar.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/_offcanvas.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/_pagination.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/_popover.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/_progress.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/_reboot.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/_root.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/_spinners.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/_tables.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/_toasts.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/_tooltip.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/_transitions.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/_type.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/_utilities.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/_variables.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/bootstrap-grid.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/bootstrap-reboot.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/bootstrap-utilities.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/bootstrap.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/forms/_floating-labels.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/forms/_form-check.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/forms/_form-control.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/forms/_form-range.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/forms/_form-select.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/forms/_form-text.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/forms/_input-group.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/forms/_labels.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/forms/_validation.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/helpers/_clearfix.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/helpers/_colored-links.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/helpers/_position.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/helpers/_ratio.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/helpers/_stretched-link.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/helpers/_text-truncation.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/helpers/_visually-hidden.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/mixins/_alert.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/mixins/_border-radius.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/mixins/_box-shadow.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/mixins/_breakpoints.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/mixins/_buttons.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/mixins/_caret.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/mixins/_clearfix.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/mixins/_color-scheme.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/mixins/_container.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/mixins/_deprecate.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/mixins/_forms.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/mixins/_gradients.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/mixins/_grid.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/mixins/_image.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/mixins/_list-group.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/mixins/_lists.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/mixins/_pagination.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/mixins/_reset-text.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/mixins/_resize.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/mixins/_table-variants.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/mixins/_text-truncate.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/mixins/_transition.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/mixins/_utilities.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/mixins/_visually-hidden.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/front/scss/bootstrap/scss/utilities/_api.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/User/index.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/base-front.html.twig" afterDir="false" />
+    <list default="true" id="7e33b97e-fa3a-41dc-b8ab-8621ef636c61" name="Changes" comment="routes.yaml/ Quelques ajustements sur le template du backend et intégration du frontend">
+      <change afterPath="$PROJECT_DIR$/public/front/img/logoCarthago.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Facture.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Facture.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Paiement.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Paiement.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/routes.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/User/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/User/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base-front.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base-front.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -311,23 +187,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Gestion__energies&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/dell/Desktop/ESPRIT/pi_symfony/ByteCoders-CarthagoSmartWEB/public/front&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "Gestion__energies",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/dell/Desktop/ByteCoders-CarthagoSmartWEB/public/front/img",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\dell\Desktop\ByteCoders-CarthagoSmartWEB\public\front\img" />
+      <recent name="C:\Users\dell\Desktop\ByteCoders-CarthagoSmartWEB\public\assets\img" />
       <recent name="C:\Users\dell\Desktop\ESPRIT\pi_symfony\ByteCoders-CarthagoSmartWEB\public\front" />
     </key>
   </component>
@@ -355,6 +233,7 @@
       <workItem from="1712891621677" duration="2877000" />
       <workItem from="1712896501660" duration="26898000" />
       <workItem from="1713019848049" duration="8775000" />
+      <workItem from="1713043515782" duration="7525000" />
     </task>
     <task id="LOCAL-00001" summary="update vendor">
       <option name="closed" value="true" />
@@ -396,7 +275,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712907614687</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="routes.yaml/ Quelques ajustements sur le template du backend et intégration du frontend">
+      <option name="closed" value="true" />
+      <created>1713043665005</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1713043665006</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -430,6 +317,7 @@
     <MESSAGE value="controle de saisie" />
     <MESSAGE value="app_admin_index" />
     <MESSAGE value="routes.yaml/ quelques retouches sur les interfaces graphiques" />
-    <option name="LAST_COMMIT_MESSAGE" value="routes.yaml/ quelques retouches sur les interfaces graphiques" />
+    <MESSAGE value="routes.yaml/ Quelques ajustements sur le template du backend et intégration du frontend" />
+    <option name="LAST_COMMIT_MESSAGE" value="routes.yaml/ Quelques ajustements sur le template du backend et intégration du frontend" />
   </component>
 </project>

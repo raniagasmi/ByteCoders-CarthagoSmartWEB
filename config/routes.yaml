@@ -1,9 +1,31 @@
 app_admin_index:
     path: /admin
     controller: App\Controller\FactureController::indexAdmin
+
 app_facture_new:
     path: '/facture/new'
     controller: App\Controller\FactureController::new
-app_facture_index:
-    path: '/facture/index'
-    controller: App\Controller\FactureController::index
+
+app_front_index:
+    path: '/front/index'
+    controller: App\Controller\FrontController::index
+
+app_front_service:
+    path: '/front/service'
+    controller: App\Controller\FrontController::service
+
+app_front_features:
+    path: '/front/features'
+    controller: App\Controller\FrontController::features
+
+app_front_pricing:
+    path: '/front/pricing'
+    controller: App\Controller\FrontController::pricing
+
+app_front_blog:
+    path: '/front/blog'
+    controller: App\Controller\FrontController::blog
+
+app_front_testimonial:
+    path: '/front/testimonial'
+    controller: App\Controller\FrontController::testimonial
