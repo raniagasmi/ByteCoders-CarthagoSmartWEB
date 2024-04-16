@@ -1,107 +1,104 @@
 {% extends 'base-front.html.twig' %}
 
 {% block title %}Mes Factures{% endblock %}
-
 {% block stylesheets %}
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <!-- Include DataTables CSS -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
-    <style>
-        /* Your custom styles here */
-    </style>
 {% endblock %}
 
 {% block body %}
+<!-- Navbar & Hero Start -->
+<div class="container-fluid header position-relative overflow-hidden p-0">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-light px-4 px-lg-5 py-3 py-lg-0">
+        <a href="index.html" class="navbar-brand p-0">
+            <h1 class="display-6 text-primary m-0">Carthago Smart</h1>
+            <img src="{{ asset('front/img/logo.png') }}" alt="Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="fa fa-bars"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto py-0">
+                <a href="{{ path('app_front_index') }}" class="nav-item nav-link active">Acceuil</a>
+                <a href="about.html" class="nav-item nav-link">About</a>
+
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Services</a>
+                    <div class="dropdown-menu m-0">
+                        <a href="" class="dropdown-item">Energie</a>
+                        <a href="{{ path('app_front_index') }}" class="dropdown-item">Dechets</a>
+                        <a href="blog.html" class="dropdown-item">Evenemment</a>
+                    </div>
+                </div>
+                <a href="contact.html" class="nav-item nav-link">Contact Us</a>
+            </div>
+
+        </div>
+    </nav>
     <section class="section">
         <div class="container">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Liste des factures: ({{ factures.getTotalItemCount }})</h5>
                     <!-- Table with stripped rows -->
-                    <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
-                        <div class="dataTable-top">
-                            <div class="dataTable-dropdown">
-                                <label>
-                                    <select class="dataTable-selector">
-                                        <option value="5">5</option>
-                                        <option value="10" selected="">10</option>
-                                        <option value="15">15</option>
-                                        <option value="20">20</option>
-                                        <option value="25">25</option>
-                                    </select> entries per page
-                                </label>
-                                <div class="dataTable-search">
-
-                                    <form action="{{ path('app_facture_search') }}" method="GET">
-                                        <input class="dataTable-input" name="search_query" placeholder="Recherche..." type="text">
-                                        <button type="submit">Rechercher</button>
-                                    </form>
-
-
-                                </div>
-                            </div>
-                        </div>
-                        <table class="table datatable">
-                            <thead>
+                    <table id="factures-table" class="table table-sm table-striped">
+                        <thead>
+                        <tr>
+                            <th>IdFacture</th>
+                            <th>Libelle</th>
+                            <th>Date</th>
+                            <th>DateEch</th>
+                            <th>Montant</th>
+                            <th>Type</th>
+                            <th>EstPayee</th>
+                            <th>IdUser</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for facture in factures %}
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Libelle</th>
-                                <th scope="col">Date</th>
-                                <th scope="col">DateEch</th>
-                                <th scope="col">Montant</th>
-                                <th scope="col">Type</th>
-                                <th scope="col">Statut</th>
-                                <th scope="col">Actions</th>
+                                <td>{{ facture.idFacture }}</td>
+                                <td>{{ facture.libelle }}</td>
+                                <td>{{ facture.date ? facture.date|date('Y-m-d') : '' }}</td>
+                                <td>{{ facture.dateEch ? facture.dateEch|date('Y-m-d') : '' }}</td>
+                                <td>{{ facture.montant }}</td>
+                                <td>{{ facture.type }}</td>
+                                <td>{{ facture.estPayee ? 'Oui' : 'Non' }}</td>
+                                <td>{{ facture.idUser }}</td>
+                                <td>
+                                    <a href="{{ path('app_facture_show', {'idFacture': facture.idFacture}) }}"><i class="fas fa-eye"></i></a>
+                                    <a href="{{ path('app_facture_edit', {'idFacture': facture.idFacture}) }}"><i class="fas fa-credit-card"></i></a>
+                                    <a href="{{ path('app_facture_deleteFront', {'idFacture': facture.idFacture}) }}"><i class="fas fa-trash-alt"></i></a>
+                                </td>
                             </tr>
-                            </thead>
-                            <tbody>
-                            {% for facture in factures %}
-                                <tr>
-                                    <td>{{ facture.idFacture }}</td>
-                                    <td>{{ facture.libelle }}</td>
-                                    <td>{{ facture.date ? facture.date|date('Y-m-d') : '' }}</td>
-                                    <td>{{ facture.dateEch ? facture.dateEch|date('Y-m-d') : '' }}</td>
-                                    <td>{{ facture.montant }}</td>
-                                    <td>{{ facture.type }}</td>
-                                    <td>{{ facture.estPayee ? 'Oui' : 'Non' }}</td>
-                                    <td>
-                                        <a href="{{ path('app_facture_show', {'idFacture': facture.idFacture}) }}"><i class="fas fa-eye"></i></a>
-                                        <a href="{{ path('app_paiement_new', {'idFacture': facture.idFacture}) }}"><i class="fas fa-credit-card"></i></a>
-                                        <a href="{{ path('app_facture_delete', {'idFacture': facture.idFacture}) }}"><i class="fas fa-trash-alt"></i></a>
-                                    </td>
-                                </tr>
-                            {% else %}
-                                <tr>
-                                    <td colspan="8">Pas de factures</td>
-                                </tr>
-                            {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
+                        {% else %}
+                            <tr>
+                                <td colspan="9">No records found</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <div style="display: flex;align-item:center;justify-content: center;">
                 {{ knp_pagination_render(factures) }}
             </div>
+
         </div>
     </section>
 {% endblock %}
 
 {% block javascripts %}
     <!-- Include jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- Include DataTables JavaScript -->
-    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
     <script>
+        // Initialize DataTable
         $(document).ready(function() {
-            $('.datatable').DataTable({
-                searching: true,
-                ordering: true, // Enable sorting
-                paging: true,
-                lengthMenu: [5, 10, 15, 20, 25], // Set your desired page length options
-                pageLength: 10,
-            });
+            $('#factures-table').DataTable();
         });
     </script>
 {% endblock %}

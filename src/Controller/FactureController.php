@@ -117,24 +117,19 @@ class FactureController extends AbstractController
         
 
         return $this->redirectToRoute('app_facture_index', [], Response::HTTP_SEE_OTHER);
-    }
 
-    #[Route('/search', name: 'app_facture_search')]
-    public function search(Request $request, FactureRepository $factureRepository): Response
+    }
+    #[Route('/delete/{idFacture}', name: 'app_facture_deleteFront')]
+    public function deleteFront(Request $request, Facture $facture, EntityManagerInterface $entityManager): Response
     {
-        $searchQuery = $request->query->get('searchQuery');
 
-        // Vérifier si $searchQuery est défini
-        if ($searchQuery !== null) {
-            // Appeler la méthode findBySearchQuery avec la valeur de $searchQuery
-            $factures = $factureRepository->findBySearchQuery($searchQuery);
-        } else {
-            // Si $searchQuery est null, initialiser $factures avec un tableau vide
-            $factures = [];
-        }
-        // Rendre le template avec les résultats de la recherche
-        return $this->render('facture/factures_search.html.twig', [
-            'factures' => $factures,
-        ]);
+        $entityManager->remove($facture);
+        $entityManager->flush();
+
+
+        return $this->redirectToRoute('app_facture_indexFront', [], Response::HTTP_SEE_OTHER);
+
     }
+
+
 }
