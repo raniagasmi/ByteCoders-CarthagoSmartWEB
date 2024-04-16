@@ -46,7 +46,7 @@ class Facture1Type extends AbstractType
                 'multiple' => false, // Permet à l'utilisateur de sélectionner une seule option
                 'label' => 'Payée ?', // Libellé du champ
             ])
-            ->add('idUser')
+            ->remove('idUser')
             ->add('Ajouter', SubmitType::class, [
                 'label' => 'Enregistrer',
                 'attr' => ['class' => 'btn btn-primary']

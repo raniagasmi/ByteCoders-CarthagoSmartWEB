@@ -7,7 +7,7 @@
         <!-- Navbar & Hero Start -->
         <div class="container-fluid header position-relative overflow-hidden p-0">
             <nav class="navbar navbar-expand-lg fixed-top navbar-light px-4 px-lg-5 py-3 py-lg-0">
-                <a href="index.html" class="navbar-brand p-0">
+                <a href="{{ path('app_front_accueil') }}" class="navbar-brand p-0">
                     <h1 class="display-6 text-primary m-0">Carthago Smart</h1>
                     <img src="{{ asset('front/img/logo.png') }}" alt="Logo">
                 </a>
@@ -16,13 +16,13 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0">
-                        <a href="index.html" class="nav-item nav-link active">Accueil</a>
+                        <a href="{{ path('app_front_accueil') }}" class="nav-item nav-link active">Accueil</a>
                         <a href="about.html" class="nav-item nav-link">À propos</a>
 
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Services</a>
                             <div class="dropdown-menu m-0">
-                                <a href="#" class="dropdown-item">Gestion des énergie</a>
+                                <a href="{{ path('app_facture_indexFront') }}" class="dropdown-item">Gestion des énergie</a>
                                 <a href="{{ path('app_front_index') }}" class="dropdown-item">Gestion des déchets</a>
                                 <a href="#" class="dropdown-item">Événements</a>
                             </div>
