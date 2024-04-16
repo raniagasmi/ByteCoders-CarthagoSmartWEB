@@ -36,10 +36,7 @@ class Facture
     /**
      * @var \DateTimeInterface|null
      * @Assert\NotBlank(message="La date de création est requise !")
-     * @Assert\LessThanOrEqual(
-     *     value="today",
-     *     message="La date de création ne peut pas être dans le passé."
-     * )
+     *
      * @ORM\Column(name="date", type="date", nullable=true, options={"default"="NULL"})
      */
     private $date;

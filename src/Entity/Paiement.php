@@ -5,6 +5,8 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use App\Entity\Facture;
+use App\Entity\User;
 
 /**
  * Paiement
@@ -67,7 +69,7 @@ class Paiement
         return $this->montant;
     }
 
-    public function setMontant(float $montant): static
+    public function setMontant(float $montant): Paiement
     {
         $this->montant = $montant;
 
@@ -79,7 +81,7 @@ class Paiement
         return $this->modePaiement;
     }
 
-    public function setModePaiement(string $modePaiement): static
+    public function setModePaiement(string $modePaiement): Paiement
     {
         $this->modePaiement = $modePaiement;
 
@@ -91,7 +93,7 @@ class Paiement
         return $this->idFacture;
     }
 
-    public function setIdFacture(?Facture $idFacture): static
+    public function setIdFacture(?Facture $idFacture): Paiement
     {
         $this->idFacture = $idFacture;
 
@@ -103,15 +105,17 @@ class Paiement
         return $this->id;
     }
 
-    public function setId(?User $id): static
+    public function setId(?User $id): Paiement
     {
         $this->id = $id;
 
         return $this;
     }
+
     public function __toString(): string
     {
-        return (string) $this->getIdPaiement();
+        return "Paiement ID: " . $this->getIdPaiement() . ", Facture ID: " . $this->getIdFacture() . ", User ID: " . $this->getId();
     }
+
 
 }

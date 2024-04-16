@@ -1,0 +1,107 @@
+{% extends 'base-front.html.twig' %}
+
+{% block title %}Mes Factures{% endblock %}
+
+{% block stylesheets %}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <!-- Include DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+    <style>
+        /* Your custom styles here */
+    </style>
+{% endblock %}
+
+{% block body %}
+    <section class="section">
+        <div class="container">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Liste des factures: ({{ factures.getTotalItemCount }})</h5>
+                    <!-- Table with stripped rows -->
+                    <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
+                        <div class="dataTable-top">
+                            <div class="dataTable-dropdown">
+                                <label>
+                                    <select class="dataTable-selector">
+                                        <option value="5">5</option>
+                                        <option value="10" selected="">10</option>
+                                        <option value="15">15</option>
+                                        <option value="20">20</option>
+                                        <option value="25">25</option>
+                                    </select> entries per page
+                                </label>
+                                <div class="dataTable-search">
+
+                                    <form action="{{ path('app_facture_search') }}" method="GET">
+                                        <input class="dataTable-input" name="search_query" placeholder="Recherche..." type="text">
+                                        <button type="submit">Rechercher</button>
+                                    </form>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <table class="table datatable">
+                            <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Libelle</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">DateEch</th>
+                                <th scope="col">Montant</th>
+                                <th scope="col">Type</th>
+                                <th scope="col">Statut</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for facture in factures %}
+                                <tr>
+                                    <td>{{ facture.idFacture }}</td>
+                                    <td>{{ facture.libelle }}</td>
+                                    <td>{{ facture.date ? facture.date|date('Y-m-d') : '' }}</td>
+                                    <td>{{ facture.dateEch ? facture.dateEch|date('Y-m-d') : '' }}</td>
+                                    <td>{{ facture.montant }}</td>
+                                    <td>{{ facture.type }}</td>
+                                    <td>{{ facture.estPayee ? 'Oui' : 'Non' }}</td>
+                                    <td>
+                                        <a href="{{ path('app_facture_show', {'idFacture': facture.idFacture}) }}"><i class="fas fa-eye"></i></a>
+                                        <a href="{{ path('app_paiement_new', {'idFacture': facture.idFacture}) }}"><i class="fas fa-credit-card"></i></a>
+                                        <a href="{{ path('app_facture_delete', {'idFacture': facture.idFacture}) }}"><i class="fas fa-trash-alt"></i></a>
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="8">Pas de factures</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div style="display: flex;align-item:center;justify-content: center;">
+                {{ knp_pagination_render(factures) }}
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Include DataTables JavaScript -->
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('.datatable').DataTable({
+                searching: true,
+                ordering: true, // Enable sorting
+                paging: true,
+                lengthMenu: [5, 10, 15, 20, 25], // Set your desired page length options
+                pageLength: 10,
+            });
+        });
+    </script>
+{% endblock %}

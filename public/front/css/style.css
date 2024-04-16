@@ -630,6 +630,10 @@
 }
 /*** Hero Header End ***/
 
+.custom-gradient-btn {
+    background: linear-gradient(to bottom right, #8D6ACE, #6A97DB, #199FDF);
+    color: #fff;
+}
 
 /*** Service Start ***/
 .service .service-item {
@@ -943,7 +947,6 @@
     100%  {right: 0px;}
 }
 /*** Contact End ***/
-
 
 /*** Footer Start ***/
 .footer {

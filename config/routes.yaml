@@ -6,9 +6,21 @@ app_facture_new:
     path: '/facture/new'
     controller: App\Controller\FactureController::new
 
+app_facture_indexFront:
+    path: '/facture/indexFront'
+    controller: App\Controller\FactureController::indexFront
+
+app_paiement_new:
+    path: '/paiement/{idFacture}/new'
+    controller: App\Controller\PaiementController::new
+
 app_front_index:
-    path: '/front/index'
+    path: '/index'
     controller: App\Controller\FrontController::index
+
+app_front_accueil:
+    path: '/accueil'
+    controller: App\Controller\FrontController::accueil
 
 app_front_service:
     path: '/front/service'
@@ -29,3 +41,4 @@ app_front_blog:
 app_front_testimonial:
     path: '/front/testimonial'
     controller: App\Controller\FrontController::testimonial
+

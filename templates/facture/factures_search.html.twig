@@ -1,0 +1,44 @@
+{% extends 'base-front.html.twig' %}
+
+{% block title %}Résultats de la recherche{% endblock %}
+
+{% block body %}
+    <h1>Résultats de la recherche</h1>
+
+    {% if factures is not empty %}
+        <table>
+            <thead>
+            <tr>
+                <th>IdFacture</th>
+                <th>Libelle</th>
+                <th>Date</th>
+                <th>DateEch</th>
+                <th>Montant</th>
+                <th>Type</th>
+                <th>EstPayee</th>
+                <th>IdUser</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for facture in factures %}
+                <tr>
+                    <td>{{ facture.idFacture }}</td>
+                    <td>{{ facture.libelle }}</td>
+                    <td>{{ facture.date ? facture.date|date('Y-m-d') : '' }}</td>
+                    <td>{{ facture.dateEch ? facture.dateEch|date('Y-m-d') : '' }}</td>
+                    <td>{{ facture.montant }}</td>
+                    <td>{{ facture.type }}</td>
+                    <td>{{ facture.estPayee ? 'Oui' : 'Non' }}</td>
+                    <td>{{ facture.idUser }}</td>
+                    <td>
+                        <a href="{{ path('app_facture_show', {'idFacture': facture.idFacture}) }}">Voir</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Aucun résultat trouvé.</p>
+    {% endif %}
+{% endblock %}

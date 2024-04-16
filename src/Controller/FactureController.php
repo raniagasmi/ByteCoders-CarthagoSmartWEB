@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Facture;
+use App\Entity\Paiement;
 use App\Form\Facture1Type;
 use App\Repository\factureRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -28,6 +29,20 @@ class FactureController extends AbstractController
         );
         
         return $this->render('facture/index.html.twig', [
+            'factures' => $factures
+        ]);
+    }
+    #[Route('/index', name: 'app_facture_indexFront', methods: ['GET'])]
+    public function indexFront(Request $request, factureRepository $factureRepository, PaginatorInterface $paginator): Response
+    {
+        $factures = $factureRepository->findAll();
+        $factures = $paginator->paginate(
+            $factures,
+            $request->query->getInt('page', 1), // Notez la virgule ajoutée ici
+            10
+        );
+
+        return $this->render('facture/indexFront.html.twig', [
             'factures' => $factures
         ]);
     }
@@ -102,5 +117,24 @@ class FactureController extends AbstractController
         
 
         return $this->redirectToRoute('app_facture_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/search', name: 'app_facture_search')]
+    public function search(Request $request, FactureRepository $factureRepository): Response
+    {
+        $searchQuery = $request->query->get('searchQuery');
+
+        // Vérifier si $searchQuery est défini
+        if ($searchQuery !== null) {
+            // Appeler la méthode findBySearchQuery avec la valeur de $searchQuery
+            $factures = $factureRepository->findBySearchQuery($searchQuery);
+        } else {
+            // Si $searchQuery est null, initialiser $factures avec un tableau vide
+            $factures = [];
+        }
+        // Rendre le template avec les résultats de la recherche
+        return $this->render('facture/factures_search.html.twig', [
+            'factures' => $factures,
+        ]);
     }
 }
