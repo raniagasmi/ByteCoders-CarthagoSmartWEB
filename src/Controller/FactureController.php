@@ -32,7 +32,7 @@ class FactureController extends AbstractController
             'factures' => $factures
         ]);
     }
-    #[Route('/index', name: 'app_facture_indexFront', methods: ['GET'])]
+    #[Route('/indexFront', name: 'app_facture_indexFront', methods: ['GET'])]
     public function indexFront(Request $request, factureRepository $factureRepository, PaginatorInterface $paginator): Response
     {
         $factures = $factureRepository->findAll();
@@ -86,6 +86,13 @@ class FactureController extends AbstractController
     public function show(Facture $facture): Response
     {
         return $this->render('facture/show.html.twig', [
+            'facture' => $facture,
+        ]);
+    }
+    #[Route('/{idFacture}/showf', name: 'app_facture_showFront', methods: ['GET'])]
+    public function showFront(Facture $facture): Response
+    {
+        return $this->render('facture/showFront.html.twig', [
             'facture' => $facture,
         ]);
     }

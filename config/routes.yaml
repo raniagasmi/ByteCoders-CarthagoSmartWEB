@@ -6,6 +6,14 @@ app_facture_new:
     path: '/facture/new'
     controller: App\Controller\FactureController::new
 
+app_facture_show:
+    path: '/facture/{idFacture}/show'
+    controller: App\Controller\FactureController::show
+
+app_facture_showFront:
+    path: '/facture/{idFacture}/showf'
+    controller: App\Controller\FactureController::showFront
+
 app_facture_indexFront:
     path: '/facture/indexFront'
     controller: App\Controller\FactureController::indexFront
