@@ -34,12 +34,17 @@
     </nav>
     <section class="section" style="display: flex;align-item:center;justify-content: center;margin-right: -200px">
         <div class="row" style="display: flex;align-item:center;justify-content: center; margin-top: 150px">
+            <div class="row justify-content-between">
+                <div class="col-md-auto">
+                    <a href="{{ path('app_facture_indexFront') }}">
+                        <i class="fas fa-arrow-left"></i> </a>
+                </div>
             <h1>Facture</h1>
 
             <table class="table">
                 <tbody>
                 <tr>
-                    <th>IdFacture</th>
+                    <th>Ref</th>
                     <td>{{ facture.idFacture }}</td>
                 </tr>
                 <tr>
@@ -64,19 +69,31 @@
                 </tr>
                 <tr>
                     <th>EstPayee</th>
-                    <td>{{ facture.estPayee ? 'Yes' : 'No' }}</td>
-                </tr>
-                <tr>
-                    <th>IdUser</th>
-                    <td>{{ facture.idUser }}</td>
+                    <td>{{ facture.estPayee ? 'Oui' : 'Non' }}</td>
                 </tr>
                 </tbody>
             </table>
 
-            <a href="{{ path('app_facture_index') }}">back to list</a>
+                <div class="row justify-content-between">
+                    <div class="col-md-auto">
+                        <!-- Add the PDF generation icon -->
+                        <a href="#" class="ms-3">
+                            <i class="far fa-file-pdf"></i> PDF
+                        </a>
+                    </div>
+                    <div class="col-md-auto">
+                        {% if facture.estpayee != 'Oui' %}
+                            <a href="{{ path('app_paiement_new', {'idFacture': facture.idFacture}) }}">
+                                <i class="far fa-credit-card"></i> Payer
+                            </a>
 
-            <a href="{{ path('app_facture_edit', {'idFacture': facture.idFacture}) }}">edit</a>
+                        {% endif %}
+                    </div>
+                </div>
+
+
+            </div>
         </div>
     </section>
-    {{ include('facture/_delete_form.html.twig') }}
+</div>
     {% endblock %}

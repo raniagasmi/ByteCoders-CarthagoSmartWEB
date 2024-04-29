@@ -37,11 +37,13 @@ class FactureController extends AbstractController
     #[Route('/indexFront', name: 'app_facture_indexFront', methods: ['GET'])]
     public function indexFront(Request $request, factureRepository $factureRepository, PaginatorInterface $paginator): Response
     {
-        $factures = $factureRepository->findAll();
+        $query = $factureRepository->createQueryBuilder('f')
+            ->getQuery();
+
         $factures = $paginator->paginate(
-            $factures,
+            $query,
             $request->query->getInt('page', 1), // Notez la virgule ajoutée ici
-            10
+            6 // Nombre d'éléments par page
         );
 
         return $this->render('facture/indexFront.html.twig', [

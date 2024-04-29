@@ -79,24 +79,31 @@
 
         <!-- Section Start -->
         <section class="map-section py-4" style="margin-top: 100px;"> <!-- Augmentation de la marge pour déplacer vers le bas -->
-        <div class="container">
-            <h2 class="text-center pt-20">Vos Factures</h2>
+        <div class="container ">
+            <h1 class="text-center mb-4" style="font-weight: bold; background: linear-gradient(to right, #8D6ACE, #1A9FDF); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Vos Factures</h1>
             {% for chunk in factures|batch(3) %}
-                <div class="row justify-content-center">
+                <div class="row justify-content-center bg-white rounded">
                     {% for facture in chunk %}
-                        <div class="col-md-4">
+                        <div class="col-md-4 bg-dark-light  ">
                             <div class="facture-item wow fadeInUp" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">
                                 <div class="service-item text-center rounded p-4">
-                                    <div class="service-content">
+                                    <div class="service-content bg-dark-light">
                                         {% if facture.type == 'EAU' %}
                                             <img style="width: 200px; height: 200px;" src="{{ asset('images/eau.png') }}" class="service-icon d-inline-block bg-dark-light rounded p-4 mb-4">
                                         {% else %}
                                             <img style="width: 200px; height: 200px;" src="{{ asset('images/energie.png') }}" class="service-icon d-inline-block bg-dark-light rounded p-4 mb-4">
                                         {% endif %}
                                         <h4 class="mb-4">{{ facture.libelle }}</h4>
-                                        <p class="mb-4">{{ facture.dateEch ? facture.dateEch|date('Y-m-d') : '' }}</p>
-                                        <p><i class="fas fa-times text-danger me-1">Status</i>{{ facture.estpayee ? 'Oui' : 'Non' }}</p>
-                                        <a href="#" class="btn btn-light rounded-pill text-primary py-2 px-4">Read More</a>
+                                        <p class="mb-4">création :{{ facture.date ? facture.date|date('Y-m-d') : '' }}</p><p class="mb-4"> écheance :{{ facture.date ? facture.date|date('Y-m-d') : '' }}</p>
+                                        <p>
+                                            {% if facture.estpayee == 'Oui' %}
+                                                <i class="fas fa-check text-success me-1"></i>Payée
+                                            {% else %}
+                                                <i class="fas fa-times text-danger me-1"></i>Payée
+                                            {% endif %}
+                                        </p>
+
+                                        <a href="{{ path('app_facture_showFront', {'idFacture': facture.idFacture}) }}" class="btn btn-light rounded-pill text-primary py-2 px-4">Plus de détails</a>
                                     </div>
                                 </div>
                             </div>
@@ -104,6 +111,10 @@
                     {% endfor %}
                 </div>
             {% endfor %}
+            <div style="display: flex; align-items: center; justify-content: center;">
+                {{ knp_pagination_render(factures) }}
+            </div>
+
         </div>
     </section>
 </div>
