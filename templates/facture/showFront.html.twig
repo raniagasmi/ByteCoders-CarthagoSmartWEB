@@ -3,35 +3,42 @@
 {% block title %}Facture{% endblock %}
 
 {% block body %}
-<!-- Navbar & Hero Start -->
-<div class="container-fluid header position-relative overflow-hidden p-0">
-    <nav class="navbar navbar-expand-lg fixed-top navbar-light px-4 px-lg-5 py-3 py-lg-0">
-        <a href="index.html" class="navbar-brand p-0">
-            <h1 class="display-6 text-primary m-0">Carthago Smart</h1>
-            <img src="{{ asset('front/img/logo.png') }}" alt="Logo">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-            <span class="fa fa-bars"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <div class="navbar-nav ms-auto py-0">
-                <a href="{{ path('app_front_index') }}" class="nav-item nav-link active">Acceuil</a>
-                <a href="about.html" class="nav-item nav-link">About</a>
+    <!-- Navbar & Hero Start -->
+    <div class="container-fluid header position-relative overflow-hidden p-0">
+        <nav class="navbar navbar-expand-lg fixed-top navbar-light px-4 px-lg-5 py-3 py-lg-0">
+            <a href="{{ path('app_front_accueil') }}" class="navbar-brand p-0">
+                <h1 class="display-6 text-primary m-0">Carthago Smart</h1>
+                <img src="{{ asset('front/img/logo.png') }}" alt="Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="fa fa-bars"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ms-auto py-0">
+                    <a href="{{ path('app_front_accueil') }}" class="nav-item nav-link active">Acceuil</a>
+                    <a href="about.html" class="nav-item nav-link">About</a>
 
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Services</a>
-                    <div class="dropdown-menu m-0">
-                        <a href="" class="dropdown-item">Energie</a>
-                        <a href="{{ path('app_front_index') }}" class="dropdown-item">Dechets</a>
-                        <a href="blog.html" class="dropdown-item">Evenemment</a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Services</a>
+                        <div class="dropdown-menu m-0">
+                            <a href="{{ path('app_facture_indexFront') }}" class="dropdown-item">Energie</a>
+                            <a href="#" class="dropdown-item">Dechets</a>
+                            <a href="blog.html" class="dropdown-item">Evenemment</a>
+                        </div>
                     </div>
+                    <a href="contact.html" class="nav-item nav-link">Contact Us</a>
                 </div>
-                <a href="contact.html" class="nav-item nav-link">Contact Us</a>
+                <a href="#" class="btn btn-light border border-primary rounded-pill text-primary py-2 px-4 me-4">Log In</a>
+                <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4">Sign Up</a>
             </div>
-            <a href="#" class="btn btn-light border border-primary rounded-pill text-primary py-2 px-4 me-4">Log In</a>
-            <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4">Sign Up</a>
+        </nav>
+        <!-- Navbar & Hero Start -->
+        <div class="container-fluid header position-relative overflow-hidden p-0">
+            <nav class="navbar navbar-expand-lg fixed-top navbar-light px-4 px-lg-5 py-3 py-lg-0">
+                <!-- Votre navbar existante -->
+            </nav>
         </div>
-    </nav>
+        <!-- Navbar End -->
     <section class="section" style="display: flex;align-item:center;justify-content: center;margin-right: -200px">
         <div class="row" style="display: flex;align-item:center;justify-content: center; margin-top: 150px">
             <div class="row justify-content-between">
@@ -88,14 +95,12 @@
                             </a>-->
                             <form action="{{ path('checkout', {'idFacture': facture.idFacture}) }}" method="POST">
                                 <button type="submit"><i class="far fa-credit-card"></i> Payer</button>
-                                <div id="successModal" class="modal">
-                                    <div class="modal-content">
-                                        <span class="close">&times;</span>
-                                        <h2>Paiement réussi !</h2>
-                                        <p>Nous vous remercions de votre confiance !</p>
-                                        <p>Si vous avez des questions ou des préoccupations, n'hésitez pas à nous contacter.</p>
+                                {% if app.session.get('payment_success', false) %}
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                        <strong>Paiement réussi !</strong> Nous vous remercions de votre confiance !
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                     </div>
-                                </div>
+                                {% endif %}
                             </form>
 
                         {% endif %}
