@@ -18,6 +18,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Stripe\Checkout\Session;
 use Stripe\Stripe;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 #[Route('/paiement')]
 class PaiementController extends AbstractController
@@ -153,15 +154,14 @@ class PaiementController extends AbstractController
     public function checkout($stripeSK): Response
     {
         Stripe::setApiKey($stripeSK);
-
         $session = Session::create([
             'payment_method_types' => ['card'],
             'line_items'           => [
                 [
                     'price_data' => [
-                        'currency'     => 'tnd',
+                        'currency'     => 'usd',
                         'product_data' => [
-                            'name' => 'T-shirt',
+                            'name' => 'facture',
                         ],
                         'unit_amount'  => 2000,
                     ],
@@ -173,7 +173,21 @@ class PaiementController extends AbstractController
             'cancel_url'           => $this->generateUrl('cancel_url', [], UrlGeneratorInterface::ABSOLUTE_URL),
         ]);
 
+
         return $this->redirect($session->url, 303);
+    }
+
+    #[Route('/success-url', name: 'success_url')]
+    public function successUrl() : Response
+    {
+        return $this->render('paiement/success.html.twig',
+        ['controller_name' => 'PaiementController',]);
+    }
+    #[Route('/cancel-url', name: 'cancel_url')]
+    public function cancelUrl() : Response
+    {
+        return $this->render('paiement/cancel.html.twig',
+            ['controller_name' => 'PaiementController',]);
     }
 
 
