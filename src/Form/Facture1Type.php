@@ -12,6 +12,8 @@ use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+
 
 
 class Facture1Type extends AbstractType
@@ -19,6 +21,12 @@ class Facture1Type extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+
+            ->add('imageF',FileType::class,[
+                'required' => false,
+                'mapped' => false,
+            ])
+
         ->add('libelle')
             ->add('date', DateTimeType::class,[
                 'disabled' => false,

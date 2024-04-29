@@ -4,17 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e33b97e-fa3a-41dc-b8ab-8621ef636c61" name="Changes" comment="Ajouter paiement, afficher mes factures, template front, contrôle de saisie">
-      <change afterPath="$PROJECT_DIR$/templates/facture/showFront.html.twig" afterDir="false" />
+    <list default="true" id="7e33b97e-fa3a-41dc-b8ab-8621ef636c61" name="Changes" comment="changement index.html.twig">
+      <change afterPath="$PROJECT_DIR$/public/images/eau.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/energie.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/FrontController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/PaiementController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Service/StripeService.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/paiement/paiement.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/ByteCoders-CarthagoSmartWEB.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ByteCoders-CarthagoSmartWEB.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/FactureController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/FactureController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/facture/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Facture.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Facture.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/Facture1Type.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/Facture1Type.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/User/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/User/index.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/facture/indexFront.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture/indexFront.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/facture/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture/show.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/facture/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture/new.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +54,7 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="PhpDebugGeneral" listening_started="true" />
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:\xampp\php\php.exe">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/symfony/runtime" />
@@ -195,24 +203,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Gestion__energies&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/dell/Desktop/ByteCoders-CarthagoSmartWEB/public/front/img&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;php.override.implement.member.chooser.php.doc&quot;: &quot;NONE&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "Gestion__energies",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/dell/Desktop/ByteCoders-CarthagoSmartWEB/public/images",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "php.override.implement.member.chooser.php.doc": "NONE",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\dell\Desktop\ByteCoders-CarthagoSmartWEB\public\images" />
       <recent name="C:\Users\dell\Desktop\ByteCoders-CarthagoSmartWEB\public\front\img" />
       <recent name="C:\Users\dell\Desktop\ByteCoders-CarthagoSmartWEB\public\assets\img" />
       <recent name="C:\Users\dell\Desktop\ESPRIT\pi_symfony\ByteCoders-CarthagoSmartWEB\public\front" />
@@ -251,7 +260,12 @@
       <workItem from="1713474194116" duration="5000" />
       <workItem from="1713485022356" duration="1042000" />
       <workItem from="1713661267395" duration="2526000" />
-      <workItem from="1713816901814" duration="11596000" />
+      <workItem from="1713816901814" duration="14784000" />
+      <workItem from="1714082449982" duration="3000" />
+      <workItem from="1714126848070" duration="11000" />
+      <workItem from="1714126872243" duration="861000" />
+      <workItem from="1714268474558" duration="7019000" />
+      <workItem from="1714337334382" duration="14786000" />
     </task>
     <task id="LOCAL-00001" summary="update vendor">
       <option name="closed" value="true" />
@@ -333,7 +347,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713262038703</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="changement index.html.twig">
+      <option name="closed" value="true" />
+      <created>1713838020490</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1713838020490</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -369,6 +391,7 @@
     <MESSAGE value="routes.yaml/ quelques retouches sur les interfaces graphiques" />
     <MESSAGE value="routes.yaml/ Quelques ajustements sur le template du backend et intégration du frontend" />
     <MESSAGE value="Ajouter paiement, afficher mes factures, template front, contrôle de saisie" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajouter paiement, afficher mes factures, template front, contrôle de saisie" />
+    <MESSAGE value="changement index.html.twig" />
+    <option name="LAST_COMMIT_MESSAGE" value="changement index.html.twig" />
   </component>
 </project>

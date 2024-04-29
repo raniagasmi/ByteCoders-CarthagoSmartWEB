@@ -63,12 +63,18 @@ class Facture
     /**
      * @var string|null
      *@Assert\Choice(
-     *     choices={"EAU", "ENERGIE"},
+     *     choices={"EAU", "ENERGY"},
      *     message="Veuillez sélectionner un type de facture parmi les options proposées."
      * )
      * @ORM\Column(name="type", type="string", length=255, nullable=true, options={"default"="NULL"})
      */
     private $type;
+
+    /**
+     * @var string|null
+     * @ORM\Column(name="imageF", type="string", length=255, nullable=true)
+     */
+    private $imageF;
 
     /**
      * @var bool|null
@@ -178,6 +184,18 @@ class Facture
     public function __toString(): string
     {
         return (string) $this->getIdFacture();
+    }
+
+    public function getImageF(): ?string
+    {
+        return $this->imageF;
+    }
+
+    public function setImageF(?string $imageF): self
+    {
+        $this->imageF = $imageF;
+
+        return $this;
     }
 
 

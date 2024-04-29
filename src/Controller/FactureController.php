@@ -12,6 +12,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
+
 
 
 
@@ -54,7 +56,7 @@ class FactureController extends AbstractController
     }
 
     #[Route('/new', name: 'app_facture_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager,ParameterBagInterface $parameterBag): Response
     {
         $facture = new Facture();
         $facture->setDate(new \DateTime()); //date bch tekhou date systeme fel création
@@ -69,11 +71,18 @@ class FactureController extends AbstractController
         
         if ($form->isSubmitted() && $form->isValid()) {
             $formData = $form->getData();
-    
+
+            if($imageF = $form['imageF']->getData()){
+                $photoDir = $parameterBag->get('photo_dir');
+                $fileName = uniqid().'.'.$imageF->guessExtension();
+                $imageF->move($photoDir, $fileName);
+                $facture->setImageF($fileName);
+            }
             $entityManager->persist($facture);
             $entityManager->flush();
 
             return $this->redirectToRoute('app_facture_index', [], Response::HTTP_SEE_OTHER);
+
         }
 
         return $this->render('facture/new.html.twig', [
@@ -136,6 +145,14 @@ class FactureController extends AbstractController
 
         return $this->redirectToRoute('app_facture_indexFront', [], Response::HTTP_SEE_OTHER);
 
+    }
+
+    #[Route('/show', name: 'app_index', methods: ['GET'])]
+    public function facture(factureRepository $factureRepository): Response
+    {
+        return $this->render('facture/indexFront.html.twig', [
+            'factures' => $factureRepository->findAll(),
+        ]);
     }
 
 
