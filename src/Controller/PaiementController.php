@@ -15,6 +15,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Stripe\Checkout\Session;
 use Stripe\Stripe;
@@ -150,9 +151,15 @@ class PaiementController extends AbstractController
         ]);
     }
 
-    #[Route('/checkout', name: 'checkout')]
-    public function checkout($stripeSK): Response
+
+    #[Route('/{idFacture}/checkout', name: 'checkout')]
+    public function checkout(Request $request, EntityManagerInterface $entityManager, $stripeSK): Response
     {
+        //$paiement = new Paiement();
+        //$facture = new Facture();
+        $idFacture = $request->attributes->getInt('idFacture');
+        $facture = $entityManager->getRepository(Facture::class)->find($idFacture);
+        //$facture = $paiement->getIdFacture();
         Stripe::setApiKey($stripeSK);
         $session = Session::create([
             'payment_method_types' => ['card'],
@@ -161,15 +168,15 @@ class PaiementController extends AbstractController
                     'price_data' => [
                         'currency'     => 'usd',
                         'product_data' => [
-                            'name' => 'facture',
+                            'name' => $facture->getLibelle(),
                         ],
-                        'unit_amount'  => 2000,
+                        'unit_amount'  => $facture->getMontant()*100,
                     ],
                     'quantity'   => 1,
                 ]
             ],
             'mode'                 => 'payment',
-            'success_url'          => $this->generateUrl('success_url', [], UrlGeneratorInterface::ABSOLUTE_URL),
+            'success_url'          => $this->generateUrl('success_url', ['idFacture' => $facture->getIdFacture()], UrlGeneratorInterface::ABSOLUTE_URL),
             'cancel_url'           => $this->generateUrl('cancel_url', [], UrlGeneratorInterface::ABSOLUTE_URL),
         ]);
 
@@ -177,12 +184,47 @@ class PaiementController extends AbstractController
         return $this->redirect($session->url, 303);
     }
 
-    #[Route('/success-url', name: 'success_url')]
-    public function successUrl() : Response
+    #[Route('/{idFacture}/success-url', name: 'success_url')]
+    public function successUrl(EntityManagerInterface $entityManager, Request $request, SessionInterface $session): Response
     {
-        return $this->render('paiement/success.html.twig',
-        ['controller_name' => 'PaiementController',]);
+        $idFacture = $request->attributes->getInt('idFacture');
+        $factureRepository = $entityManager->getRepository(Facture::class);
+        $facture = $factureRepository->find($idFacture);
+
+        /*if (!$facture) {
+            throw $this->createNotFoundException('Facture non trouvée.');
+        }*/
+
+        // Appel de la méthode handleSuccessfulPayment pour mettre à jour la facture
+        $this->handleSuccessfulPayment($facture, $entityManager);
+        $session->set('payment_success', true);
+
+        return $this->render('paiement/success.html.twig', [
+            'controller_name' => 'PaiementController',
+        ]);
     }
+
+    // Méthode pour mettre à jour la propriété estpayee d'une facture
+    public function handleSuccessfulPayment(Facture $facture, EntityManagerInterface $entityManager): void
+    {
+        // Mettre à jour la valeur de estPayee
+        $facture->setEstpayee(true);
+
+        // Enregistrer les modifications dans la base de données
+        $entityManager->flush();
+    }
+
+
+    // Méthode pour mettre à jour la propriété estpayee d'une facture
+    /*private function handleSuccessfulPayment(Facture $facture, EntityManagerInterface $entityManager): void
+    {
+        // Mettre à jour la valeur de estPayee
+        $facture->setEstpayee(true);
+
+        // Enregistrer les modifications dans la base de données
+        $entityManager->flush();
+    }
+}*/
     #[Route('/cancel-url', name: 'cancel_url')]
     public function cancelUrl() : Response
     {

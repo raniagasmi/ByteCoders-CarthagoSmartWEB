@@ -1,6 +1,7 @@
-{% extends base-front.html.twig %}
+{% extends 'base-front.html.twig' %}
 
-{% blcok title %} Paiement échoué !{% endblock %}
+{% block title %} Paiement échoué !{% endblock %}
+{% block body %}
 
     {{ parent() }}
 <body>

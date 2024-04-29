@@ -1,15 +1,49 @@
-{% extends base-front.html.twig %}
+{% extends 'base-front.html.twig' %}
 
-{% blcok title %}Successful payment{% endblock %}
+{% block title %}Paiement réussi{% endblock %}
 
-    {{ parent() }}
-<body>
-<section>
-    <p>
-        Nous vous remercions de votre confiance ! Si vous avez des questions, n'hésitez pas à nous contacter.
+{% block body %}
+<!-- Navbar & Hero Start -->
+<div class="container-fluid header position-relative overflow-hidden p-0">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-light px-4 px-lg-5 py-3 py-lg-0">
+        <a href="index.html" class="navbar-brand p-0">
+            <h1 class="display-6 text-primary m-0">Carthago Smart</h1>
+            <img src="{{ asset('front/img/logo.png') }}" alt="Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="fa fa-bars"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto py-0">
+                <a href="{{ path('app_front_index') }}" class="nav-item nav-link active">Acceuil</a>
+                <a href="about.html" class="nav-item nav-link">About</a>
 
-    </p>
-</section>
-</body>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Services</a>
+                    <div class="dropdown-menu m-0">
+                        <a href="" class="dropdown-item">Energie</a>
+                        <a href="{{ path('app_front_index') }}" class="dropdown-item">Dechets</a>
+                        <a href="blog.html" class="dropdown-item">Evenemment</a>
+                    </div>
+                </div>
+                <a href="contact.html" class="nav-item nav-link">Contact Us</a>
+            </div>
+            <a href="#" class="btn btn-light border border-primary rounded-pill text-primary py-2 px-4 me-4">Log In</a>
+            <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4">Sign Up</a>
+        </div>
+    </nav>
 
+    <section class="success-section" style="display: flex;align-item:center;justify-content: center;margin-right: -200px">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <div class="success-message text-center">
+                        <h2 class="mb-4">Paiement réussi !</h2>
+                        <p class="lead">Nous vous remercions de votre confiance !</p>
+                        <p class="mt-4">Si vous avez des questions ou des préoccupations, n'hésitez pas à nous contacter.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}

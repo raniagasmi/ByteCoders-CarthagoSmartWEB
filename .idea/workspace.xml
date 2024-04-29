@@ -4,14 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e33b97e-fa3a-41dc-b8ab-8621ef636c61" name="Changes" comment="DomPDF (generation PDF)">
-      <change afterPath="$PROJECT_DIR$/templates/paiement/cancel.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/paiement/success.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env.test" beforeDir="false" afterPath="$PROJECT_DIR$/.env.test" afterDir="false" />
+    <list default="true" id="7e33b97e-fa3a-41dc-b8ab-8621ef636c61" name="Changes" comment="integration stripe checkout">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/PaiementController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/PaiementController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/User/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/User/index.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/facture/showFront.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture/showFront.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/paiement/cancel.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/paiement/cancel.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/paiement/success.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/paiement/success.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -264,7 +263,7 @@
       <workItem from="1714126872243" duration="861000" />
       <workItem from="1714268474558" duration="7019000" />
       <workItem from="1714337334382" duration="25402000" />
-      <workItem from="1714366607665" duration="12202000" />
+      <workItem from="1714366607665" duration="27386000" />
     </task>
     <task id="LOCAL-00001" summary="update vendor">
       <option name="closed" value="true" />
@@ -386,7 +385,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714366984265</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="integration stripe checkout">
+      <option name="closed" value="true" />
+      <created>1714406364679</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1714406364679</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -425,6 +432,7 @@
     <MESSAGE value="changement index.html.twig" />
     <MESSAGE value="changement indexFront.html.twig" />
     <MESSAGE value="DomPDF (generation PDF)" />
-    <option name="LAST_COMMIT_MESSAGE" value="DomPDF (generation PDF)" />
+    <MESSAGE value="integration stripe checkout" />
+    <option name="LAST_COMMIT_MESSAGE" value="integration stripe checkout" />
   </component>
 </project>
