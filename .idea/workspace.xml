@@ -4,12 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e33b97e-fa3a-41dc-b8ab-8621ef636c61" name="Changes" comment="changement index.html.twig">
+    <list default="true" id="7e33b97e-fa3a-41dc-b8ab-8621ef636c61" name="Changes" comment="changement indexFront.html.twig">
+      <change afterPath="$PROJECT_DIR$/src/Service/PdfService.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/facture/detailsPDF.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/ByteCoders-CarthagoSmartWEB.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ByteCoders-CarthagoSmartWEB.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/FactureController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/FactureController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/facture/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/facture/indexFront.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture/indexFront.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/facture/showFront.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/facture/showFront.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -180,6 +183,11 @@
       <path value="$PROJECT_DIR$/vendor/theseer/tokenizer" />
       <path value="$PROJECT_DIR$/vendor/symfony/webpack-encore-bundle" />
       <path value="$PROJECT_DIR$/vendor/stripe/stripe-php" />
+      <path value="$PROJECT_DIR$/vendor/sabberworm/php-css-parser" />
+      <path value="$PROJECT_DIR$/vendor/phenx/php-svg-lib" />
+      <path value="$PROJECT_DIR$/vendor/phenx/php-font-lib" />
+      <path value="$PROJECT_DIR$/vendor/dompdf/dompdf" />
+      <path value="$PROJECT_DIR$/vendor/masterminds/html5" />
     </include_path>
   </component>
   <component name="ProjectColorInfo">{
@@ -191,22 +199,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Gestion__energies",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/dell/Desktop/ByteCoders-CarthagoSmartWEB/public/images",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "php.override.implement.member.chooser.php.doc": "NONE",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Gestion__energies&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/dell/Desktop/ByteCoders-CarthagoSmartWEB/public/images&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;php.override.implement.member.chooser.php.doc&quot;: &quot;NONE&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\dell\Desktop\ByteCoders-CarthagoSmartWEB\public\images" />
@@ -253,7 +261,8 @@
       <workItem from="1714126848070" duration="11000" />
       <workItem from="1714126872243" duration="861000" />
       <workItem from="1714268474558" duration="7019000" />
-      <workItem from="1714337334382" duration="20440000" />
+      <workItem from="1714337334382" duration="25402000" />
+      <workItem from="1714366607665" duration="92000" />
     </task>
     <task id="LOCAL-00001" summary="update vendor">
       <option name="closed" value="true" />
@@ -359,7 +368,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714356069694</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="changement indexFront.html.twig">
+      <option name="closed" value="true" />
+      <created>1714361270717</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1714361270717</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -396,6 +413,7 @@
     <MESSAGE value="routes.yaml/ Quelques ajustements sur le template du backend et intégration du frontend" />
     <MESSAGE value="Ajouter paiement, afficher mes factures, template front, contrôle de saisie" />
     <MESSAGE value="changement index.html.twig" />
-    <option name="LAST_COMMIT_MESSAGE" value="changement index.html.twig" />
+    <MESSAGE value="changement indexFront.html.twig" />
+    <option name="LAST_COMMIT_MESSAGE" value="changement indexFront.html.twig" />
   </component>
 </project>

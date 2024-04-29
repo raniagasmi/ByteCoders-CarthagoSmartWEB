@@ -1,0 +1,99 @@
+
+{% block title %}Détails de la Facture{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        .facture-card {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+
+        .facture-header {
+            background-color: #007bff;
+            padding: 1rem;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .facture-header h2 {
+            margin-bottom: 0;
+            color: #fff;
+            font-size: 2rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .facture-details {
+            font-family: 'Roboto', sans-serif;
+            color: #333;
+        }
+
+        .facture-details dl dt {
+            color: #007bff;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .facture-details dl dd {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            padding-left: 10px;
+        }
+
+        .facture-details dl dd:before {
+            content: "\2022";
+            color: #007bff;
+            font-weight: bold;
+            font-size: 1.5rem;
+            padding-right: 5px;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    {% block content %}
+        <section class="facture-details">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="facture-card shadow-lg">
+                            <div class="facture-header">
+                                <h2>Détails de la Facture</h2>
+                            </div>
+                            <div class="facture-body">
+                                <dl class="row">
+                                    <dt class="col-sm-3">Référence</dt>
+                                    <dd class="col-sm-9">{{ facture.idFacture }}</dd>
+
+                                    <dt class="col-sm-3">Libellé</dt>
+                                    <dd class="col-sm-9">{{ facture.libelle }}</dd>
+
+                                    <dt class="col-sm-3">Date</dt>
+                                    <dd class="col-sm-9">{{ facture.date ? facture.date|date('Y-m-d') : '' }}</dd>
+
+                                    <dt class="col-sm-3">Date d'échéance</dt>
+                                    <dd class="col-sm-9">{{ facture.dateEch ? facture.dateEch|date('Y-m-d') : '' }}</dd>
+
+                                    <dt class="col-sm-3">Montant</dt>
+                                    <dd class="col-sm-9">{{ facture.montant }}</dd>
+
+                                    <dt class="col-sm-3">Type</dt>
+                                    <dd class="col-sm-9">{{ facture.type }}</dd>
+
+                                    <dt class="col-sm-3">Payée</dt>
+                                    <dd class="col-sm-9">{{ facture.estPayee ? 'Oui' : 'Non' }}</dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endblock %}
+{% endblock %}

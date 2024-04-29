@@ -6,6 +6,7 @@ use App\Entity\Facture;
 use App\Entity\Paiement;
 use App\Form\Facture1Type;
 use App\Repository\factureRepository;
+use App\Service\PdfService;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -157,5 +158,21 @@ class FactureController extends AbstractController
         ]);
     }
 
+    #[Route('/pdf/{idFacture}', name :'app_facture_pdf')]
+    public function generatePDFfacture(Facture $facture, PdfService $pdfService): Response
+    {
+        $html = $this->renderView('facture/detailsPDF.html.twig', [
+            'facture' => $facture,
+        ]);
+
+        // Get the PDF content from PdfService
+        $pdfContent = $pdfService->showPdfFile($html);
+
+        // Create a Response object with PDF content and headers
+        $response = new Response($pdfContent);
+        $response->headers->set('Content-Type', 'application/pdf');
+
+        return $response;
+    }
 
 }
