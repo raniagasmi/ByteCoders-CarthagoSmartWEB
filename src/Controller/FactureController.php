@@ -10,6 +10,7 @@ use App\Service\PdfService;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -27,14 +28,78 @@ class FactureController extends AbstractController
         $factures = $factureRepository->findAll();
         $factures = $paginator->paginate(
             $factures,
-            $request->query->getInt('page', 1), // Notez la virgule ajoutée ici
+            $request->query->getInt('page', 1),
             10
         );
-        
+
         return $this->render('facture/index.html.twig', [
-            'factures' => $factures
+            'factures' => $factures,
         ]);
     }
+    #[Route('/search', name: 'app_search', methods: ['GET'])]
+    public function searchFacture(Request $request, factureRepository $factureRepository, PaginatorInterface $paginator): Response
+    {
+        // Get the search query from the request
+        $searchQuery = $request->query->get('query');
+
+        // If there's no search query, fetch all records
+        if (!$searchQuery) {
+            $facturesQuery = $factureRepository->findAll();
+        } else {
+            // If there's a search query, perform the search
+            $facturesQuery = $factureRepository->findByMultipleCriteria($searchQuery);
+        }
+
+        // Paginate the results
+        $factures = $paginator->paginate(
+            $facturesQuery,
+            $request->query->getInt('page', 1), // Current page number
+            10 // Number of items per page
+        );
+
+        return $this->render('facture/indexCOPIE.html.twig', [
+            'factures' => $factures,
+        ]);
+    }
+    #[Route('/indexC', name: 'app_facture_indexC', methods: ['GET'])]
+    public function indexCopie(Request $request, factureRepository $factureRepository, PaginatorInterface $paginator): Response
+    {
+        $factures = $factureRepository->findAll();
+        $factures = $paginator->paginate(
+            $factures,
+            $request->query->getInt('page', 1),
+            10
+        );
+
+        return $this->render('facture/indexCOPIE.html.twig', [
+            'factures' => $factures,
+        ]);
+    }
+/////////////////////////////////////search_app_repo
+    #[Route('/search', name: 'app_facture_search', methods: ['GET'])]
+    public function search(Request $request, FactureRepository $factureRepository)
+    {
+        // Get the search query from the request
+        $query = $request->query->get('query');
+
+        // Perform the search using the repository
+        $factures = $factureRepository->findBySearchQuery($query);
+
+        // Serialize the factures data
+        $facturesData = [];
+        foreach ($factures as $facture) {
+            $facturesData[] = [
+                'idFacture' => $facture->getIdFacture(),
+                'libelle' => $facture->getLibelle(),
+                // Add other properties as needed
+            ];
+        }
+
+        // Return the search results as JSON
+        return new JsonResponse(['factures' => $facturesData]);
+    }
+
+
     #[Route('/indexFront', name: 'app_facture_indexFront', methods: ['GET'])]
     public function indexFront(Request $request, factureRepository $factureRepository, PaginatorInterface $paginator): Response
     {

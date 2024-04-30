@@ -17,14 +17,14 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Liste des factures: ({{ factures.getTotalItemCount }})</h5>
-                    <form method="GET" action="{{ path('app_facture_search') }}">
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Rechercher..." name="query">
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="submit">Rechercher</button>
-                            </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <label for="search">Recherche :</label>
+                            <input type="text" id="search" name="search" autocomplete="off">
+                            <ul id="suggestions"></ul>
                         </div>
-                    </form>
+                    </div>
+
                     <table class="table datatable" id="myTable">
                         <thead>
                         <tr>
@@ -35,7 +35,6 @@
                             <th>Montant</th>
                             <th>Type</th>
                             <th>EstPayee</th>
-
                             <th>Actions</th>
                         </tr>
                         </thead>
@@ -78,115 +77,49 @@
 {% block javascripts %}
     {{ parent() }}
     <!-- Include jQuery and DataTables JS -->
-    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
     <script>
-        $(document).ready( function () {
-            $(document).ready(function() {
+        $(document).ready(function() {
+            /*$(document).ready(function() {
                 $('.dataTables_info').hide();
             });
             $('#myTable').DataTable({
                 paging: false,
                 "pageLength": 10,
                 searching: false,
+
+            });*/
+            $('#search').on('keyup', function() {
+                var query = $(this).val();
+
+                $.ajax({
+                    type: 'GET',
+                    url: '{{ path('app_facture_search') }}',
+                    data: { query: query },
+                    success: function(response) {
+                        // Update the table with the search results
+                        var tableBody = $('#myTable tbody');
+                        tableBody.empty(); // Clear existing rows
+
+                        // Iterate through the search results and append rows to the table
+                        response.factures.forEach(function(facture) {
+                            var row = `
+                            <tr>
+                                <td>${facture.idFacture}</td>
+                                <td>${facture.libelle}</td>
+                                <!-- Add other table cells here -->
+                            </tr>
+                        `;
+                            tableBody.append(row);
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(xhr.responseText);
+                    }
+                });
             });
         });
-    </script>
-    <!-- fonctionnalités avec Ajax -->
-    <script>
-        document.getElementById('search').addEventListener('input', function() {
-            var searchTerm = this.value.trim().toLowerCase();
-            var suggestions = document.getElementById('suggestions');
-            suggestions.innerHTML = ''; // Clear previous suggestions
-
-            if (searchTerm.length === 0) {
-                suggestions.innerHTML = ''; // Clear suggestions when input is empty
-                return;
-            }
-
-            // Filter the suggestions
-            var matches = facture.filter(function(facture) {
-                return facture.libelle.toLowerCase().startsWith(searchTerm) || facture.type.toLowerCase().startsWith(searchTerm);
-            });
-
-            // Display suggestions
-            matches.forEach(function(facture, index) {
-                var li = document.createElement('li');
-                li.textContent = facture.libelle + ' (' + facture.type + ')';
-                li.addEventListener('click', function() {
-                    applySearch(facture.libelle);
-                    suggestions.innerHTML = ''; // Clear suggestions after selection
-                });
-                suggestions.appendChild(li);
-
-                // Highlight the first suggestion
-                if (index === 0) {
-                    li.classList.add('selected');
-                }
-            });
-
-            // Handle keyboard navigation
-            var selectedSuggestionIndex = 0;
-            suggestions.querySelectorAll('li').forEach(function(li, index) {
-                li.addEventListener('mouseenter', function() {
-                    selectedSuggestionIndex = index;
-                    updateSelectedSuggestion();
-                });
-            });
-
-            function updateSelectedSuggestion() {
-                suggestions.querySelectorAll('li').forEach(function(li, index) {
-                    if (index === selectedSuggestionIndex) {
-                        li.classList.add('selected');
-                    } else {
-                        li.classList.remove('selected');
-                    }
-                });
-            }
-
-            document.addEventListener('keydown', function(event) {
-                if (event.key === 'ArrowUp') {
-                    event.preventDefault();
-                    if (selectedSuggestionIndex > 0) {
-                        selectedSuggestionIndex--;
-                        updateSelectedSuggestion();
-                    }
-                } else if (event.key === 'ArrowDown') {
-                    event.preventDefault();
-                    if (selectedSuggestionIndex < matches.length - 1) {
-                        selectedSuggestionIndex++;
-                        updateSelectedSuggestion();
-                    }
-                } else if (event.key === 'Enter') {
-                    event.preventDefault();
-                    var selectedSuggestion = matches[selectedSuggestionIndex];
-                    if (selectedSuggestion) {
-                        applySearch(selectedSuggestion.libelle);
-                        suggestions.innerHTML = ''; // Clear suggestions after selection
-                    }
-                }
-            });
-        });
-
-        function applySearch(searchTerm) {
-            var rows = document.querySelectorAll('#myTable tbody tr');
-            rows.forEach(function(row) {
-                var libelle = row.cells[1].textContent.trim().toLowerCase();
-                var type = row.cells[2].textContent.trim().toLowerCase();
-                if (libelle.includes(searchTerm.toLowerCase()) || type.includes(searchTerm.toLowerCase())) {
-                    row.style.display = '';
-                } else {
-                    row.style.display = 'none';
-                }
-            });
-        }
-
-        // Exemple de données
-        var facture = [
-            { libelle: 'EAU', type: 'EAU' },
-            { libelle: 'ENERGIE', type: 'ENERGIE' },
-            { libelle: '', type: '' }
-        ];
     </script>
 {% endblock %}
 

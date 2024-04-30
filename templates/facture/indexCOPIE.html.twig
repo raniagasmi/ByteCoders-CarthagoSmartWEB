@@ -17,18 +17,11 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Liste des factures: ({{ factures.getTotalItemCount }})</h5>
-                    <form method="GET" action="{{ path('app_facture_search') }}">
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Rechercher..." name="query">
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="submit">Rechercher</button>
-                            </div>
-                        </div>
-                    </form>
+
                     <table class="table datatable" id="myTable">
                         <thead>
                         <tr>
-                            <th>Ref</th>
+                            <th>IdFacture</th>
                             <th>Libelle</th>
                             <th>Date</th>
                             <th>DateEch</th>
@@ -39,6 +32,23 @@
                             <th>Actions</th>
                         </tr>
                         </thead>
+                        <!-- Filtrage -->
+                        <div>
+                            <label for="filter">Filtrer par :</label>
+                            <select id="filter" name="filter">
+                                <option value="all" selected>Tous</option>
+                                <option value="EAU">EAU</option>
+                                <option value="ENERGY">ENERGY</option>
+                            </select>
+                        </div>
+                        <form method="GET" action="{{ path('app_search') }}">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="Rechercher..." name="query">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="submit">Rechercher</button>
+                                </div>
+                            </div>
+                        </form>
                         <tbody>
                         {% for facture in factures %}
                             <tr>
@@ -77,20 +87,32 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <!-- Include jQuery and DataTables JS -->
-    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+    <!-- Include jQuery and DataTables JS
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script> -->
     <script>
-        $(document).ready( function () {
-            $(document).ready(function() {
-                $('.dataTables_info').hide();
-            });
+        /*$(document).ready(function() {
+            // Hide the information display (optional)
+            $('.dataTables_info').hide();
+
+            // Initialize DataTables with paging enabled and searching disabled
             $('#myTable').DataTable({
                 paging: false,
-                "pageLength": 10,
                 searching: false,
+                info: false
+            });*/
+
+            // Handle form submission for search
+            $('form').submit(function(event) {
+                // Prevent default form submission
+                event.preventDefault();
+
+                // Get the search query from the input field
+                var query = $(this).find('input[name="query"]').val();
+
+                // Redirect to the search route with the query as a parameter
+                window.location.href = '{{ path('app_search') }}?query=' + query;
             });
         });
     </script>
 {% endblock %}
-

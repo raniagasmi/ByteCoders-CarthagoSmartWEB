@@ -95,12 +95,7 @@
                             </a>-->
                             <form action="{{ path('checkout', {'idFacture': facture.idFacture}) }}" method="POST">
                                 <button type="submit"><i class="far fa-credit-card"></i> Payer</button>
-                                {% if app.session.get('payment_success', false) %}
-                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                        <strong>Paiement réussi !</strong> Nous vous remercions de votre confiance !
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                    </div>
-                                {% endif %}
+
                             </form>
 
                         {% endif %}
