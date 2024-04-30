@@ -38,7 +38,7 @@
             <!-- Votre navbar existante -->
         </nav>
     </div>
-</div>
+
     <!-- Navbar End -->
 
     <section class="success-section" style="display: flex;align-item:center;justify-content: center;margin-right: -200px">
@@ -54,10 +54,12 @@
             </div>
         </div>
     </section>
+
     {% if app.session.get('payment_success', false) %}
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             <strong>Paiement réussi !</strong> Nous vous remercions de votre confiance !
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
         </div>
     {% endif %}
 {% endblock %}

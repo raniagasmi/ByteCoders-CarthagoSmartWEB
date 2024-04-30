@@ -57,4 +57,15 @@ class factureRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }
+    public function findByMultipleCriteria($searchQuery)
+    {
+        return $this->createQueryBuilder('f')
+            ->andWhere('f.idFacture LIKE :searchQuery')
+            ->orWhere('f.libelle LIKE :searchQuery')
+            //->orWhere('f.estPayee LIKE :searchQuery')
+            ->orWhere('f.type LIKE :searchQuery')
+            ->setParameter('searchQuery', '%' . $searchQuery . '%')
+            ->getQuery()
+            ->getResult();
+    }
 }

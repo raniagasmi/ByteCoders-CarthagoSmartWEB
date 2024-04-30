@@ -53,10 +53,32 @@ class FactureController extends AbstractController
     }
 
     #[Route('/Admin', name: 'app_Admin_index', methods:["GET"])]
-    public function indexAdmin(): Response
+    public function indexAdmin(Request $request, FactureRepository $factureRepository): Response
     {
-        return $this->render('Admin/index.html.twig');
+        // Count of invoices for water type
+        $countFactureEau = $factureRepository->createQueryBuilder('f')
+            ->select('COUNT(f)')
+            ->where('f.type = :type')
+            ->setParameter('type', 'EAU')
+            ->getQuery()
+            ->getSingleScalarResult();
+
+        // Count of invoices for energy type
+        $countFactureEnergie = $factureRepository->createQueryBuilder('f')
+            ->select('COUNT(f)')
+            ->where('f.type = :type')
+            ->setParameter('type', 'ENERGY')
+            ->getQuery()
+            ->getSingleScalarResult();
+        $totalCount = $countFactureEau + $countFactureEnergie;
+
+        return $this->render('Admin/index.html.twig', [
+            'countFactureEau' => $countFactureEau,
+            'countFactureEnergie' => $countFactureEnergie,
+            'totalCount' => $totalCount, // Pass the total count to the template
+        ]);
     }
+
 
     #[Route('/new', name: 'app_facture_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager,ParameterBagInterface $parameterBag): Response
@@ -174,5 +196,34 @@ class FactureController extends AbstractController
 
         return $response;
     }
+    #[Route('/search', name: 'app_facture_search', methods: ['GET'])]
+    public function searchEvent(Request $request, factureRepository $factureRepository, PaginatorInterface $paginator): Response
+    {
+        // Check if a search query is present
+        $searchQuery = $request->query->get('query');
+
+        // If there's no search query, fetch all records
+        if (!$searchQuery) {
+            $facturesQuery = $factureRepository->createQueryBuilder('f')->getQuery();
+        } else {
+            // If there's a search query, perform the search
+            $facturesQuery = $factureRepository->findByMultipleCriteria($searchQuery);
+        }
+
+        // Paginate the results
+        $factures = $paginator->paginate(
+            $facturesQuery,
+            $request->query->getInt('page', 1), // Current page number
+            10 // Number of items per page
+        );
+
+        return $this->render('facture/index.html.twig', [
+            'factures' => $factures,
+        ]);
+    }
+
+
+
+
 
 }
