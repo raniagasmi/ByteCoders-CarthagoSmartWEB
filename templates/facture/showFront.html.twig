@@ -84,7 +84,7 @@
                 <div class="row justify-content-between">
                     <div class="col-md-auto">
                         <!-- Add the PDF generation icon -->
-                        <a href="#" class="ms-3">
+                        <a href="{{ path('app_facture_pdf', {'idFacture': facture.idFacture}) }}" class="ms-3">
                             <i class="far fa-file-pdf"></i> PDF
                         </a>
                     </div>

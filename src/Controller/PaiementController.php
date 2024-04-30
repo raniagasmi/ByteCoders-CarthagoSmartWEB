@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Paiement;
+use App\Service\PdfService;
 use App\Service\StripeService;
 use App\Entity\Facture;
 use App\Entity\User;
@@ -185,7 +186,7 @@ class PaiementController extends AbstractController
     }
 
     #[Route('/{idFacture}/success-url', name: 'success_url')]
-    public function successUrl(EntityManagerInterface $entityManager, Request $request, SessionInterface $session): Response
+    public function successUrl(EntityManagerInterface $entityManager, Request $request, SessionInterface $session, PdfService $pdfService): Response
     {
         $idFacture = $request->attributes->getInt('idFacture');
         $factureRepository = $entityManager->getRepository(Facture::class);

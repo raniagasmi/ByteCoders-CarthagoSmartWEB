@@ -13,15 +13,22 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
-
-
-
+use Symfony\Component\Mailer;
+use Symfony\Component\Validator\Constraints\Email;
+use App\Controller\MailerController;
 
 #[Route('/facture')]
 class FactureController extends AbstractController
 {
+    private \App\Controller\MailerController $mailerController;
+
+    public function __construct(MailerController $mailerController)
+    {
+        $this->mailerController = $mailerController;
+    }
     #[Route('/index', name: 'app_facture_index', methods: ['GET'])]
     public function index(Request $request, factureRepository $factureRepository, PaginatorInterface $paginator): Response
     {
@@ -154,11 +161,11 @@ class FactureController extends AbstractController
         $dateEcheance = new \DateTime();
         $dateEcheance->modify('+2 month');
         $facture->setDateEch($dateEcheance);
-        
+
 
         $form = $this->createForm(Facture1Type::class, $facture);
         $form->handleRequest($request);
-        
+
         if ($form->isSubmitted() && $form->isValid()) {
             $formData = $form->getData();
 
@@ -170,6 +177,11 @@ class FactureController extends AbstractController
             }
             $entityManager->persist($facture);
             $entityManager->flush();
+            //$this->redirectToRoute('app_mail');
+            $mailerController = new MailerController();
+            $mailerController->sendEmail($facture);
+
+            $this->mailerController->sendEmail($facture);
 
             return $this->redirectToRoute('app_facture_index', [], Response::HTTP_SEE_OTHER);
 
@@ -286,6 +298,7 @@ class FactureController extends AbstractController
             'factures' => $factures,
         ]);
     }
+
 
 
 

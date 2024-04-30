@@ -22,10 +22,10 @@ class Facture1Type extends AbstractType
     {
         $builder
 
-            ->add('imageF',FileType::class,[
+            /*->add('imageF',FileType::class,[
                 'required' => false,
                 'mapped' => false,
-            ])
+            ])*/
 
         ->add('libelle')
             ->add('date', DateTimeType::class,[
@@ -58,6 +58,7 @@ class Facture1Type extends AbstractType
             ->add('Ajouter', SubmitType::class, [
                 'label' => 'Enregistrer',
                 'attr' => ['class' => 'btn btn-primary']
+
             ]);
     }
 
