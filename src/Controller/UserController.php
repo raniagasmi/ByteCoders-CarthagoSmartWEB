@@ -69,7 +69,6 @@ class UserController extends AbstractController
     #[Route('/contact', name: 'app_user_contact')]
     public function indexContact(): Response
     {
-
         return $this->render('user/contact.html.twig');
     }
 

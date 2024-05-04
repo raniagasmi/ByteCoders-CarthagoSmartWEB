@@ -42,7 +42,7 @@ class User implements UserInterface , PasswordAuthenticatedUserInterface
  *    min=8,
  *    max=8
  * )
- * @ORM\Column(name="cin", type="integer", nullable=false)
+ * @ORM\Column(name="cin", type="integer", nullable=true)
  */
     private $cin;
 
