@@ -179,8 +179,7 @@ class RegistrationController extends AbstractController
 
             $mailer->send($email);
             $this->addFlash('success', 'Your account has been created. Please check your email to verify your account.');
-
-
+            
           /*  $this->addFlash('success', 'Confirm your email at: '.$signatureComponents->getSignedUrl());*/
 
             // Generate a signed url and email it to the user
@@ -192,7 +191,7 @@ class RegistrationController extends AbstractController
                     ->htmlTemplate('registration/confirmation_email.html.twig')
             );*/
 
-            return $this->redirectToRoute('app_login');
+            return $this->redirectToRoute('auth_oauth_login');
         }
 
         return $this->render('registration/register.html.twig', [
@@ -241,7 +240,7 @@ public function verifyUserEmail(Request $request, VerifyEmailHelperInterface $ve
         $entityManager->flush();
 
         $this->addFlash('success', 'Your email has been verified. You can now log in.');
-        return $this->redirectToRoute('app_login');
+        return $this->redirectToRoute('auth_oauth_login');
     } catch (VerifyEmailExceptionInterface $e) {
         $this->addFlash('error', $e->getReason());
         return $this->redirectToRoute('app_register');

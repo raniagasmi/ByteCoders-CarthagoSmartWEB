@@ -117,9 +117,9 @@ private $nom;
      /**
      * @var string
      *
-     * @ORM\Column(name="reset_token", type="string", length=255, nullable=false)
+     * @ORM\Column(name="reset_token", type="string", length=255, nullable=true)
      */
-    private $resetToken;
+    private $reset_token;
 
 
     /**
@@ -128,18 +128,6 @@ private $nom;
      * @ORM\Column(name="roleUser", type="json", nullable=true)
      */
     private $roles = [];
-
-    
-    /**
-     * @ORM\OneToMany(targetEntity="Participant", mappedBy="user")
-     */
-    private $participants;
-
-
-    /**
-     * @ORM\OneToMany(targetEntity="Message", mappedBy="user")
-     */
-    private $messages;
 
     /**
      * @var string|null
@@ -169,12 +157,16 @@ private $nom;
      */
     private $isVerified = false ;
 
+     /**
+     * @var string
+     * @ORM\Column(name="google_id", type="string", length=255, nullable=true)
+     */
+    private $google_id;
+
 
     
     public function __construct()
     {
-        $this->participants = new ArrayCollection();
-        $this->messages = new ArrayCollection();
     }
 
     /*private function generateVerificationCode(): string
@@ -394,82 +386,33 @@ public function setRoles(array $roles): self
         return $this->isVerified;
     }*/
 
-    public function getResetToken(): ?string
+    public function getreset_token(): ?string
     {
-        return $this->resetToken;
+        return $this->reset_token;
     }
 
-    public function setResetToken(?string $resetToken): self
+    public function setResetToken(?string $reset_token): self
     {
-        $this->resetToken = $resetToken;
+        $this->reset_token = $reset_token;
 
         return $this;
     }
+
+
 
     public function isIsVerified(): ?bool
     {
         return $this->isVerified;
     }
 
-    /**
-     * @return Collection|Participant[]
-     */
-    public function getParticipants(): Collection
+    public function getGoogle_Id(): ?string
     {
-        return $this->participants;
+        return $this->google_id;
     }
 
-    public function addParticipant(Participant $participant): self
+    public function setGoogle_Id(string $google_id): self
     {
-        if (!$this->participants->contains($participant)) {
-            $this->participants[] = $participant;
-            $participant->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeParticipant(Participant $participant): self
-    {
-        if ($this->participants->contains($participant)) {
-            $this->participants->removeElement($participant);
-            // set the owning side to null (unless already changed)
-            if ($participant->getUser() === $this) {
-                $participant->setUser(null);
-            }
-        }
-
-        return $this;
-    }
-
-
-    /**
-     * @return Collection|Message[]
-     */
-    public function getMessages(): Collection
-    {
-        return $this->messages;
-    }
-
-    public function addMessage(Message $message): self
-    {
-        if (!$this->messages->contains($message)) {
-            $this->messages[] = $message;
-            $message->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeMessage(Message $message): self
-    {
-        if ($this->messages->contains($message)) {
-            $this->messages->removeElement($message);
-            // set the owning side to null (unless already changed)
-            if ($message->getUser() === $this) {
-                $message->setUser(null);
-            }
-        }
+        $this->google_id = $google_id;
 
         return $this;
     }

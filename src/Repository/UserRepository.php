@@ -21,6 +21,26 @@ class UserRepository extends ServiceEntityRepository
         parent::__construct($registry, User::class);
     }
 
+
+    public function findUsersByString($username)
+    {
+        return $this->createQueryBuilder('u')
+        ->andWhere('u.username LIKE :username')
+        ->setParameter('username', '%' . $username . '%')
+        ->getQuery()
+        ->getResult();
+    }
+    public function add(User $user, bool $flush = false): void
+    {
+        $this->getEntityManager()->persist($user);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
+}
+
      /**
      * Used to upgrade (rehash) the user's password automatically over time.
      */
@@ -59,4 +79,4 @@ class UserRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
-}
+

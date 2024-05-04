@@ -9,13 +9,15 @@ app_register:
     path: /register
     controller: App\Controller\RegistrationController::register
 
-app_login:
-    path: /login
-    controller: App\Controller\SecurityController::login
-
 app_user_home:
     path : /home
-    controller: 'App\Controller\UserController::indexHome'
+    controller: 'App\Controller\HomeController::indexHome'
+
+
+app_user_contact:
+    path : /user/contact
+    controller: 'App\Controller\UserController::indexContact'
+
 
 app_user_index:
     path: /user/
@@ -32,19 +34,34 @@ app_user_show:
     requirements:
         id: \d+  # Ensure the id parameter is a digit (integer)
 
-app_forgot_password_request:
-    path: /reset-password
-    controller: App\Controller\ResetPasswordController::request
-    methods: ['GET', 'POST']
-
 app_check_email:
     path: /reset-password/check-email
     controller: App\Controller\ResetPasswordController::checkEmail
     methods: ['GET']
 
-app_reset_password:
-    path: /reset-password/reset/{token}
-    controller: App\Controller\ResetPasswordController::reset
-    methods: ['GET', 'POST']        
+app_user_edit:
+    path: /user/{id}/edit
+    controller: App\Controller\UserController::edit
+    methods: ['GET', 'POST']
+    requirements:
+        id: \d+  # Ensure the id parameter is a digit (integer)
 
-        
+app_user_delete:
+    path: /user/{id}
+    controller: App\Controller\UserController::delete
+    methods: ['POST']
+    requirements:
+        id: \d+  # Ensure the id parameter is a digit (integer)
+
+profile_edit:
+    path: /user/profile/{id}/edit
+    controller: App\Controller\UserController::editProfile
+    methods: ['GET', 'POST']
+    requirements: 
+        id: \d+  # User ID
+
+
+app_reset_password:
+    path: '/reset-password/reset/{token}'
+    controller: App\Controller\SecurityController::resetpassword
+    methods: ['GET','POST']        

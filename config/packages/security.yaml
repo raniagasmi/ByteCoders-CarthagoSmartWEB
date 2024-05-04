@@ -38,17 +38,19 @@ security:
             login_throttling: true
             lazy: true
             provider: app_user_provider
-            custom_authenticator: App\Security\UserAuthenticator
+            custom_authenticator:
+                - App\Security\UserAuthenticator
+                - App\Security\GoogleAuthenticator
             logout:
-                path: app_logout
+                path: auth_oauth_logout
                 # where to redirect after logout
-                target: app_login
+                target: auth_oauth_login
 
             remember_me:
                 secret: '%kernel.secret%'
                 lifetime: 604800
                 path: /
-                always_remember_me: true
+                always_remember_me: false
 
             #guard:
                 #authenticators:
@@ -63,8 +65,8 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-         - { path: ^/admin, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-         - { path: ^/profile, roles: IS_AUTHENTICATED_FULLY }
+        # - { path: ^/admin, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        # - { path: ^/profile, roles: IS_AUTHENTICATED_FULLY }
 
 when@test:
     security:

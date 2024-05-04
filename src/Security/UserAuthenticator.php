@@ -20,17 +20,16 @@ use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Http\Authenticator\Passport\PassportInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use KnpU\OAuth2ClientBundle\Security\Authenticator\OAuth2Authenticator;
 
 
 
 class UserAuthenticator extends AbstractLoginFormAuthenticator
 {
     use TargetPathTrait;
-    private $session;
+    private $session;          
 
-
-
-    public const LOGIN_ROUTE = 'app_login';
+    public const LOGIN_ROUTE = 'auth_oauth_login';
     
     private $urlGenerator;
 
@@ -87,4 +86,8 @@ class UserAuthenticator extends AbstractLoginFormAuthenticator
     {
         return $this->urlGenerator->generate(self::LOGIN_ROUTE);
     }
+
+    
+
+    
 }

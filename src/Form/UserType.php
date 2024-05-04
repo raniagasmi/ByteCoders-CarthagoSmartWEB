@@ -128,6 +128,16 @@ class UserType extends AbstractType
                 'multiple' => true,
                 'expanded' => false,
             ])
+
+            ->add('isVerified', CheckboxType::class, [
+                'label' => 'isVerified',
+                'required' => false, // This makes the checkbox optional
+            ])
+            ->add('status', CheckboxType::class, [
+                'label' => 'status',
+                'required' => false, // This makes the checkbox optional
+            ]);
+   
         ;
     }
 

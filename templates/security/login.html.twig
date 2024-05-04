@@ -39,9 +39,12 @@
                 <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
                 <button type="submit" class="btn btn-secondary" href="{{ path('app_user_index')}}"  >Sign In</button>
-                <a href="{{path ('app_forgot_password_request')}}">Forget password?</a>
+                <a href="{{path ('forgot')}}">Forget password?</a>
 
                 <button class="btn btn-secondary" onclick="window.location='{{ path('app_register') }}';">Sign Up</button>
+            
+                <p class="social-text">Or Sign in with social platforms</p>
+            
             </form>
 
           
@@ -57,6 +60,19 @@
            <button class="btn transparent" id="sign-up-btn" onclick="window.location='{{ path('app_register') }}';"> Sign up</button>
           </div>
           <img src="{{asset('assets/img/log.png')}}" class="image" alt="" />
+          
+          
+          <div class="social-media">
+              <a href="#" class="social-icon">
+                <i class="fab fa-facebook-f" aria-hidden="true"></i>
+              </a>
+              
+              <a href="{{path('auth_oauth_connect', {service:'google'})}}" class="social-icon">
+                <i class="fab fa-google" aria-hidden="true"></i>
+              </a>
+              
+            </div>
+            
         </div>
 
                 <div class="panel right-panel">

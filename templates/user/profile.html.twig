@@ -1,298 +1,87 @@
-{% extends 'base.html.twig' %}
+{% extends 'base-front.html.twig' %}
 
 {% block stylesheets %}
     {{ parent() }}
     <!-- Include DataTables CSS -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
+
+<style>
+.testimonial-inner-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden; /* Ensure the image stays within the rounded frame */
+}
+
+.testimonial-inner-img img {
+    width: 100%; /* Make the image fill the entire container */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Remove any default inline spacing */
+}
+</style>
 {% endblock %}
 
 {% block body %}
- <!-- ======= Header ======= -->
-  <header id="header" class="header fixed-top d-flex align-items-center">
 
-    <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
-        <img src="{{ asset('assets/back/img/logo.png')}}" alt="">
-        <span class="d-none d-lg-block ">Carthago Smart</span>
-      </a>
-      <i class="bi bi-list toggle-sidebar-btn"></i>
-    </div><!-- End Logo -->
+    <!--navBar start-->
 
-    <div class="search-bar">
-      <form class="search-form d-flex align-items-center" method="POST" action="#">
-        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
-        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-      </form>
-    </div><!-- End Search Bar -->
-
-    <nav class="header-nav ms-auto">
-      <ul class="d-flex align-items-center">
-
-        <li class="nav-item d-block d-lg-none">
-          <a class="nav-link nav-icon search-bar-toggle " href="#">
-            <i class="bi bi-search"></i>
-          </a>
-        </li><!-- End Search Icon-->
-
-        <li class="nav-item dropdown">
-
-          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-            <i class="bi bi-bell"></i>
-            <span class="badge bg-primary badge-number">4</span>
-          </a><!-- End Notification Icon -->
-
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
-            <li class="dropdown-header">
-              You have 4 new notifications
-              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-exclamation-circle text-warning"></i>
-              <div>
-                <h4>Lorem Ipsum</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>30 min. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-x-circle text-danger"></i>
-              <div>
-                <h4>Atque rerum nesciunt</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>1 hr. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-check-circle text-success"></i>
-              <div>
-                <h4>Sit rerum fuga</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>2 hrs. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-info-circle text-primary"></i>
-              <div>
-                <h4>Dicta reprehenderit</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>4 hrs. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li class="dropdown-footer">
-              <a href="#">Show all notifications</a>
-            </li>
-
-          </ul><!-- End Notification Dropdown Items -->
-
-        </li><!-- End Notification Nav -->
-
-        <li class="nav-item dropdown">
-
-          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-            <i class="bi bi-chat-left-text"></i>
-            <span class="badge bg-success badge-number">3</span>
-          </a><!-- End Messages Icon -->
-
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
-            <li class="dropdown-header">
-              You have 3 new messages
-              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="message-item">
-              <a href="#">
-                <img src="{{ asset('assets/back/img/messages-1.jpg')}}" alt="" class="rounded-circle">
-                <div>
-                  <h4>Maria Hudson</h4>
-                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                  <p>4 hrs. ago</p>
+<nav class="navbar navbar-expand-lg fixed-top navbar-light px-4 px-lg-5 py-3 py-lg-0">
+        <a href="index.html" class="navbar-brand p-0">
+            <h1 class="display-6 text-primary m-0">Carthago Smart</h1>
+            <img src="/assets/img/logo.png" alt="Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="fa fa-bars"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto py-0">
+                <a href="index.html" class="nav-item nav-link active">Accueil</a>
+                <a href="about.html" class="nav-item nav-link">À propos</a>
+                
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Services</a>
+                    <div class="dropdown-menu m-0">
+                        <a href="#" class="dropdown-item">Gestion des énergie</a>
+                        <a href="#" class="dropdown-item">Gestion des déchets</a>
+                        <a href="#" class="dropdown-item">Événements</a>
+                    </div>
                 </div>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+                <a href="contact.html" class="nav-item nav-link">Contact</a>
+            </div>
+                <a href="/user/profile/73/edit" class="btn btn-primary rounded-pill text-white py-2 px-4">Profile</a>
+        </div>
+    </nav>
+    <!--navBar end-->
+    
 
-            <li class="message-item">
-              <a href="#">
-                <img src="{{ asset('assets/back/img/messages-2.jpg')}}" alt="" class="rounded-circle">
-                <div>
-                  <h4>Anna Nelson</h4>
-                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                  <p>6 hrs. ago</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+<div class="container-fluid bg-breadcrumb">
+            <ul class="breadcrumb-animation">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+            <div class="container text-center py-5" style="max-width: 900px;">
+                <h3 class="display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInDown;">Mon Compte</h3>
+                <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInDown;">
+                    <li class="breadcrumb-item"><a href="{{path('app_user_forUser')}}">Home</a></li>
+                    <li class="breadcrumb-item active text-primary">Profile</li>
+                </ol>    
+            </div>
+        </div>
 
-            <li class="message-item">
-              <a href="#">
-                <img src="{{ asset('assets/back/img/messages-3.jpg')}}" alt="" class="rounded-circle">
-                <div>
-                  <h4>David Muldon</h4>
-                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                  <p>8 hrs. ago</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
 
-            <li class="dropdown-footer">
-              <a href="#">Show all messages</a>
-            </li>
 
-          </ul><!-- End Messages Dropdown Items -->
-
-        </li><!-- End Messages Nav -->
-   <li class="nav-item dropdown pe-3">   
-                        <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                    {% if app.user %}
-                    <img style="width: 50px; height: 50px;" src="{{ asset('images/' ~ app.user.urlImage) }}" class="rounded-circle">
-                    <span class="d-none d-md-block dropdown-toggle ps-2">{{ app.user.userIdentifier }}</span>
-                {% endif %}
-                    </a><!-- End Profile Iamge Icon -->
- 
- <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-                        <li class="dropdown-header">
-                            {% if app.user %}
-                            <h6>{{ app.user.addEmail }}</h6>
-                            <span>{{ app.user.roles ? app.user.roles|json_encode : '' }}</span>
-                             {% endif %}
-  
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                <i class="bi bi-person"></i>
-                <span>My Profile</span>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                <i class="bi bi-gear"></i>
-                <span>Account Settings</span>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
-                <i class="bi bi-question-circle"></i>
-                <span>Need Help?</span>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="{{ path('app_logout') }}">
-                <i class="bi bi-box-arrow-right"></i>
-                <span>Sign Out</span>
-              </a>
-            </li>
-          </ul><!-- End Profile Dropdown Items -->
-        </li><!-- End Profile Nav -->
-
-      </ul>
-    </nav><!-- End Icons Navigation -->
-
-  </header><!-- End Header -->
-
-  <!-- ======= Sidebar ======= -->
-  <aside id="sidebar" class="sidebar">
-
-    <ul class="sidebar-nav" id="sidebar-nav">
-
-      <li class="nav-item">
-        <a class="nav-link " href="index.html">
-          <i class="bi bi-grid"></i>
-          <span>Dashboard</span>
-        </a>
-      </li><!-- End Dashboard Nav -->
-     <li class="nav-heading">Pages</li>
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="users-profile.html">
-          <i class="bi bi-person"></i>
-          <span>Profile</span>
-        </a>
-      </li><!-- End Profile Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-contact.html">
-          <i class="bi bi-envelope"></i>
-          <span>Contact</span>
-        </a>
-      </li><!-- End Contact Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-register.html">
-          <i class="bi bi-card-list"></i>
-          <span>Register</span>
-        </a>
-      </li><!-- End Register Page Nav -->
-
-    </ul>
-
-  </aside><!-- End Sidebar-->
-
-<main id="main" class="main">
-
-    <div class="pagetitle">
-      <h1>Profile</h1>
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item">Users</li>
-          <li class="breadcrumb-item active">Profile</li>
-        </ol>
-      </nav>
-    </div><!-- End Page Title -->
-
+    <!--view profile-->
     <section class="section profile">
       <div class="row">
         <div class="col-xl-4">
-
           <div class="card">
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
@@ -379,13 +168,20 @@
                  {{ form_start(form) }}
 
 <div class="row mb-3">
-    <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
-    <div class="col-md-8 col-lg-9">
-        <img src="{{ asset('images/' ~ app.user.urlImage) }}" alt="Profile">                        
-        <div class="pt-2">
-            <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-upload"></i></a>
-            <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
-        </div>
+    <label id="profile-image" for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
+  <div class="testimonial-inner-img border border-primary border-3 me-4" style="width: 100px; height: 100px; border-radius: 50%;">
+    <img src="{{ asset('images/' ~ app.user.urlImage) }}" class="img-fluid rounded-circle" alt="Profile" style="width: 100%; height: 100%; object-fit: cover;">
+    </div>
+    </div>
+<div>
+<div class="pt-2">
+
+<a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-upload"></i></a>
+</div>
+
+
+
+   </div>     
     </div>
 </div>
 
@@ -403,12 +199,6 @@
     </div>
 </div>
 
-<div class="row mb-3">
-    <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Numéro de téléphone</label>
-    <div class="col-md-8 col-lg-9">
-        {{ form_widget(form.numTlfn, {'attr': {'class': 'form-control'}}) }}
-    </div>
-</div>
 
 <div class="text-center">
     <button type="submit" class="btn btn-primary">Save Changes</button>
@@ -461,6 +251,7 @@
     </section>
 
   </main>
+
      
 {% endblock %}
 

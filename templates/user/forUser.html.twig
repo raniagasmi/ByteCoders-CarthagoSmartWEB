@@ -27,10 +27,13 @@
                         <a href="#" class="dropdown-item">Événements</a>
                     </div>
                 </div>
-                <a href="contact.html" class="nav-item nav-link">Contact</a>
+                <a href="{{path('app_user_contact')}}" class="nav-item nav-link">Contact</a>
             </div>
-            <a href="#" class="btn btn-light border border-primary rounded-pill text-primary py-2 px-4 me-4">Se connecter</a>
-            <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4">S'inscrire</a>
+            {% if app.user %}
+    <a href="{{ path('profile_edit', {'id': app.user.id} ) }}" class="btn btn-primary rounded-pill text-white py-2 px-4">Profile</a>
+{% endif %}
+
+
         </div>
     </nav>
     <!-- Hero Header Start -->
