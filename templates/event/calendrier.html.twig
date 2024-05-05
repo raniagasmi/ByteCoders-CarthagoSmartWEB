@@ -1,0 +1,46 @@
+{% extends 'blog/base.html.twig' %}
+
+{% block title %}Calendar{% endblock %}
+
+{% block body %}
+
+
+<main id="main" class="main" style="margin-top: 100px;"> <!-- Ajoutez une marge en haut de 100px, ajustez selon vos besoins -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.css" integrity="sha256-5veQuRbWaECuYxwap/IOE/DAwNxgm4ikX7nrgsqYp88=" crossorigin="anonymous">
+    <div id="calendrier"></div>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.js" integrity="sha256-YicH/8aE660iEnJtgll3vT54dJApy3XkYmqNfGVFEzA=" crossorigin="anonymous"></script>
+    <style>
+    #calendrier {
+        width: 60%; /* Ajustez la largeur du calendrier ici */
+        margin: auto;
+    }
+    </style>
+    <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                let calendarElt = document.querySelector("#calendrier");
+                let calendar = new FullCalendar.Calendar(calendarElt, {
+                    initialView: 'dayGridMonth',
+                    timeZone: 'Europe/Paris',
+                    headerToolbar: {
+                        start: 'prev,next today',
+                        center: 'title',
+                        end: 'dayGridMonth timeGridWeek'
+                    },
+                    events: [
+                        {% for event in events %}
+                        {
+                            title: 'Jour de l\'evenement',
+                            start: '{{ event.date|date("Y-m-d") }}', // Utilisez la date du ramassage de chaque événement
+                            
+                            // Vous pouvez ajouter d'autres données nécessaires ici
+                        },
+                        {% endfor %}
+                    ],
+                    
+                });
+                calendar.render();
+            });
+        </script>
+</main>
+<!-- End #main -->
+{% endblock %}

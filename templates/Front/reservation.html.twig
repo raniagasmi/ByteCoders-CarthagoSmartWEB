@@ -1,0 +1,52 @@
+{% extends 'base-front.html.twig' %}
+
+{% block title %}Accueil - Carthago Smart{% endblock %}
+{% block body %}
+
+
+<!-- Navbar & Hero Start -->
+<div class="container-fluid header position-relative overflow-hidden p-0">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-light px-4 px-lg-5 py-3 py-lg-0">
+        <a href="index.html" class="navbar-brand p-0">
+            <h1 class="display-6 text-primary m-0">Carthago Smart</h1>
+            <img src="{{ asset('front/img/logo.png') }}" alt="Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="fa fa-bars"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto py-0">
+                <a href="index.html" class="nav-item nav-link active">Accueil</a>
+                <a href="about.html" class="nav-item nav-link">À propos</a>
+                
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Services</a>
+                    <div class="dropdown-menu m-0">
+                        <a href="#" class="dropdown-item">Gestion des énergie</a>
+                        <a href="#" class="dropdown-item">Gestion des déchets</a>
+                        <a href="{{ path('app_event') }}" class="dropdown-item">Événements</a>
+                    </div>
+                </div>
+                <a href="contact.html" class="nav-item nav-link">Contact</a>
+            </div>
+            <a href="#" class="btn btn-light border border-primary rounded-pill text-primary py-2 px-4 me-4">Se connecter</a>
+            <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4">S'inscrire</a>
+        </div>
+    </nav>
+    <!-- Hero Header Start -->
+    
+<!-- Navbar & Hero End -->
+
+
+<div style="display: flex; justify-content: center;">
+        <div>
+            <h1>Create new Reservation</h1>
+
+            {{ include('Front/_form.html.twig') }}
+
+            <a href="{{ path('app_reservation_index') }}">back to list</a>
+        </div>
+    </div>
+
+<!-- Footer Start -->
+{% endblock %}

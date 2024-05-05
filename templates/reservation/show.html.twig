@@ -1,0 +1,46 @@
+{% extends 'blog/base.html.twig' %}
+
+
+{% block body %}
+<div style="display: flex; align-items: center; justify-content: center; margin-right: -200px;">
+  <div class="row" style="display: flex; align-items: center; justify-content: center; margin-top: 150px;">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Liste des réservations: ({{ reservation|length }})</h5>
+
+        <!-- Table with stripped rows -->
+           <table class="table table-sm table-striped">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ reservation.id }}</td>
+            </tr>
+            <tr>
+                <th>email</th>
+                <td>{{ reservation.email }}</td>
+            </tr>
+            <tr>
+                <th>numero</th>
+                <td>{{ reservation.numero}}</td>
+            </tr>
+            
+            <tr>
+                <th>nbrPlace</th>
+                <td>{{reservation.nbrPlace}}</td>
+            </tr>
+            <tr>
+                <th>nomEvent</th>
+                <td>{{ reservation.event }}</td>
+            </tr>
+           
+        </tbody>
+    </table>
+        
+
+        <a href="{{ path('app_reservation_new') }}"><i class="fas fa-plus"></i> Créer une réservation</a>
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,63 @@
+{# templates/pdf/event_pdf.html.twig #}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Événement</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .event-info {
+            margin-bottom: 30px;
+        }
+        .event-info img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        .event-details {
+            border-top: 2px solid #ccc;
+            padding-top: 20px;
+        }
+        .event-details table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .event-details th,
+        .event-details td {
+            border-bottom: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+        .event-details th {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ event.nomEvent }}</h1>
+
+    <div class="event-info">
+        <img src="{{ asset('images/' ~ event.image) }}" alt="Affiche de l'événement">
+        <p><strong>Catégorie:</strong> {{ event.categorie }}</p>
+        <p><strong>Date:</strong> {{ event.date ? event.date|date('d/m/Y') : 'Non spécifiée' }}</p>
+        <p><strong>Heure:</strong> {{ event.heure ? event.heure|date('H:i') : 'Non spécifiée' }}</p>
+        <p><strong>Lieu:</strong> {{ event.lieu }}</p>
+        <p><strong>Capacité:</strong> {{ event.capacite }}</p>
+        <p><strong>Coût:</strong> {{ event.cout }}</p>
+    </div>
+</body>
+</html>

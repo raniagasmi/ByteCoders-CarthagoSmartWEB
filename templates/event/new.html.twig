@@ -1,0 +1,13 @@
+{% extends 'blog/base.html.twig' %}
+
+{% block body %}
+    <div style="display: flex; justify-content: center;">
+        <div>
+            <h1>Create new Event</h1>
+
+            {{ include('event/_form.html.twig') }}
+
+            <a href="{{ path('app_event_index') }}">back to list</a>
+        </div>
+    </div>
+{% endblock %}

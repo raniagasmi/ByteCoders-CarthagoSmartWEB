@@ -1,0 +1,104 @@
+{% extends 'blog/base.html.twig' %}
+
+{% block title %}Event{% endblock %}
+
+{% block body %}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+<section class="section" style="display: flex; align-items: center; justify-content: center; margin-right: -200px;">
+    <div class="row" style="display: flex; align-items: center; justify-content: center; margin-top: 150px;">
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Liste des événements: ({{ events|length }})</h5>
+
+                <!-- Form for dynamic search -->
+                <form method="GET" action="{{ path('search_event') }}">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Rechercher..." name="query">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="submit">Rechercher</button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Button for sorting by cost -->
+                <button class="btn btn-primary" onclick="sortByCost()">Trier par coût</button>
+                <!--button href="{{ path('app_calendrier') }}",class="btn btn-primary" >Calendrier des evenement</button-->
+                <a href="{{ path('app_calendrier') }}" class="btn btn-primary">Calendrier des evenement</a>
+
+                <!-- Table with stripped rows -->
+                <table id="eventTable" class="table table-sm table-striped" >
+                    <thead>
+                        <tr>
+                            <th>Affiche de l'evenement</th>
+                            <th>Nom</th>
+                            <th>Categorie</th>
+                            <th>Date</th>
+                            <th>Heure</th>
+                            <th>Lieu</th>
+                            <th>Capacite</th>
+                            <th>Cout</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for event in events %}
+                            <tr>
+                                <td><img style="width: 80px; height: 80px;" src="{{ asset('images/' ~ event.image) }}"></td>
+                                <td>{{ event.nomEvent }}</td>
+                                <td>{{ event.categorie }}</td>
+                                <td>{{ event.date ? event.date|date('Y-m-d') : '' }}</td>
+                                <td>{{ event.heure ? event.heure|date('H:i:s') : '' }}</td>
+                                <td>{{ event.lieu }}</td>
+                                <td>{{ event.capacite }}</td>
+                                <td>{{ event.cout }}</td>
+                                <td>
+                                    <a href="{{ path('app_event_show', {'id': event.id}) }}"><i class="fas fa-eye"></i></a>
+                                    <a href="{{ path('app_event_edit', {'id': event.id}) }}"><i class="fas fa-edit"></i> </a>
+                                   <a href="{{ path('generate_pdf', {'id': event.id}) }}"><i class="fas fa-file-pdf"></i></a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="9">no records found</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <div style="display: flex; align-items: center; justify-content: center;">
+                    <!-- Pagination rendering code here -->
+                </div>
+
+                <a href="{{ path('app_event_new') }}"><i class="fas fa-plus"></i>Créer événement</a>
+                <!-- End small tables -->
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<script>
+    function sortByCost() {
+        // Récupérer les lignes du tableau
+        var rows = Array.from(document.querySelectorAll('#eventTable tbody tr'));
+
+        // Trier les lignes par le contenu de la colonne de coût
+        rows.sort(function(a, b) {
+            var costA = parseFloat(a.cells[7].textContent); // Indice 7 pour la colonne de coût
+            var costB = parseFloat(b.cells[7].textContent);
+            return costA - costB;
+        });
+
+        // Effacer le contenu actuel du tableau
+        var tableBody = document.querySelector('#eventTable tbody');
+        tableBody.innerHTML = '';
+
+        // Ajouter les lignes triées au tableau
+        rows.forEach(function(row) {
+            tableBody.appendChild(row);
+        });
+    }
+</script>
+{% endblock %}

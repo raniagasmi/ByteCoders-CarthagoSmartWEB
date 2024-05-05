@@ -1,0 +1,120 @@
+{% extends 'base-front.html.twig' %}
+
+{% block body %}
+<div class="container-fluid header position-relative overflow-hidden p-0">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-light px-4 px-lg-5 py-3 py-lg-0">
+        <a href="index.html" class="navbar-brand p-0">
+            <h1 class="display-6 text-primary m-0">Carthago Smart</h1>
+            <img src="{{ asset('front/img/logo.png') }}" alt="Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="fa fa-bars"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto py-0">
+                <a href="index.html" class="nav-item nav-link active">Accueil</a>
+                <a href="about.html" class="nav-item nav-link">À propos</a>
+                
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Services</a>
+                    <div class="dropdown-menu m-0">
+                        <a href="#" class="dropdown-item">Gestion des énergie</a>
+                        <a href="#" class="dropdown-item">Gestion des déchets</a>
+                        <a href="{{ path('app_event') }}" class="dropdown-item">Événements</a>
+                    </div>
+                </div>
+                <a href="contact.html" class="nav-item nav-link">Contact</a>
+            </div>
+            <a href="#" class="btn btn-light border border-primary rounded-pill text-primary py-2 px-4 me-4">Se connecter</a>
+            <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4">S'inscrire</a>
+        </div>
+    </nav>
+    <!-- Navbar & Hero End -->
+
+       <div class="container-fluid blog py-5">
+        <div class="container py-5">
+            <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 900px;">
+                <h4 class="text-primary">Nos Evenemments</h4>
+                <h1 class="display-5 mb-4">Réservez vos places </h1>
+                <p class="mb-0">avec carthagosmart.</p>
+            </div>
+
+            {% for event in events %}
+                <div class="row g-4 justify-content-center">
+                    <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="blog-item">
+                            <div class="blog-img">
+                                <img src="{{ asset('images/' ~ event.image) }}" class="img-fluid w-100" alt="">
+                                <div class="blog-info">
+                                    <span><i class="fa fa-clock"></i> {{ event.date ? event.date|date('M d, Y') : 'Date inconnue' }}</span>
+                                    <div class="d-flex">
+                                        <button class="btn btn-light" onclick="likeEvent({{ event.id }}, this)">
+                                            <span class="like-count">{{ event.likes }}</span> <i class="fa fa-heart"></i>
+                                        </button>
+                                        <button class="btn btn-light" onclick="dislikeEvent({{ event.id }}, this)">
+                                            <span class="dislike-count">{{ event.dislikes }}</span> <i class="fa fa-thumbs-down"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="blog-content text-dark border p-4">
+                                <h5 class="mb-4">{{ event.nomEvent }}</h5>
+                                <p class="mb-4">{{ event.lieu }}</p>
+                                <a class="btn btn-light rounded-pill py-2 px-4" href="{{ path('app_reservation_new') }}">Réserver</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <p>Aucun événement trouvé.</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <!-- Blog End -->
+
+<script>
+function likeEvent(eventId, buttonElement) {
+    // Sending AJAX request to like the event
+    fetch(`/event/like/${eventId}`, {
+        method: 'POST',
+    })
+    .then(response => {
+        if (response.ok) {
+            // Find the span with the like count and update it
+            const likeCountSpan = buttonElement.querySelector('.like-count');
+            const currentLikes = parseInt(likeCountSpan.textContent, 10);
+            likeCountSpan.textContent = currentLikes + 1;
+        } else {
+            console.error('Failed to like the event');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+function dislikeEvent(eventId, buttonElement) {
+    // Sending AJAX request to dislike the event
+    fetch(`/event/dislike/${eventId}`, {
+        method: 'POST',
+    })
+    .then(response => {
+        if (response.ok) {
+            // Find the span with the dislike count and update it
+            const dislikeCountSpan = buttonElement.querySelector('.dislike-count');
+            const currentDislikes = parseInt(dislikeCountSpan.textContent, 10);
+            dislikeCountSpan.textContent = currentDislikes + 1;
+        } else {
+            console.error('Failed to dislike the event');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+</script>
+            {% endblock %}

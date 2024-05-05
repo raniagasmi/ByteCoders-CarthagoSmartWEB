@@ -1,0 +1,10 @@
+endroid_qr_code:
+    default:
+        writer: Endroid\QrCode\Writer\PngWriter
+        data: 'Sample QR Code'
+        size: 200
+        errorCorrectionLevel: 'medium'
+        labelText: 'Sample QR'
+        labelFontPath: '%kernel.project_dir%/vendor/endroid/qr-code/assets/noto_sans.otf'
+        labelFontSize: 16
+        labelAlignment: 'center'

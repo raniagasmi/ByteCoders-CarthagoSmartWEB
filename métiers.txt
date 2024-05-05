@@ -1,0 +1,7 @@
+1/maillling back
+2/like dislike front
+3/recherche dynamique/trie partie back
+4/stat /partie back
+5/pdf info event détaillé
+6/qr code 
+7/ sms

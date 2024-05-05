@@ -1,0 +1,54 @@
+{# templates/event/sorted_by_cout.html.twig #}
+
+{% extends 'blog/base.html.twig' %}
+
+{% block title %}Events Sorted by Cost{% endblock %}
+
+{% block body %}
+<section class="section">
+    <div class="container">
+        <h1 class="title">Events Sorted by Cost</h1>
+        
+        {% if events is not empty %}
+            <table class="table is-striped is-hoverable">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>NomEvent</th>
+                        <th>Categorie</th>
+                        <th>Date</th>
+                        <th>Heure</th>
+                        <th>Lieu</th>
+                        <th>Capacite</th>
+                        <th>Cout</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for event in events %}
+                        <tr>
+                            <td>{{ event.id }}</td>
+                            <td>{{ event.nomEvent }}</td>
+                            <td>{{ event.categorie }}</td>
+                            <td>{{ event.date ? event.date|date('Y-m-d') : '' }}</td>
+                            <td>{{ event.heure ? event.heure|date('H:i:s') : '' }}</td>
+                            <td>{{ event.lieu }}</td>
+                            <td>{{ event.capacite }}</td>
+                            <td>{{ event.cout }}</td>
+                            <td>
+                                <a href="{{ path('app_event_show', {'id': event.id}) }}" class="button is-small is-info">Show</a>
+                                <a href="{{ path('app_event_edit', {'id': event.id}) }}" class="button is-small is-primary">Edit</a>
+                                <a href="{{ path('app_event_delete', {'id': event.id}) }}" class="button is-small is-danger">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No events found.</p>
+        {% endif %}
+        
+        <a href="{{ path('app_event_index') }}" class="button is-link">Back to Events List</a>
+    </div>
+</section>
+{% endblock %}

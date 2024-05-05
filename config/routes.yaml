@@ -1,0 +1,82 @@
+#index:
+   # path: /
+  #  controller: App\Controller\DefaultController::index
+terrain_index:
+    path: /terrain/
+    controller: App\Controller\TerrainController::index
+# config/routes.yaml
+
+# Route for liking an event
+event_like:
+  path: /event/like/{id}
+  controller: App\Controller\EventController::likeEvent
+  methods: ['POST']
+
+# Route for disliking an event
+event_dislike:
+  path: /event/dislike/{id}
+  controller: App\Controller\EventController::dislikeEvent
+  methods: ['POST']
+
+app_event_index:
+    path: /event/
+    controller: 'App\Controller\EventController::index'
+    methods: ['GET']
+
+app_event_new:
+    path: /event/new
+    controller: 'App\Controller\EventController::new'
+    methods: ['GET', 'POST']
+
+app_event_show:
+    path: /event/{id}
+    controller: 'App\Controller\EventController::show'
+    methods: ['GET']
+    requirements:
+        id: '\d+'
+
+app_event_edit:
+    path: /event/{id}/edit
+    controller: 'App\Controller\EventController::edit'
+    methods: ['GET', 'POST']
+    requirements:
+        id: '\d+'
+
+app_event_delete:
+    path: /event/{id}
+    controller: 'App\Controller\EventController::delete'
+    methods: ['POST']
+    requirements:
+        id: '\d+'
+acceuil:
+    path: '/front'
+    controller: App\Controller\FrontController::home
+
+app/event:
+    path: '/front/event'
+    controller: App\Controller\FrontController::event
+search_event:
+    path: /search
+    controller: App\Controller\EventController::searchEvent
+    methods: [GET]
+
+
+sort_by_cout:
+    path: /sort-by-cout
+    controller: App\Controller\EventController::sortByCout
+    methods: [GET]
+    
+generate_event_pdf:
+    path: '/generate-pdf/{id}'
+    controller: 'App\Controller\PDFController::generateEventPdf'
+
+app_calendrier:
+    path: '/event/calendrier'
+    controller: App\Controller\CalendrierController::calendrier
+
+envoyer_email:
+    path: '/envoyer_email'
+    controller: App\Controller\MaillingController::envoyerEmail
+    methods: ['POST'] 
+
+
