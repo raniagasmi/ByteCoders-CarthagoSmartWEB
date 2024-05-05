@@ -34,30 +34,6 @@ class UserController extends AbstractController
         $this->entityManager = $entityManager;
     }
 
-
-
-
-    #[Route('/', name: 'app_user_index', methods: ['GET'])]
-    public function index(Request $request , UserRepository $userRepository, PaginatorInterface $paginator): Response
-    {
-       // Get your data, for example from repository
-    $usersQuery = $userRepository->findAll();
-
-    // Paginate the data
-    $users = $paginator->paginate(
-        $usersQuery,
-        $request->query->getInt('page', 1), // Current page number, default 1
-        10 // Number of items per page
-    );
-
-    // Count the total number of results
-    $totalItemCount = $users->getTotalItemCount();
-
-    return $this->render('user/index.html.twig', [
-        'users' => $users,
-        'totalItemCount' => $totalItemCount, // Pass the total count to the template
-    ]);
-    }
     
     #[Route('/forUser', name: 'app_user_forUser')]
     public function indexUser(): Response
@@ -160,43 +136,6 @@ class UserController extends AbstractController
         }
     }
     
-
-
-
-    #[Route('/new', name: 'app_user_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
-    {
-        $user = new User();
-        $form = $this->createForm(UserType::class, $user);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($user);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->renderForm('user/new.html.twig', [
-            'user' => $user,
-            'form' => $form,
-        ]);
-    }
-
-    #[Route('/{id}', name: 'app_user_show', methods: ['GET'])]
-    public function show(int $id, UserRepository $userRepository): Response
-    {
-    $userRepository = $this->entityManager->getRepository(User::class);  
-    $id = (int) $id; // Convert the string ID to an integer
-    $user = $userRepository->find($id); // Replace $userId with the actual ID of the user you want to retrieve
-    if (!$user) {
-        throw $this->createNotFoundException('User not found');
-    }
-    return $this->render('user/show.html.twig', [
-        'user' => $user,
-    ]);
-    }
-
    /* #[Route('/{id}/edit', name: 'app_user_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, User $user, EntityManagerInterface $entityManager): Response
     {
@@ -216,7 +155,7 @@ class UserController extends AbstractController
         ]);
     }*/
 
-    #[Route('/{id}/edit', name: 'app_user_edit', methods: ['GET', 'POST'])]
+#[Route('/{id}/edit', name: 'app_user_edit', methods: ['GET', 'POST'])]
 public function edit(int $id, Request $request, User $user, EntityManagerInterface $entityManager, UserRepository $repository): Response
 {
 
@@ -251,17 +190,6 @@ public function edit(int $id, Request $request, User $user, EntityManagerInterfa
     ]);
 }
 
-
-    #[Route('/{id}', name: 'app_user_delete', methods: ['POST'])]
-    public function delete(Request $request, User $user, EntityManagerInterface $entityManager): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
-            $entityManager->remove($user);
-            $entityManager->flush();
-        }
-
-        return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
-    }
 
 /**
  * @Route("/sort-users", name="sort_users")

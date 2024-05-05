@@ -66,7 +66,9 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         # - { path: ^/admin, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        # - { path: ^/profile, roles: IS_AUTHENTICATED_FULLY }
+        # - { path: ^/user, roles: ROLE_USER}
+         #- { path: ^/admin/, roles: ADMIN}   #yemchouli lel user ama lel admin le lech ya raby leeeech
+
 
 when@test:
     security:

@@ -20,8 +20,8 @@ app_user_contact:
 
 
 app_user_index:
-    path: /user/
-    controller: 'App\Controller\UserController::index'   
+    path: /admin/users
+    controller: 'App\Controller\AdminController::index'   
     methods: ['GET']
 
 app_user_forUser:
@@ -29,8 +29,8 @@ app_user_forUser:
     controller: 'App\Controller\UserController::indexUser'
 
 app_user_show:
-    path: /user/{id}
-    controller: App\Controller\UserController::show
+    path: /admin/{id}
+    controller: App\Controller\AdminController::show
     requirements:
         id: \d+  # Ensure the id parameter is a digit (integer)
 
@@ -40,15 +40,15 @@ app_check_email:
     methods: ['GET']
 
 app_user_edit:
-    path: /user/{id}/edit
-    controller: App\Controller\UserController::edit
+    path: /admin/{id}/edit
+    controller: App\Controller\AdminController::edit
     methods: ['GET', 'POST']
     requirements:
         id: \d+  # Ensure the id parameter is a digit (integer)
 
 app_user_delete:
-    path: /user/{id}
-    controller: App\Controller\UserController::delete
+    path: /admin/{id}
+    controller: App\Controller\AdminController::delete
     methods: ['POST']
     requirements:
         id: \d+  # Ensure the id parameter is a digit (integer)
