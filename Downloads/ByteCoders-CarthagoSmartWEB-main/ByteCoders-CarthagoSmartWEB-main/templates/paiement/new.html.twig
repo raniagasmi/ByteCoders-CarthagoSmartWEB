@@ -1,0 +1,72 @@
+{% extends 'base-front.html.twig' %}
+
+{% block title %}Nouveau Paiement{% endblock %}
+
+{% block body %}
+<!-- Navbar & Hero Start -->
+<div class="container-fluid header position-relative overflow-hidden p-0">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-light px-4 px-lg-5 py-3 py-lg-0">
+        <a href="{{ path('app_front_accueil') }}" class="navbar-brand p-0">
+            <h1 class="display-6 text-primary m-0">Carthago Smart</h1>
+            <img src="{{ asset('front/img/logo.png') }}" alt="Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="fa fa-bars"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto py-0">
+                <a href="{{ path('app_front_accueil') }}" class="nav-item nav-link active">Acceuil</a>
+                <a href="about.html" class="nav-item nav-link">About</a>
+
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Services</a>
+                    <div class="dropdown-menu m-0">
+                        <a href="{{ path('app_facture_indexFront') }}" class="dropdown-item">Energie</a>
+                        <a href="{{ path('app_front_index') }}" class="dropdown-item">Dechets</a>
+                        <a href="blog.html" class="dropdown-item">Evenemment</a>
+                    </div>
+                </div>
+                <a href="contact.html" class="nav-item nav-link">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+    <!--paiement start-->
+    <div class="container  justify-content-center align-items-center ">
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Paiement</h5>
+                        {{ form_start(paiementForm, {attr:{'novalidate':'novalidate'}}) }}
+                        <div class="mb-3">
+                            <label for="cardNumber" class="form-label">Numéro de carte:</label>
+                            {{ form_widget(paiementForm.cardNumber, {'attr': {'class': 'form-control', 'placeholder': 'Numéro de carte'}}) }}
+                            {{ form_errors(paiementForm.cardNumber) }}
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label for="cardExpiry" class="form-label">Date d'expiration:</label>
+                                {{ form_widget(paiementForm.cardExpiry, {'attr': {'class': 'form-control', 'placeholder': 'MM/YY'}}) }}
+                                {{ form_errors(paiementForm.cardExpiry) }}
+                            </div>
+                            <div class="col">
+                                <label for="cardCVC" class="form-label">CVC:</label>
+                                {{ form_widget(paiementForm.cardCVC, {'attr': {'class': 'form-control', 'placeholder': 'CVC'}}) }}
+                                {{ form_errors(paiementForm.cardCVC) }}
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="cardholderName" class="form-label">Nom du titulaire de la carte:</label>
+                            {{ form_widget(paiementForm.cardholderName, {'attr': {'class': 'form-control', 'placeholder': 'Nom du titulaire de la carte'}}) }}
+                            {{ form_errors(paiementForm.cardholderName) }}
+                        </div>
+
+                        <!--<button type="submit" class="btn btn-primary w-100">Payer</button>-->
+                        {{ form_end(paiementForm) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

@@ -1,0 +1,79 @@
+{% extends 'base-front.html.twig' %}
+
+{% block body %}
+    <!-- Feature Start -->
+    <!-- Navbar & Hero Start -->
+<div class="container-fluid header position-relative overflow-hidden p-0">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-light px-4 px-lg-5 py-3 py-lg-0">
+        <a href="index.html" class="navbar-brand p-0">
+            <h1 class="display-6 text-primary m-0">Carthago Smart</h1>
+            <img src="{{ asset('front/img/logo.png') }}" alt="Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="fa fa-bars"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto py-0">
+                <a href="index.html" class="nav-item nav-link active">Acceuil</a>
+                <a href="about.html" class="nav-item nav-link">About</a>
+                
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Services</a>
+                    <div class="dropdown-menu m-0">
+                        <a href="" class="dropdown-item">Energie</a>
+                        <a href="{{ path('app_AcceuilDechets') }}" class="dropdown-item">Dechets</a>
+                        <a href="blog.html" class="dropdown-item">Evenemment</a>
+                    </div>
+                </div>
+                <a href="contact.html" class="nav-item nav-link">Contact Us</a>
+            </div>
+            <a href="#" class="btn btn-light border border-primary rounded-pill text-primary py-2 px-4 me-4">Log In</a>
+            <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4">Sign Up</a>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row g-5 pt-5" style="margin-top: 6rem;">
+            <div class="col-lg-6 wow fadeInLeft" data-wow-delay="0.1s">
+                <div class="feature-img RotateMoveLeft h-100" style="object-fit: cover;">
+                    <img src="{{asset('front/img/tri.jpg')}}" class="img-fluid w-100 h-100" alt="">
+                </div>
+            </div>
+            <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.1s">
+                
+                <h3 class="display-5 mb-4">Consulter les points de recyclages les plus proches de vous</h3>
+                <p class="mb-4">
+"Découvrez les points de recyclage à proximité pour agir en faveur de l'environnement. Utilisez notre fonction de localisation pour trouver rapidement les centres de recyclage dans votre région. Ensemble, contribuons à la protection de notre planète en recyclant efficacement."
+                </p>
+                <div class="row g-4">
+                    
+                </div>
+                <div class="my-4">
+                    <button onclick="getLocation()" class="btn btn-primary rounded-pill py-3 px-5">Entrez votre position</button>
+                </div>
+                
+                <div class="my-4">
+                    <a href="{{ path('app_map') }}" class="btn btn-primary rounded-pill py-3 px-5">Consulter Map</a>
+                </div>
+                
+                <script>
+                            function getLocation() {
+                                if (navigator.geolocation) {
+                                    navigator.geolocation.getCurrentPosition(showPosition);
+                                } else { 
+                                    alert("La géolocalisation n'est pas prise en charge par ce navigateur.");
+                                }
+                            }
+
+                            function showPosition(position) {
+                                alert("Latitude: " + position.coords.latitude + 
+                                "Longitude: " + position.coords.longitude); 
+                            }
+                            </script>
+            </div>
+        </div>
+    </div>
+    <!-- Feature End -->
+    
+
+{% endblock %}
+

@@ -1,0 +1,131 @@
+{% extends 'base-front.html.twig' %}
+
+{% block title %}Factures{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .factures-container {
+            padding: 50px 0;
+            background-color: #f9f9f9;
+        }
+
+        .facture-item {
+            text-align: center;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            margin: 20px;
+        }
+
+        .facture-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .facture-icon {
+            font-size: 4em;
+            color: #009688; /* Teal */
+        }
+
+        .facture-label {
+            font-size: 1.5em;
+            margin-top: 10px;
+            color: #333;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <!-- Navbar & Hero Start -->
+    <div class="container-fluid header position-relative overflow-hidden p-0">
+        <nav class="navbar navbar-expand-lg fixed-top navbar-light px-4 px-lg-5 py-3 py-lg-0">
+            <a href="{{ path('app_front_accueil') }}" class="navbar-brand p-0">
+                <h1 class="display-6 text-primary m-0">Carthago Smart</h1>
+                <img src="{{ asset('front/img/logo.png') }}" alt="Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="fa fa-bars"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ms-auto py-0">
+                    <a href="{{ path('app_front_accueil') }}" class="nav-item nav-link active">Acceuil</a>
+                    <a href="about.html" class="nav-item nav-link">About</a>
+
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Services</a>
+                        <div class="dropdown-menu m-0">
+                            <a href="{{ path('app_facture_indexFront') }}" class="dropdown-item">Energie</a>
+                            <a href="#" class="dropdown-item">Dechets</a>
+                            <a href="blog.html" class="dropdown-item">Evenemment</a>
+                        </div>
+                    </div>
+                    <a href="contact.html" class="nav-item nav-link">Contact Us</a>
+                </div>
+                <a href="#" class="btn btn-light border border-primary rounded-pill text-primary py-2 px-4 me-4">Log In</a>
+                <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4">Sign Up</a>
+            </div>
+        </nav>
+        <!-- Navbar & Hero Start -->
+        <div class="container-fluid header position-relative overflow-hidden p-0">
+            <nav class="navbar navbar-expand-lg fixed-top navbar-light px-4 px-lg-5 py-3 py-lg-0">
+                <!-- Votre navbar existante -->
+            </nav>
+        </div>
+        <!-- Navbar End -->
+
+        <!-- Section Start -->
+        <section class="map-section py-4" style="margin-top: 100px;"> <!-- Augmentation de la marge pour déplacer vers le bas -->
+        <div class="container ">
+            <h1 class="text-center mb-4" style="font-weight: bold; background: linear-gradient(to right, #8D6ACE, #1A9FDF); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Vos Factures</h1>
+            {% for chunk in factures|batch(3) %}
+                <div class="row justify-content-center bg-white rounded">
+                    {% for facture in chunk %}
+                        <div class="col-md-4 bg-dark-light  ">
+                            <div class="facture-item wow fadeInUp" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">
+                                <div class="service-item text-center rounded p-4">
+                                    <div class="service-content bg-dark-light">
+                                        {% if facture.type == 'EAU' %}
+                                            <img style="width: 200px; height: 200px;" src="{{ asset('images/eau.png') }}" class="service-icon d-inline-block bg-dark-light rounded p-4 mb-4">
+                                        {% else %}
+                                            <img style="width: 200px; height: 200px;" src="{{ asset('images/energie.png') }}" class="service-icon d-inline-block bg-dark-light rounded p-4 mb-4">
+                                        {% endif %}
+                                        <h4 class="mb-4">{{ facture.libelle }}</h4>
+                                        <p class="mb-4">création :{{ facture.date ? facture.date|date('Y-m-d') : '' }}</p><p class="mb-4"> écheance :{{ facture.date ? facture.date|date('Y-m-d') : '' }}</p>
+                                        <p>
+                                            {% if facture.estpayee == 'Oui' %}
+                                                <i class="fas fa-check text-success me-1"></i>Payée
+                                            {% else %}
+                                                <i class="fas fa-times text-danger me-1"></i>Payée
+                                            {% endif %}
+                                        </p>
+
+                                        <a href="{{ path('app_facture_showFront', {'idFacture': facture.idFacture}) }}" class="btn btn-light rounded-pill text-primary py-2 px-4">Plus de détails</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+            <div style="display: flex; align-items: center; justify-content: center;">
+                {{ knp_pagination_render(factures) }}
+            </div>
+
+        </div>
+    </section>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        function showDetails(url) {
+            alert('Redirecting to facture details page: ' + url);
+            window.location.href = url;
+        }
+    </script>
+{% endblock %}

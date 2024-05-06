@@ -1,0 +1,94 @@
+{% extends 'base-front.html.twig' %}
+
+{% block body %}
+<!-- Navbar & Hero Start -->
+<div class="container-fluid header position-relative overflow-hidden p-0">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-light px-4 px-lg-5 py-3 py-lg-0">
+        <a href="index.html" class="navbar-brand p-0">
+            <h1 class="display-6 text-primary m-0">Carthago Smart</h1>
+            <img src="{{ asset('front/img/logo.png') }}" alt="Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="fa fa-bars"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto py-0">
+                <a href="index.html" class="nav-item nav-link active">Acceuil</a>
+                <a href="about.html" class="nav-item nav-link">About</a>
+                
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Services</a>
+                    <div class="dropdown-menu m-0">
+                        <a href="" class="dropdown-item">Energie</a>
+                        <a href="{{ path('app_AcceuilDechets') }}" class="dropdown-item">Dechets</a>
+                        <a href="blog.html" class="dropdown-item">Evenemment</a>
+                    </div>
+                </div>
+                <a href="contact.html" class="nav-item nav-link">Contact Us</a>
+            </div>
+            <a href="#" class="btn btn-light border border-primary rounded-pill text-primary py-2 px-4 me-4">Log In</a>
+            <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4">Sign Up</a>
+        </div>
+    </nav>
+    <!-- Les reclamation -->
+        {% block javascripts %}
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="{{ asset('bundles/flashy/dist/flashy.min.js') }}"></script>
+        <script>
+            flashyJS.init();
+        </script>
+    {% endblock %}
+    <div class="container-fluid blog py-5">
+        <div class="container py-5">
+            <!-- Your title and description -->
+            <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 900px;">
+                <h1 class="display-5 mb-4">Passez vos réclamations !</h1>
+                
+            </div>
+            <!-- Container for the images -->
+            <div class="row justify-content-around align-items-center">
+                <!-- First image -->
+                <div class="col-md-3 mb-4 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="blog-item d-flex flex-column align-items-center">
+                        <div class="blog-img mb-3">
+                            <img src="{{ asset('front/img/bac_de_tri.png') }}" class="img-fluid same-size-image" alt="">
+                        </div>
+                        <div class="blog-content text-dark border p-4">
+                            <a class="btn btn-light rounded-pill py-2 px-4" href="{{ path('app_mail1') }}">Demande de Bac de Tri</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Second image -->
+                <div class="col-md-3 mb-4 wow fadeInUp" data-wow-delay="0.7s">
+                    <div class="blog-item d-flex flex-column align-items-center">
+                        <div class="blog-img mb-3">
+                            <img src="{{ asset('front/img/encombrement.png') }}" class="img-fluid same-size-image" alt="">
+                        </div>
+                        <div class="blog-content text-dark border p-4">
+                            <a class="btn btn-light rounded-pill py-2 px-4" href="{{ path('app_mail2') }}">Ramassage des Encombrements</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Third image -->
+                <div class="col-md-3 mb-4 wow fadeInUp" data-wow-delay="1.1s">
+                    <div class="blog-item d-flex flex-column align-items-center">
+                        <div class="blog-img mb-3">
+                            <img src="{{ asset('front/img/incivilite.png') }}" class="img-fluid same-size-image" alt="">
+                        </div>
+                        <div class="blog-content text-dark border p-4">
+                            <a class="btn btn-light rounded-pill py-2 px-4" href="{{ path('app_mail3') }}">Reclamer une Incivilité</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .same-size-image {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+    
+{% endblock %}

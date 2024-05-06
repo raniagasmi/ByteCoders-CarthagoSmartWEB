@@ -1,0 +1,65 @@
+{% extends 'base-front.html.twig' %}
+
+{% block title %}Paiement réussi{% endblock %}
+
+{% block body %}
+    <!-- Navbar & Hero Start -->
+    <div class="container-fluid header position-relative overflow-hidden p-0">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-light px-4 px-lg-5 py-3 py-lg-0">
+        <a href="{{ path('app_front_accueil') }}" class="navbar-brand p-0">
+            <h1 class="display-6 text-primary m-0">Carthago Smart</h1>
+            <img src="{{ asset('front/img/logo.png') }}" alt="Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="fa fa-bars"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto py-0">
+                <a href="{{ path('app_front_accueil') }}" class="nav-item nav-link active">Acceuil</a>
+                <a href="about.html" class="nav-item nav-link">About</a>
+
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Services</a>
+                    <div class="dropdown-menu m-0">
+                        <a href="{{ path('app_facture_indexFront') }}" class="dropdown-item">Energie</a>
+                        <a href="#" class="dropdown-item">Dechets</a>
+                        <a href="blog.html" class="dropdown-item">Evenemment</a>
+                    </div>
+                </div>
+                <a href="contact.html" class="nav-item nav-link">Contact Us</a>
+            </div>
+            <a href="#" class="btn btn-light border border-primary rounded-pill text-primary py-2 px-4 me-4">Log In</a>
+            <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4">Sign Up</a>
+        </div>
+    </nav>
+    <!-- Navbar & Hero Start -->
+    <div class="container-fluid header position-relative overflow-hidden p-0">
+        <nav class="navbar navbar-expand-lg fixed-top navbar-light px-4 px-lg-5 py-3 py-lg-0">
+            <!-- Votre navbar existante -->
+        </nav>
+    </div>
+
+    <!-- Navbar End -->
+
+    <section class="success-section" style="display: flex;align-item:center;justify-content: center;margin-right: -200px">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <div class="success-message text-center">
+                        <h2 class="mb-4">Paiement échoué !</h2>
+                        <p class="lead">Veuillez réessayer !</p>
+                        <p class="mt-4">Si vous avez des questions ou des préoccupations, n'hésitez pas à nous contacter.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% if app.session.get('payment_success', false) %}
+        <div class="alert alert-fail alert-dismissible fade show" role="alert">
+            <strong>Paiement échoué !</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        </div>
+    {% endif %}
+{% endblock %}

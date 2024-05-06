@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Organiser Recyclage{% endblock %}
+
+{% block body %}
+
+   <div style="display: flex; justify-content: center; align-items: center; margin-top: 150px; padding: 10px;">
+          <div class="card">
+            <div class="card-body">
+              <a href="{{ path('app_recyclagedechets_index') }}"><i class="ri-arrow-left-circle-fill" style="font-size: 50px;"></i></a>
+
+              <h5 class="card-title">Modifier un recyclage déchets :</h5>
+              <!-- General Form Elements -->
+              {{ form_start(form, {attr:{'novalidate':'novalidate'}}) }}
+              
+                
+                    <!-- Type de déchets -->
+                    <div class="row mb-3">
+                        <label for="Sélectionner le déchet" class="col-sm-2 col-form-label"></label>
+                        <div class="col-sm-8">
+                  
+                            {{ form_widget(form.id, {'attr': {'class': 'form-control'}}) }}
+                            
+                            
+                        </div>
+                    </div>
+
+                <!-- pointrecyclage -->
+                <div class="row mb-3">
+                    <div class="col-sm-2">
+                        <label for="point de recyclage" class="col-form-label"></label>
+                    </div>
+                    <div class="col-sm-8">
+                        
+                        {{ form_row(form.pointrecyclage, {'attr': {'class': 'form-control '}}) }}
+                        
+                    </div>
+                </div>
+
+
+
+                    <!-- Bouton Ajouter -->
+                    <div class="row mb-3">
+                        <div class="col-sm-10 offset-sm-1" style="display: flex; align-items: center; justify-content: center">
+                            <button type="submit" class="btn btn-primary">Modifier</button>
+                        </div>
+                    </div>
+
+
+
+
+
+              {{ form_end(form)}}
+
+            </div>
+          </div>
+
+        </div>
+{% endblock %}

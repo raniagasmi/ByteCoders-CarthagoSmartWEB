@@ -1,0 +1,249 @@
+{% extends 'base-front.html.twig' %}
+
+{% block title %}Map{% endblock %}
+
+{% block body %}
+
+<!-- Navbar & Hero Start -->
+<div class="container-fluid header position-relative overflow-hidden p-0">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-light px-4 px-lg-5 py-3 py-lg-0">
+        <a href="index.html" class="navbar-brand p-0">
+            <h1 class="display-6 text-primary m-0">Carthago Smart</h1>
+            <img src="{{ asset('front/img/logo.png') }}" alt="Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="fa fa-bars"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto py-0">
+                <a href="index.html" class="nav-item nav-link active">Acceuil</a>
+                <a href="about.html" class="nav-item nav-link">About</a>
+                
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Services</a>
+                    <div class="dropdown-menu m-0">
+                        <a href="" class="dropdown-item">Energie</a>
+                        <a href="{{ path('app_AcceuilDechets') }}" class="dropdown-item">Dechets</a>
+                        <a href="blog.html" class="dropdown-item">Evenemment</a>
+                    </div>
+                </div>
+                <a href="contact.html" class="nav-item nav-link">Contact Us</a>
+            </div>
+            <a href="#" class="btn btn-light border border-primary rounded-pill text-primary py-2 px-4 me-4">Log In</a>
+            <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4">Sign Up</a>
+        </div>
+    </nav>
+<!-- Navbar & Hero Start -->
+<div class="container-fluid header position-relative overflow-hidden p-0">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-light px-4 px-lg-5 py-3 py-lg-0">
+        <!-- Votre navbar existante -->
+    </nav>
+</div>
+<!-- Navbar End -->
+
+<!-- Map Section Start -->
+<section class="map-section py-4" style="margin-top: 100px;"> <!-- Augmentation de la marge pour déplacer vers le bas -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <div id="map" style="height: 600px;"></div> <!-- Augmentation de la hauteur de la carte -->
+                <div style="margin-top: 20px;"> <!-- Ajout de marge au-dessus du champ de recherche -->
+                    <input id="searchInput" type="text" placeholder="Search for a location..." style="width: 100%; font-size: 18px;"> <!-- Augmentation de la taille de la police -->
+                    <div style="margin-top: 10px;"> <!-- Ajout de marge au-dessus des boutons -->
+                        <button class="add-button" id="searchButton" onclick="searchLocation()">Search</button>
+                        <button class="add-button" id="selectButton" onclick="selectLocation()">Select</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Map Section End -->
+
+<div id="form_map"></div>    
+ <script src="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js"></script>
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css" rel="stylesheet" /> -->
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKbAQafF9CzI3D1HJkRgwxWywnFK8oSgM&libraries=places&callback=initialize" async defer></script>
+
+<div id="map" style="width: 946px; height: 400px;"></div>
+<script>
+    var map;
+    var markers = [];
+    var selectedMarker;
+    var searchBox;
+ 
+    function initialize() {
+        var mapOptions = {
+            center: {lat: 36.8065, lng: 10.1815}, // Tunis coordinates
+            zoom: 8
+        };
+        map = new google.maps.Map(document.getElementById('map'), mapOptions);
+        initSearchBox();
+        // Add event listener for click
+        google.maps.event.addListener(map, 'click', function(event) {
+            clearMarkers();
+            addMarker(event.latLng);
+        });
+    }
+ 
+    function addMarker(location) {
+        clearMarkers();
+        var marker = new google.maps.Marker({
+            position: location,
+            map: map
+        });
+        markers.push(marker);
+        selectedMarker = marker;
+    }
+ 
+    function clearMarkers() {
+        markers.forEach(function(marker) {
+            marker.setMap(null);
+        });
+        markers = [];
+    }
+ 
+    function initSearchBox() {
+        // Create a search box and link it to the UI element
+        var input = document.getElementById('searchInput');
+        searchBox = new google.maps.places.SearchBox(input);
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+ 
+        // Bias the SearchBox results towards the map's viewport
+        map.addListener('bounds_changed', function() {
+            searchBox.setBounds(map.getBounds());
+        });
+ 
+        // Listen for the event fired when the user selects a prediction and retrieve
+        // more details for that place
+        searchBox.addListener('places_changed', function() {
+            var places = searchBox.getPlaces();
+ 
+            if (places.length === 0) {
+                return;
+            }
+ 
+            // Clear out the old markers
+            clearMarkers();
+ 
+            // For each place, get the icon, name and location
+            var bounds = new google.maps.LatLngBounds();
+            places.forEach(function(place) {
+                if (!place.geometry) {
+                    console.log("Returned place contains no geometry");
+                    return;
+                }
+ 
+                // Create a marker for each place
+                addMarker(place.geometry.location);
+ 
+                if (place.geometry.viewport) {
+                    // Only geocodes have viewport
+                    bounds.union(place.geometry.viewport);
+                } else {
+                    bounds.extend(place.geometry.location);
+                }
+            });
+            map.fitBounds(bounds);
+        });
+    }
+ 
+    function searchLocation() {
+        var input = document.getElementById('searchInput').value;
+        searchBox.setBounds(map.getBounds());
+        var places = searchBox.getPlaces();
+        if (places.length === 0) {
+            alert('No results found for the entered location.');
+            return;
+        }
+ 
+        // Clear out the old markers
+        clearMarkers();
+ 
+        // For each place, get the icon, name and location
+        var bounds = new google.maps.LatLngBounds();
+        places.forEach(function(place) {
+            if (!place.geometry) {
+                console.log("Returned place contains no geometry");
+                return;
+            }
+ 
+            // Create a marker for each place
+            addMarker(place.geometry.location);
+ 
+            if (place.geometry.viewport) {
+                // Only geocodes have viewport
+                bounds.union(place.geometry.viewport);
+            } else {
+                bounds.extend(place.geometry.location);
+            }
+        });
+        map.fitBounds(bounds);
+    }
+    async function selectLocation() {
+    if (selectedMarker) {
+        var latitude = selectedMarker.getPosition().lat();
+        var longitude = selectedMarker.getPosition().lng();
+        console.log("Selected Location: " + latitude + ", " + longitude);
+        const url = `https://map-geocoding.p.rapidapi.com/json?latlng=${latitude}%2C${longitude}`;
+        const options = {
+            method: 'GET',
+            headers: {
+                'X-RapidAPI-Key': '693cc195acmshcb59ec012bd3e50p1434ccjsndaa8ccf663cc',
+                'X-RapidAPI-Host': 'map-geocoding.p.rapidapi.com'
+            }
+        };
+ 
+        try {
+            const response = await fetch(url, options);
+            const result = await response.json();
+            console.log("Selected Address: " + result.results[0].formatted_address);
+ 
+            // Extract government name and city name
+            let governmentName, cityName;
+            result.results[0].address_components.forEach(component => {
+                if (component.types.includes('administrative_area_level_1')) {
+                    governmentName = component.long_name;
+                } else if (component.types.includes('locality')) {
+                    cityName = component.long_name;
+                }
+            });
+ 
+            //console.log("Government Name: " + governmentName);
+            //console.log("City Name: " + cityName);
+            document.getElementById("emplacement_gouvernourat").value = governmentName;
+            document.getElementById("emplacement_ville").value = cityName;
+        } catch (error) {
+            console.error(error);
+        }   
+        } 
+    }
+ 
+ 
+</script>
+    <script>
+            function initMap() {
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 8,
+                    center: {lat: 36.8065, lng: 10.1815} // Tunis coordinates
+                });
+
+                {% for event in events %}
+                    var coords = '{{ event.getPointramassage() }}';
+                    var coordinates = coords.split(',');
+                    var latitude = parseFloat(coordinates[0]);
+                    var longitude = parseFloat(coordinates[1]);
+
+                    var marker = new google.maps.Marker({
+                        position: {lat: latitude, lng: longitude},
+                        map: map,
+                        title: '**Point de ramassage**'
+                    });
+                {% endfor %}
+            }
+    </script>
+
+
+{% endblock %}
+

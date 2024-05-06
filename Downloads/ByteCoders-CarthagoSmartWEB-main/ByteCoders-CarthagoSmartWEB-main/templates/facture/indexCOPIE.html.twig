@@ -1,0 +1,118 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Facture{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <!-- Include DataTables CSS -->
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
+{% endblock %}
+
+{% block body %}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <section class="section" style="display: flex;align-item:center;justify-content: center;margin-right: -200px">
+        <div class="row" style="display: flex;align-item:center;justify-content: center; margin-top: 150px">
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Liste des factures: ({{ factures.getTotalItemCount }})</h5>
+
+                    <table class="table datatable" id="myTable">
+                        <thead>
+                        <tr>
+                            <th>IdFacture</th>
+                            <th>Libelle</th>
+                            <th>Date</th>
+                            <th>DateEch</th>
+                            <th>Montant</th>
+                            <th>Type</th>
+                            <th>EstPayee</th>
+
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <!-- Filtrage -->
+                        <div>
+                            <label for="filter">Filtrer par :</label>
+                            <select id="filter" name="filter">
+                                <option value="all" selected>Tous</option>
+                                <option value="EAU">EAU</option>
+                                <option value="ENERGY">ENERGY</option>
+                            </select>
+                        </div>
+                        <form method="GET" action="{{ path('app_search') }}">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="Rechercher..." name="query">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="submit">Rechercher</button>
+                                </div>
+                            </div>
+                        </form>
+                        <tbody>
+                        {% for facture in factures %}
+                            <tr>
+                                <td>{{ facture.idFacture }}</td>
+                                <td>{{ facture.libelle }}</td>
+                                <td>{{ facture.date ? facture.date|date('Y-m-d') : '' }}</td>
+                                <td>{{ facture.dateEch ? facture.dateEch|date('Y-m-d') : '' }}</td>
+                                <td>{{ facture.montant }}</td>
+                                <td>{{ facture.type }}</td>
+                                <td>
+                                    {% if facture.estPayee %}
+                                        Oui
+                                    {% else %}
+                                        Non
+                                    {% endif %}
+                                </td>
+
+                                <td>
+                                    <a href="{{ path('app_facture_show', {'idFacture': facture.idFacture}) }}"><i class="fas fa-eye"></i></a>
+                                    <a href="{{ path('app_facture_edit', {'idFacture': facture.idFacture}) }}"><i class="fas fa-edit"></i></a>
+                                    <a href="{{ path('app_facture_delete', {'idFacture': facture.idFacture}) }}"><i class="fas fa-trash-alt"></i></a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <div style="display: flex;align-item:center;justify-content: center;">
+                        {{ knp_pagination_render(factures) }}
+                    </div>
+                    <a href="{{ path('app_facture_new') }}"><i class="fas fa-plus"></i>Créer facture</a>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <!-- Include jQuery and DataTables JS
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script> -->
+    <script>
+        /*$(document).ready(function() {
+            // Hide the information display (optional)
+            $('.dataTables_info').hide();
+
+            // Initialize DataTables with paging enabled and searching disabled
+            $('#myTable').DataTable({
+                paging: false,
+                searching: false,
+                info: false
+            });*/
+
+            // Handle form submission for search
+            $('form').submit(function(event) {
+                // Prevent default form submission
+                event.preventDefault();
+
+                // Get the search query from the input field
+                var query = $(this).find('input[name="query"]').val();
+
+                // Redirect to the search route with the query as a parameter
+                window.location.href = '{{ path('app_search') }}?query=' + query;
+            });
+        });
+    </script>
+{% endblock %}

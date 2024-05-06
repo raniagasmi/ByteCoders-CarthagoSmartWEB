@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reçu de Paiement{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card border-0 shadow">
+                    <div class="card-body">
+                        <h2 class="text-center mb-4">Reçu de Paiement</h2>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-header bg-primary text-white">Détails du Paiement</div>
+                                    <div class="card-body">
+                                        <table class="table">
+                                            <tbody>
+                                            <tr>
+                                                <th scope="row">ID Paiement</th>
+                                                <td>{{ paiement.idPaiement }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Montant Payé</th>
+                                                <td>{{ paiement.montant }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Mode de Paiement</th>
+                                                <td>{{ paiement.modePaiement }}</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-header bg-success text-white">Résumé de l'Opération</div>
+                                    <div class="card-body">
+                                        <p>Merci pour votre paiement!</p>
+                                        <p>Le paiement a été effectué avec succès.</p>
+                                        <p>Un email de confirmation vous a été envoyé à l'adresse associée à votre compte.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="{{ path('app_paiement_index') }}" class="btn btn-secondary mt-3">Retour à la Liste</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
