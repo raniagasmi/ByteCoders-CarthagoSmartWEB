@@ -1,0 +1,145 @@
+{% extends 'base-front.html.twig' %}
+
+{% block body %}
+<!-- Navbar & Hero Start -->
+<div class="container-fluid header position-relative overflow-hidden p-0">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-light px-4 px-lg-5 py-3 py-lg-0">
+        <a href="index.html" class="navbar-brand p-0">
+            <h1 class="display-6 text-primary m-0">Carthago Smart</h1>
+            <img src="{{ asset('front/img/logo.png') }}" alt="Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="fa fa-bars"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto py-0">
+                <a href="{{ path('app_front_index') }}" class="nav-item nav-link active">Acceuil</a>
+                <a href="about.html" class="nav-item nav-link">About</a>
+
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Services</a>
+                    <div class="dropdown-menu m-0">
+                        <a href="" class="dropdown-item">Energie</a>
+                        <a href="{{ path('app_front_index') }}" class="dropdown-item">Dechets</a>
+                        <a href="blog.html" class="dropdown-item">Evenemment</a>
+                    </div>
+                </div>
+                <a href="contact.html" class="nav-item nav-link">Contact Us</a>
+            </div>
+            <a href="#" class="btn btn-light border border-primary rounded-pill text-primary py-2 px-4 me-4">Log In</a>
+            <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4">Sign Up</a>
+        </div>
+    </nav>
+    <!-- About Start -->
+    <div class="container-fluid overflow-hidden py-5" style="margin-top: 6rem;">
+        <div class="container py-5">
+            <div class="row g-5">
+                <!-- Your code snippet here -->
+            </div>
+        </div>
+    </div>
+    <!-- About End -->
+
+    <!-- Service Start -->
+    <div class="container-fluid service py-5">
+        <div class="container py-5">
+            <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 900px;">
+                <h4 class="mb-1 text-primary">Our Service</h4>
+                <h1 class="display-5 mb-4">What We Can Do For You</h1>
+                <p class="mb-0">Dolor sit amet consectetur, adipisicing elit. Ipsam, beatae maxime. Vel animi eveniet doloremque reiciendis soluta iste provident non rerum illum perferendis earum est architecto dolores vitae quia vero quod incidunt culpa corporis, porro doloribus. Voluptates nemo doloremque cum.
+                </p>
+            </div>
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="service-item text-center rounded p-4">
+                        <div class="service-icon d-inline-block bg-light rounded p-4 mb-4"><i class="fas fa-mail-bulk fa-5x text-secondary"></i></div>
+                        <div class="service-content">
+                            <h4 class="mb-4">Factures</h4>
+                            <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit.consectetur adipisicing elit
+                            </p>
+                            <a href="#" class="btn btn-light rounded-pill text-primary py-2 px-4">Consulter vos factures</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="service-item text-center rounded p-4">
+                        <div class="service-icon d-inline-block bg-light rounded p-4 mb-4"><i class="fas fa-thumbs-up fa-5x text-secondary"></i></div>
+                        <div class="service-content">
+                            <h4 class="mb-4">Acquistion Emails </h4>
+                            <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit.consectetur adipisicing elit
+                            </p>
+                            <a href="#" class="btn btn-light rounded-pill text-primary py-2 px-4">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="service-item text-center rounded p-4">
+                        <div class="service-icon d-inline-block bg-light rounded p-4 mb-4"><i class="fa fa-subway fa-5x text-secondary"></i></div>
+                        <div class="service-content">
+                            <h4 class="mb-4">Retention Emails</h4>
+                            <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit.consectetur adipisicing elit
+                            </p>
+                            <a href="#" class="btn btn-light rounded-pill text-primary py-2 px-4">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.7s">
+                    <div class="service-item text-center rounded p-4">
+                        <div class="service-icon d-inline-block bg-light rounded p-4 mb-4"><i class="fas fa-sitemap fa-5x text-secondary"></i></div>
+                        <div class="service-content">
+                            <h4 class="mb-4">Promotional Emails</h4>
+                            <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit.consectetur adipisicing elit
+                            </p>
+                            <a href="#" class="btn btn-light rounded-pill text-primary py-2 px-4">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="service-item text-center rounded p-4">
+                        <div class="service-icon d-inline-block bg-light rounded p-4 mb-4"><i class="fas fa-mail-bulk fa-5x text-secondary"></i></div>
+                        <div class="service-content">
+                            <h4 class="mb-4">Email Newsletters</h4>
+                            <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit.consectetur adipisicing elit
+                            </p>
+                            <a href="#" class="btn btn-light rounded-pill text-primary py-2 px-4">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="service-item text-center rounded p-4">
+                        <div class="service-icon d-inline-block bg-light rounded p-4 mb-4"><i class="fas fa-thumbs-up fa-5x text-secondary"></i></div>
+                        <div class="service-content">
+                            <h4 class="mb-4">Acquistion Emails </h4>
+                            <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit.consectetur adipisicing elit
+                            </p>
+                            <a href="#" class="btn btn-light rounded-pill text-primary py-2 px-4">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="service-item text-center rounded p-4">
+                        <div class="service-icon d-inline-block bg-light rounded p-4 mb-4"><i class="fa fa-subway fa-5x text-secondary"></i></div>
+                        <div class="service-content">
+                            <h4 class="mb-4">Retention Emails</h4>
+                            <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit.consectetur adipisicing elit
+                            </p>
+                            <a href="#" class="btn btn-light rounded-pill text-primary py-2 px-4">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.7s">
+                    <div class="service-item text-center rounded p-4">
+                        <div class="service-icon d-inline-block bg-light rounded p-4 mb-4"><i class="fas fa-sitemap fa-5x text-secondary"></i></div>
+                        <div class="service-content">
+                            <h4 class="mb-4">Promotional Emails</h4>
+                            <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit.consectetur adipisicing elit
+                            </p>
+                            <a href="#" class="btn btn-light rounded-pill text-primary py-2 px-4">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Service End -->
+{% endblock %}

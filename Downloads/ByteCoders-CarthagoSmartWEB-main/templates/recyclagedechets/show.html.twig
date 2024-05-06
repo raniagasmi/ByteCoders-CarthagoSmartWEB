@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Recyclagedechets{% endblock %}
+
+{% block body %}
+<div style="text-align: center; margin-top: 80px;">
+    <h1>Recyclagedechets</h1>
+
+    <style>
+        .custom-table {
+            max-width: 50%; /* Définir une largeur maximale pour la table */
+            margin: 0 auto; /* Centrer la table horizontalement */
+        }
+    </style>
+
+<table class="table custom-table">
+        <tbody>
+            <tr>
+                <th>IdRecyc</th>
+                <td>{{ recyclagedechet.idRecyc }}</td>
+            </tr>
+            <tr>
+                <th>Pointrecyclage</th>
+                <td>{{ recyclagedechet.pointrecyclage }}</td>
+            </tr>
+                 <tr>
+            <td colspan="2" style="text-align: right;">
+
+
+                <a href="{{ path('app_recyclagedechets_index', {'idRecyc': recyclagedechet.idRecyc}) }}" class="btn btn-info btn-sm">
+                    <i class="bi bi-arrow-left"></i>
+                </a>
+               
+                <a href="{{ path('app_recyclagedechets_edit',{'idRecyc': recyclagedechet.idRecyc}) }}" class="btn btn-info btn-sm">
+                <i class="ri-pencil-line"></i> </a>
+                
+                {{ include('recyclagedechets/_delete_form.html.twig') }}
+                
+                
+            </td>
+        </tr>
+        </tbody>
+       
+    </table>
+
+
+{% endblock %}
+
+

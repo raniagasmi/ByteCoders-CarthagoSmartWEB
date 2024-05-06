@@ -1,0 +1,88 @@
+{% extends 'base-front.html.twig' %}
+
+
+{% block body %}
+<!-- Navbar & Hero Start -->
+<div class="container-fluid header position-relative overflow-hidden p-0">
+        <nav class="navbar navbar-expand-lg fixed-top navbar-light px-4 px-lg-5 py-3 py-lg-0">
+            <a href="index.html" class="navbar-brand p-0">
+                <h1 class="display-6 text-primary m-0">Carthago Smart</h1>
+                <img src="{{ asset('front/img/logo.png') }}" alt="Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="fa fa-bars"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ms-auto py-0">
+                    <a href="{{ path('acceuil') }}" class="nav-item nav-link active">Acceuil</a>
+                    <a href="about.html" class="nav-item nav-link">About</a>
+
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Services</a>
+                        <div class="dropdown-menu m-0">
+                            
+                            <a href="#" class="dropdown-item">Energie</a>
+                            <a href="{{ path('app_AcceuilDechets') }}" class="dropdown-item">Dechets</a>
+                            <a href="#" class="dropdown-item">Evenemment</a>
+                        </div>
+                    </div>
+                    <a href="contact.html" class="nav-item nav-link">Contact Us</a>
+                </div>
+                <a href="#" class="btn btn-light border border-primary rounded-pill text-primary py-2 px-4 me-4">Log In</a>
+                <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4">Sign Up</a>
+            </div>
+        </nav>
+        <!-- Navbar & Hero Start -->
+        <div class="container-fluid header position-relative overflow-hidden p-0">
+            <nav class="navbar navbar-expand-lg fixed-top navbar-light px-4 px-lg-5 py-3 py-lg-0">
+                <!-- Votre navbar existante -->
+            </nav>
+        </div>
+    <!-- Navbar End -->
+    <!-- Blog Start -->
+<div class="container-fluid blog py-5">
+    <div class="container py-5">
+        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 900px;">
+            <h1 class="display-5 mb-4">Sélectionner le type de vos déchets</h1>
+            <p class="mb-0">Soyons responsables de notre empreinte écologique en prenant des décisions éclairées pour protéger notre environnement et les générations futures.</p>
+        </div>
+        <div class="row g-4 justify-content-center"> <!-- Utilisez justify-content-center pour centrer les éléments -->
+            <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="blog-item">
+                    <div class="blog-img">
+                        <img src="{{ asset('front/img/recyc.png') }}" class="img-fluid w-100" alt="">
+                    </div>
+                    <div class="blog-content text-dark border p-4">
+                        <a class="btn btn-light rounded-pill py-2 px-4"  href="{{ path('app_recyclage') }}">Déchets Recyclables</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.7s">
+                <div class="blog-item">
+                    <div class="blog-img">
+                        <img src="{{ asset('front/img/non_recyc.png') }}" class="img-fluid w-100" alt="">
+                    </div>
+                    <div class="blog-content text-dark border p-4">
+                        <a class="btn btn-light rounded-pill py-2 px-4" href="{{ path('app_ramassage') }}">Déchets Non Recyclables</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center"> <!-- Nouvelle rangée pour le bouton "Vos Réclamations" -->
+            <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="1.1s">
+                <div class="blog-item">
+                    <div class="blog-img">
+                        <!-- Vous pouvez ajouter une image pour ce bouton si nécessaire -->
+                    </div>
+                    <div class="blog-content text-dark border p-4">
+                        <a class="btn btn-light rounded-pill py-2 px-4" href="{{ path('app_reclamer') }}">Vos Réclamations</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <!-- Blog End -->
+{% endblock %}

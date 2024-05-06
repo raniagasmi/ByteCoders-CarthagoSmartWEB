@@ -1,0 +1,176 @@
+app_admin_index:
+    path: /admin
+    controller: App\Controller\FactureController::indexAdmin
+
+app_facture_new:
+    path: '/facture/new'
+    controller: App\Controller\FactureController::new
+
+app_facture_show:
+    path: '/facture/{idFacture}/show'
+    controller: App\Controller\FactureController::show
+
+app_facture_showFront:
+    path: '/facture/{idFacture}/showf'
+    controller: App\Controller\FactureController::showFront
+
+app_facture_indexFront:
+    path: '/facture/indexFront'
+    controller: App\Controller\FactureController::indexFront
+
+app_paiement_new:
+    path: '/paiement/{idFacture}/new'
+    controller: App\Controller\PaiementController::new
+
+app_front_index:
+    path: '/index'
+    controller: App\Controller\FrontController::index
+
+app_front_accueil:
+    path: '/accueil'
+    controller: App\Controller\FrontController::accueil
+
+app_front_service:
+    path: '/front/service'
+    controller: App\Controller\FrontController::service
+
+app_front_features:
+    path: '/front/features'
+    controller: App\Controller\FrontController::features
+
+app_front_pricing:
+    path: '/front/pricing'
+    controller: App\Controller\FrontController::pricing
+
+app_front_blog:
+    path: '/front/blog'
+    controller: App\Controller\FrontController::blog
+
+app_front_testimonial:
+    path: '/front/testimonial'
+    controller: App\Controller\FrontController::testimonial
+
+api_login_check:
+    path: /api/login_check
+
+app_verify_email:
+    path: /verify
+    controller: App\Controller\RegistrationController::verifyUserEmail 
+
+app_register:
+    path: /register
+    controller: App\Controller\RegistrationController::register
+
+app_user_home:
+    path : /home
+    controller: 'App\Controller\HomeController::indexHome'
+
+
+app_user_contact:
+    path : /user/contact
+    controller: 'App\Controller\UserController::indexContact'
+
+
+app_user_index:
+    path: /admin/users
+    controller: 'App\Controller\AdminController::index'   
+    methods: ['GET']
+
+app_user_forUser:
+    path: /user/forUser
+    controller: 'App\Controller\UserController::indexUser'
+
+app_user_show:
+    path: /admin/{id}
+    controller: App\Controller\AdminController::show
+    requirements:
+        id: \d+  # Ensure the id parameter is a digit (integer)
+
+app_check_email:
+    path: /reset-password/check-email
+    controller: App\Controller\ResetPasswordController::checkEmail
+    methods: ['GET']
+
+app_user_edit:
+    path: /admin/{id}/edit
+    controller: App\Controller\AdminController::edit
+    methods: ['GET', 'POST']
+    requirements:
+        id: \d+  # Ensure the id parameter is a digit (integer)
+
+app_user_delete:
+    path: /admin/{id}
+    controller: App\Controller\AdminController::delete
+    methods: ['POST']
+    requirements:
+        id: \d+  # Ensure the id parameter is a digit (integer)
+
+profile_edit:
+    path: /user/profile/{id}/edit
+    controller: App\Controller\UserController::editProfile
+    methods: ['GET', 'POST']
+    requirements: 
+        id: \d+  # User ID
+
+
+app_reset_password:
+    path: '/reset-password/reset/{token}'
+    controller: App\Controller\SecurityController::resetpassword
+    methods: ['GET','POST']        
+acceuil:
+    path: '/Front'
+    controller: App\Controller\FrontControllerS::home
+
+app_service:
+    path: '/Front/service'
+    controller: App\Controller\FrontControllerS::service
+
+app_recyclage:
+    path: '/Front/recyclages'
+    controller: App\Controller\FrontControllerS::recyclage
+
+
+app_ramassage:
+    path: '/Front/ramassage'
+    controller: App\Controller\FrontControllerS::ramassage
+
+app_AcceuilDechets:
+    path: '/Front/AcceuilDechets'
+    controller: App\Controller\FrontControllerS::AcceuilDechets
+
+app_calendrier:
+    path: '/Front/calendrier'
+    controller: App\Controller\CalendrierController::calendrier
+
+app_map:
+    path: '/Front/map'
+    controller: App\Controller\mapcontroller::map
+
+envoyer-mail:
+    path: '/Front/reclamation'
+    controller: App\Controller\reclamationController::envoyerMail
+
+
+app_search:
+    path: /search
+    controller: App\Controller\CollectdechetsController::searchEvent
+    methods: [GET]
+
+app_search2:
+    path: /search2
+    controller: App\Controller\RecyclagedechetsController::searchEvent
+    methods: [GET]
+
+app_search3:
+    path: /search3
+    controller: App\Controller\TypedechetsController::searchEvent
+    methods: [GET]
+
+search:
+    path: /search_ajax
+    controller: App\Controller\TypedechetsController::search
+    methods: [GET]
+
+app_reclamer:
+    path: '/LES_reclamation'
+    controller: App\Controller\reclamationController::reclamer

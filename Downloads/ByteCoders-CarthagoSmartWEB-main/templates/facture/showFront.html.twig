@@ -1,0 +1,130 @@
+{% extends 'base-front.html.twig' %}
+
+{% block title %}Facture{% endblock %}
+
+{% block body %}
+    <!-- Navbar & Hero Start -->
+    <div class="container-fluid header position-relative overflow-hidden p-0">
+        <nav class="navbar navbar-expand-lg fixed-top navbar-light px-4 px-lg-5 py-3 py-lg-0">
+            <a href="{{ path('app_front_accueil') }}" class="navbar-brand p-0">
+                <h1 class="display-6 text-primary m-0">Carthago Smart</h1>
+                <img src="{{ asset('front/img/logo.png') }}" alt="Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="fa fa-bars"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ms-auto py-0">
+                    <a href="{{ path('app_front_accueil') }}" class="nav-item nav-link active">Acceuil</a>
+                    <a href="about.html" class="nav-item nav-link">About</a>
+
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Services</a>
+                        <div class="dropdown-menu m-0">
+                            <a href="{{ path('app_facture_indexFront') }}" class="dropdown-item">Energie</a>
+                            <a href="#" class="dropdown-item">Dechets</a>
+                            <a href="blog.html" class="dropdown-item">Evenemment</a>
+                        </div>
+                    </div>
+                    <a href="contact.html" class="nav-item nav-link">Contact Us</a>
+                </div>
+                <a href="#" class="btn btn-light border border-primary rounded-pill text-primary py-2 px-4 me-4">Log In</a>
+                <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4">Sign Up</a>
+            </div>
+        </nav>
+        <!-- Navbar & Hero Start -->
+        <div class="container-fluid header position-relative overflow-hidden p-0">
+            <nav class="navbar navbar-expand-lg fixed-top navbar-light px-4 px-lg-5 py-3 py-lg-0">
+                <!-- Votre navbar existante -->
+            </nav>
+        </div>
+        <!-- Navbar End -->
+    <section class="section" style="display: flex;align-item:center;justify-content: center;margin-right: -200px">
+        <div class="row" style="display: flex;align-item:center;justify-content: center; margin-top: 150px">
+            <div class="row justify-content-between">
+                <div class="col-md-auto">
+                    <a href="{{ path('app_facture_indexFront') }}">
+                        <i class="fas fa-arrow-left"></i> </a>
+                </div>
+            <h1>Facture</h1>
+
+            <table class="table">
+                <tbody>
+                <tr>
+                    <th>Ref</th>
+                    <td>{{ facture.idFacture }}</td>
+                </tr>
+                <tr>
+                    <th>Libelle</th>
+                    <td>{{ facture.libelle }}</td>
+                </tr>
+                <tr>
+                    <th>Date</th>
+                    <td>{{ facture.date ? facture.date|date('Y-m-d') : '' }}</td>
+                </tr>
+                <tr>
+                    <th>DateEch</th>
+                    <td>{{ facture.dateEch ? facture.dateEch|date('Y-m-d') : '' }}</td>
+                </tr>
+                <tr>
+                    <th>Montant</th>
+                    <td>{{ facture.montant }}</td>
+                </tr>
+                <tr>
+                    <th>Type</th>
+                    <td>{{ facture.type }}</td>
+                </tr>
+                <tr>
+                    <th>EstPayee</th>
+                    <td>{{ facture.estPayee ? 'Oui' : 'Non' }}</td>
+                </tr>
+                </tbody>
+            </table>
+
+                <div class="row justify-content-between">
+                    <div class="col-md-auto">
+                        <!-- Add the PDF generation icon -->
+                        <a href="{{ path('app_facture_pdf', {'idFacture': facture.idFacture}) }}" class="ms-3">
+                            <i class="far fa-file-pdf"></i> PDF
+                        </a>
+                    </div>
+                    <div class="col-md-auto">
+                        {% if facture.estpayee != 'Oui' %}
+                            <!--<a href="{{ path('app_paiement_new', {'idFacture': facture.idFacture}) }}">
+                                <i class="far fa-credit-card"></i> Payer
+                            </a>-->
+                            <form action="{{ path('checkout', {'idFacture': facture.idFacture}) }}" method="POST">
+                                <button type="submit"><i class="far fa-credit-card"></i> Payer</button>
+
+                            </form>
+
+                        {% endif %}
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+</div>
+    <script>
+        // Get the modal
+        var modal = document.getElementById('successModal');
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+    {% endblock %}

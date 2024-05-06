@@ -1,0 +1,244 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Typedechets{% endblock %}
+
+
+{% block stylesheets %}
+    {{ parent() }}
+    <!-- Include DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
+{% endblock %}
+
+{% block body %}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <section class="section" style="display: flex;align-item:center;justify-content: center;margin-right: -200px">
+        <div class="row" style="display: flex;align-item:center;justify-content: center; margin-top: 150px">
+        <h1 class="text-center">Table des dechets </h1>
+
+            <div class="card">
+                <div class="card-body">
+                 <button class="btn btn-primary" onclick="sortByCost()">Trier </button>
+                 <!-- Filtrage -->
+                    <div>
+                        <label for="filter">Filtrer par :</label>
+                        <select id="filter" name="filter">
+                            <option value="all" selected>Tous</option>
+                            <option value="RECYCLABLE">Recyclable</option>
+                            <option value="NON_RECYCLABLE">Non Recyclable</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="search">Recherche :</label>
+                        <input type="text" id="search" name="search" autocomplete="off">
+                        <ul id="suggestions"></ul>
+                    </div>
+
+
+
+                            
+                    <table class="table datatable" id="myTable">
+                        <!-- Your table content -->
+                        <thead>
+                            <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Categorie</th>
+                        <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                {% for typedechet in typedechets %}
+                    <tr>
+                        <td>{{ typedechet.id }}</td>
+                        <td>{{ typedechet.name }}</td>
+                        <td>{{ typedechet.categorie }}</td>
+                        <td>
+                <a href="{{ path('app_typedechets_show', {'id': typedechet.id}) }}" class="btn btn-info btn-sm">
+                    <i class="ri-eye-line"></i> </a>
+                <a href="{{ path('app_typedechets_edit', {'id': typedechet.id}) }}" class="btn btn-info btn-sm">
+            <i class="ri-pencil-line"></i> </a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="4" class="text-center">No records found</td>
+                    </tr>
+                {% endfor %}
+                        </tbody>
+                    </table>
+                        <div style="display: flex; align-items: center; justify-content: center;">
+                            {{ knp_pagination_render(typedechets) }}
+                        </div>
+                    <a href="{{ path('app_typedechets_new') }}"><i class="fas fa-plus"></i>Ajouter dechets</a>
+
+                </div>
+            </div>
+        </div>
+            <script>
+                function sortByCost() {
+                // Récupérer les lignes du tableau
+                var rows = Array.from(document.querySelectorAll('#myTable tbody tr'));
+
+                rows.sort(function(a, b) {
+                    // Récupérer les valeurs des trois colonnes
+                    var dechetsA = a.cells[1].textContent; 
+                    var dechetsB = b.cells[1].textContent;
+                    //var nameA = parseFloat(a.cells[1].textContent); 
+                    //var nameB = parseFloat(b.cells[1].textContent);
+                    var catA = new Date(a.cells[2].textContent); 
+                    var catB = new Date(b.cells[2].textContent);
+                    
+                    // Comparer d'abord les Dechets
+                    if (dechetsA !== dechetsB) {
+                        return dechetsA.localeCompare(dechetsB);
+                    }
+                    
+                    // Si les Dechets sont égaux, comparer les Pointramassage
+                    if (catA !== catB) {
+                        //return pointramassageB - pointramassageA;
+                    }
+                    
+                    // Si les Pointramassage sont égaux, comparer les Dateramassage
+                    return catB - catA;
+                });
+
+                // Effacer le contenu actuel du tableau
+                var tableBody = document.querySelector('#myTable tbody');
+                tableBody.innerHTML = '';
+
+                // Ajouter les lignes triées au tableau
+                rows.forEach(function(row) {
+                    tableBody.appendChild(row);
+                });
+              }
+            </script>
+
+            <script>
+              document.getElementById('filter').addEventListener('change', function() {
+                var filterValue = this.value;
+                var rows = document.querySelectorAll('#myTable tbody tr');
+                rows.forEach(function(row) {
+                    var categorie = row.cells[2].textContent;
+                    if (filterValue === 'all' || categorie === filterValue) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            });
+
+            </script>
+
+
+            <!-- fonctionnalités avec Ajax -->
+            <script>
+                document.getElementById('search').addEventListener('input', function() {
+                    var searchTerm = this.value.trim().toLowerCase();
+                    var suggestions = document.getElementById('suggestions');
+                    suggestions.innerHTML = ''; // Clear previous suggestions
+
+                    if (searchTerm.length === 0) {
+                        suggestions.innerHTML = ''; // Clear suggestions when input is empty
+                        return;
+                    }
+
+                    // Filter the suggestions
+                    var matches = typedechets.filter(function(typedechet) {
+                        return typedechet.name.toLowerCase().startsWith(searchTerm) || typedechet.categorie.toLowerCase().startsWith(searchTerm);
+                    });
+
+                    // Display suggestions
+                    matches.forEach(function(typedechet, index) {
+                        var li = document.createElement('li');
+                        li.textContent = typedechet.name + ' (' + typedechet.categorie + ')';
+                        li.addEventListener('click', function() {
+                            applySearch(typedechet.name);
+                            suggestions.innerHTML = ''; // Clear suggestions after selection
+                        });
+                        suggestions.appendChild(li);
+
+                        // Highlight the first suggestion
+                        if (index === 0) {
+                            li.classList.add('selected');
+                        }
+                    });
+
+                    // Handle keyboard navigation
+                    var selectedSuggestionIndex = 0;
+                    suggestions.querySelectorAll('li').forEach(function(li, index) {
+                        li.addEventListener('mouseenter', function() {
+                            selectedSuggestionIndex = index;
+                            updateSelectedSuggestion();
+                        });
+                    });
+
+                    function updateSelectedSuggestion() {
+                        suggestions.querySelectorAll('li').forEach(function(li, index) {
+                            if (index === selectedSuggestionIndex) {
+                                li.classList.add('selected');
+                            } else {
+                                li.classList.remove('selected');
+                            }
+                        });
+                    }
+
+                    document.addEventListener('keydown', function(event) {
+                        if (event.key === 'ArrowUp') {
+                            event.preventDefault();
+                            if (selectedSuggestionIndex > 0) {
+                                selectedSuggestionIndex--;
+                                updateSelectedSuggestion();
+                            }
+                        } else if (event.key === 'ArrowDown') {
+                            event.preventDefault();
+                            if (selectedSuggestionIndex < matches.length - 1) {
+                                selectedSuggestionIndex++;
+                                updateSelectedSuggestion();
+                            }
+                        } else if (event.key === 'Enter') {
+                            event.preventDefault();
+                            var selectedSuggestion = matches[selectedSuggestionIndex];
+                            if (selectedSuggestion) {
+                                applySearch(selectedSuggestion.name);
+                                suggestions.innerHTML = ''; // Clear suggestions after selection
+                            }
+                        }
+                    });
+                });
+
+                function applySearch(searchTerm) {
+                    var rows = document.querySelectorAll('#myTable tbody tr');
+                    rows.forEach(function(row) {
+                        var name = row.cells[1].textContent.trim().toLowerCase();
+                        var categorie = row.cells[2].textContent.trim().toLowerCase();
+                        if (name.includes(searchTerm.toLowerCase()) || categorie.includes(searchTerm.toLowerCase())) {
+                            row.style.display = '';
+                        } else {
+                            row.style.display = 'none';
+                        }
+                    });
+                }
+
+                // Exemple de données
+                var typedechets = [
+                    { name: 'Papier', categorie: 'Recyclable' },
+                    { name: 'Plastique', categorie: 'Recyclable' },
+                    { name: 'Verre', categorie: 'Recyclable' },
+                    { name: 'Aluminium', categorie: 'Recyclable' },
+                    { name: 'Carton', categorie: 'Recyclable' },
+                    { name: 'Déchets électroniques', categorie: 'Non Recyclable' },
+                    { name: 'Déchets alimentaires', categorie: 'Non Recyclable' },
+                    { name: 'Mégots de cigarette', categorie: 'Non Recyclable' }
+                ];
+            </script>
+
+
+                            
+
+    </section>
+{% endblock %}
+
+
+
+

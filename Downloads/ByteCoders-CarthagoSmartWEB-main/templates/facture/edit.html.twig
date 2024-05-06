@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier Facture{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row justify-content-center mt-5 ">
+        <div class="col-md-5">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Modifier une facture :</h5>
+                    <!-- General Form Elements -->
+                    {{ form_start(form, {attr:{'novalidate':'novalidate'}}) }}
+                    <!-- num facture-->
+                    <div class="mb-3">
+                        <label for="idFacture" class="form-label">Num Facture:</label>
+                    </div>
+                    <!--id user-->
+
+                    <!--libellé-->
+                    <div class="mb-3">
+                        <label for="libelle" class="form-label">Libellé facture : </label>
+                        {{ form_widget(form.libelle,{'attr':{'class':'form-control'}}) }}
+                        {{ form_errors (form.libelle,{'attr':{'class':'text-danger'}}) }}
+                    </div>
+                    <!-- Type de Facture -->
+                    <div class="mb-3">
+                        <label class="form-label">Type de Facture</label>
+                        {{ form_widget(form.type, {'attr': {'class': 'form-select'}}) }}
+                        {{ form_errors(form.type, {'attr': {'class': 'text-danger'}}) }}
+                    </div>
+                    <!--date-->
+                    <div class="mb-3">
+                        <label for="date" class="form-label">Date de création:</label>
+                        {{ form_widget(form.date,{'attr':{'class': 'form-control'}}) }}
+                        {{form_errors (form.date,{'attr':{'class': 'text-danger'}})}}
+                    </div>
+                    <!--date d'écheance-->
+                    <div class="mb-3">
+                        <label for="dateEch" class="form-label">Date d'écheance:</label>
+                        {{ form_widget(form.dateEch, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.dateEch, {'attr': {'class': 'text-danger'}}) }}
+                    </div>
+                    <!--Montant-->
+                    <div class="mb-3">
+                        <label for="montant" class="form-label">Montant :</label>
+                        {{ form_widget(form.montant, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.montant, {'attr': {'class': 'text-danger'}}) }}
+                        
+                    </div>
+                    
+                    <!--estPayee-->
+                <div class="row mb-3">
+                    <label for="estPayee" class="col-sm-4 col-form-label">Payée ?</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.estPayee) }}
+
+                    </div>
+                </div>
+                    <!--Update button-->
+                    <div class="mb-3 text-center">
+                        {{ form_widget(form.Ajouter, {'label': '<i class="fas fa-save"></i> Enregistrer', 'label_html': true, 'attr': {'class': 'btn btn-primary'}}) }}
+                    </div>
+                    {{ form_end(form)}}
+                    <a href="{{ path('app_facture_index') }}">back to list</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
