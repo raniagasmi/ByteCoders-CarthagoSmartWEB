@@ -91,18 +91,5 @@ public function getLatitude(): ?float
     return null;
 }
 
-public function getLongitude(): ?float
-{
-    // Supposons que les coordonnées sont stockées sous forme de chaîne dans une colonne nommée "pointramassage"
-    // Vous devrez extraire la longitude de cette chaîne
-    $coordinates = $this->pointramassage;
-    if ($coordinates) {
-        $coords = explode(',', $coordinates);
-        if (count($coords) === 2) {
-            return floatval($coords[1]);
-        }
-    }
-    return null;
-}
 
 }
